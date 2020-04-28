@@ -1,4 +1,5 @@
 import React from "react";
+import {TINY_MCE_API} from ".env";
 import { Editor } from '@tinymce/tinymce-react';
 
 class TinyMCE extends React.Component {
@@ -10,6 +11,7 @@ class TinyMCE extends React.Component {
       return (
         <Editor
           initialValue="<p>This is the initial content of the editor</p>"
+          apiKey={ TINY_MCE_API }
           init={{
             height: 500,
             width: 600,
