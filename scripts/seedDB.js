@@ -2,6 +2,12 @@ const mongoose = require('mongoose');
 const db = require('../models');
 
 // This file empties the database and inserts new users and snips.
+mongoose.connect(
+  process.env.MONGODB_URI || 'mongodb://localhost/snippit', {
+    useNewUrlParser: true,
+    useFindAndModify: false
+  }
+);
 
 const userSeed = [
   {
@@ -78,6 +84,11 @@ const userSeed = [
   }
 ];
 
+const snipSeed = {
+  body: 'Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old.',
+  responses: []
+}
+
 db.User
   .remove({})
   .then(() => db.User.collection.insertMany(userSeed))
@@ -89,4 +100,3 @@ db.User
     console.error(err);
     process.exit(1);
   });
-  

@@ -9,5 +9,5 @@ const SnipSchema = new Schema({
   }]
 });
 
-const Snip = mongoose.model('Snip', bookSchema);
+const Snip = mongoose.model('Snip', SnipSchema);
 module.exports = Snip;
