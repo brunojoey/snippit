@@ -1,0 +1,29 @@
+{
+  "name": "snippit",
+  "version": "1.0.0",
+  "description": "## Table of Contents * [Author(s)](#author(s)) * [Description](#description) * [Technologies Used](#technologies-used) * [Installation](#installation) * [Usage](#usage) * [Contributing](#contributing) * [Deployment Application Link](#deployment-application-link) * [Application in Use](#application-in-use)",
+  "main": "server.js",
+  "dependencies": {
+    "axios": "^0.19.2",
+    "express": "^4.17.1",
+    "mongoose": "^5.9.10"
+  },
+  "devDependencies": {
+    "concurrently": "^5.2.0",
+    "nodemon": "^2.0.3"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/brunojoey/snippit.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/brunojoey/snippit/issues"
+  },
+  "homepage": "https://github.com/brunojoey/snippit#readme"
+}
