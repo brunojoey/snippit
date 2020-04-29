@@ -7,15 +7,15 @@ const db = require('../models');
 // Catch all API routes.
 router.use('/api', apiRoutes);
 
-// =================================== SIGNUP/LOGIN/LOGOUT ===================================
+// =================================== SIGNUP/LOGIN ===================================
 
-// Route to signup. If the user is created successfully, proceed to log the user in. Othewise,
-// send back an error.
+// Route to signup. If the user is created successfully, respond with the user information. The
+// client side should hanlde login upon successful creation.
 router.post('/signup', (req, res) => {
   db.User
     .create(req.body)
     .then(dbModel => res.json(dbModel))
-    .catch(err => res.status(422).json(err));
+    .catch(err => res.status(401).json(err));
 });
 
 // Route to login. Uses passport.authenticate middleware that was set up with local strategy.
@@ -35,14 +35,7 @@ router.post('/login', (req, res, next) => {
   })(req, res, next);
 });
 
-// Route to terminate a login session. According to passport docs, invoking req.logout() will
-// remove the req.user property and clear the lgoin session (if any).
-router.get('/logout', (req, res) => {
-  req.logout();
-  res.redirect('/login');
-});
-
-// ===========================================================================================
+// ====================================================================================
 
 // If no other routes are hit, send the React app.
 router.use(function(req, res) {
