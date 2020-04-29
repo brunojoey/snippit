@@ -2,6 +2,15 @@ import React from "react";
 import { TextInput } from "react-materialize";
 
 function Login() {
+    const [user, setUser] = useState({ status: false });
+    useEffect(() => {
+        async function fetchData() {
+            let { data } = await status();
+            setUser(data);
+        }
+        fetchData();
+    }, []);
+    
     return (
         <form>
             <TextInput
