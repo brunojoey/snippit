@@ -3,6 +3,7 @@ import { Link, Redirect } from 'react-router-dom';
 import { status, logout } from '../utils/API';
 import TinyMCE from "../components/TinyMCE";
 import { render } from 'react-dom';
+
 function Home() {
     const [user, setUser] = useState({ status: false });
     useEffect(() => {

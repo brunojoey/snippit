@@ -1,14 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
-// const dotenv = require('dotenv');
 const passport = require('passport');
 const routes = require('./routes');
-const config = require('./config/')
-
-// dotenv.config({ path: './config/config.env'});
-// const tinyMCE_API = process.env.TINY_MCE_API;
-
-// const api = tinyMCE_API;
 
 const PORT = process.env.PORT || 3001;
 const app = express();
