@@ -1,4 +1,3 @@
-
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 
@@ -9,7 +8,7 @@ const db = require('../models');
 passport.use(new LocalStrategy(
   (username, password, done) => {
     // When a user tries to sign in, check if username is in database
-    db.User.find({ username: username })
+    db.User.findOne({ username: username })
       .then((dbUser) => {
         // There was no user with the given username
         if (!dbUser) {
@@ -21,7 +20,8 @@ passport.use(new LocalStrategy(
         }
         // Username and password were both correct
         return done(null, dbUser);
-    });
+    })
+    .catch(err => console.log(err));
   }
 ));
 

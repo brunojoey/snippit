@@ -17,7 +17,7 @@ if (process.env.NODE_ENV === "production") {
 }
 
 // Setup app to use sessions to keep track of user's login status.
-app.use(session({ secret: '', resave: true, saveUninitialized: true }));
+app.use(session({ secret: 'crazy monkey', resave: true, saveUninitialized: true }));
 app.use(passport.initialize());
 app.use(passport.session());
 

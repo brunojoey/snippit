@@ -6,7 +6,11 @@
   "dependencies": {
     "axios": "^0.19.2",
     "express": "^4.17.1",
-    "mongoose": "^5.9.10"
+    "express-session": "^1.17.1",
+    "mongoose": "^5.9.10",
+    "passport": "^0.4.1",
+    "passport-local": "^1.0.0",
+    "react-router-dom": "^5.1.2"
   },
   "devDependencies": {
     "concurrently": "^5.2.0",
