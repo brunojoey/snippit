@@ -1,8 +1,6 @@
-import React from "react";
-import dotenv from "dotenv";
+import React from 'react';
 import { Editor } from '@tinymce/tinymce-react';
 
-dotenv.config();
 
 class TinyMCE extends React.Component {
     handleEditorChange = (content, editor) => {
@@ -10,11 +8,11 @@ class TinyMCE extends React.Component {
     }
  
     render() {
-        console.log("API ", process.env.TINY_MCE_API);
+        console.log('API ', process.env.REACT_APP_TINY_MCE_API);
       return (
         <Editor
-          initialValue="<p>This is the initial content of the editor</p>"
-          apiKey="i66mp40s3lyquumnuhak0uejhzeaxtb4wdt0tkvzhti8ulba"
+          initialValue='<p>This is the initial content of the editor</p>'
+          apiKey={process.env.REACT_APP_TINY_MCE_API}
           init={{
             height: 500,
             width: 600,

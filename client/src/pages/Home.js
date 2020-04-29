@@ -1,15 +1,40 @@
-import React from "react";
+import React, { useEffect, useState } from 'react';
+import { Link, Redirect } from 'react-router-dom';
+import { status, logout } from '../utils/API';
 import TinyMCE from "../components/TinyMCE";
-
-function Home () {
+import { render } from 'react-dom';
+function Home() {
+    const [user, setUser] = useState({ status: false });
+    useEffect(() => {
+        async function fetchData() {
+            let { data } = await status();
+            setUser(data);
+        }
+        fetchData();
+    }, []);
+    // const logoutUser = () => {
+    //   logout(); // from API 
+    // }
+    const renderBody = () => {
+        if (user.status === false) {
+            return <p>You are not logged in.</p>
+        } else {
+            return <p>You are logged in!</p>
+        }
+    };
     return (
-        <div>
-            <h1>Hello</h1>
+        <>
+            <h1>HOME PAGE</h1>
+            {renderBody()}
+            <Link to='/login'>Login Page</Link>
+            <button type='button' onClick={() => logout()}>Logout</button>
             <form method="post">
                 <TinyMCE />
             </form>
-        </div>
-    )
+        </>
+    );
 };
-
 export default Home;
+
+
+
