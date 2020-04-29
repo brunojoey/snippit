@@ -1,12 +1,19 @@
 import React from "react";
-import { List } from "react-materialize";
 
 function Feed() {
-    return(
+    return (
         /* for each snip, return as an ul/li */
-        <List>
-            
-        </List>
+        <ul>
+            <li>
+                <h5>
+                    {this.user.username}
+                    <img href={this.user.image} />
+                </h5>
+                    <p>
+                        {this.user.snip}
+                    </p>
+            </li>
+        </ul>
     );
 }
 
