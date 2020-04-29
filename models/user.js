@@ -12,5 +12,9 @@ const UserSchema = new Schema({
   }]
 });
 
+UserSchema.methods.validPassword = function(password) {
+  return (password === this.password);
+};
+
 const User = mongoose.model('User', UserSchema);
 module.exports = User;

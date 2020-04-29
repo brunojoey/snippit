@@ -1,10 +1,18 @@
+<<<<<<< HEAD
 const express = require('express');
 const mongoose = require('mongoose');
 const passport = require('passport');
+=======
+const express = require("express");
+const mongoose = require("mongoose");
+const passport = require("passport");
+const session = require('express-session');
+>>>>>>> 53f7ed1c85d0014d2d699581c5c9366259368c58
 const routes = require('./routes');
 
 const PORT = process.env.PORT || 3001;
 const app = express();
+const routes = require("./routes");
 
 // Define middleware here
 app.use(express.urlencoded({ extended: true }));
@@ -14,6 +22,11 @@ app.use(express.json());
 if (process.env.NODE_ENV === 'production') {
   app.use(express.static('client/build'));
 }
+
+// Setup app to use sessions to keep track of user's login status.
+app.use(session({ secret: 'crazy monkey', resave: true, saveUninitialized: true }));
+app.use(passport.initialize());
+app.use(passport.session());
 
 // Add routes, both API and view
 app.use(routes);
