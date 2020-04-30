@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Link, Redirect } from 'react-router-dom';
+// import { Link, Redirect } from 'react-router-dom';
 
 import statusAPI from '../utils/statusAPI';
 import TinyMCE from '../components/TinyMCE';
@@ -7,7 +7,7 @@ import Nav from '../components/nav';
 import Feed from '../components/feed';
 import Search from '../components/feed';
 
-import { render } from 'react-dom';
+// import { render } from 'react-dom';
 
 function Home(props) {
     /* const [user, setUser] = useState({ status: false });
