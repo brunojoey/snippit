@@ -1,12 +1,15 @@
 import React, { useEffect, useState } from 'react';
 // import { Link, Redirect } from 'react-router-dom';
 
-// import statusAPI from '../utils/statusAPI';
-import { TinyMCE, Nav, Feed, Search } from "../components";
+import statusAPI from '../utils/statusAPI';
+import TinyMCE from '../components/TinyMCE';
+import Nav from '../components/nav';
+import Feed from '../components/feed';
+import Search from '../components/feed';
 
 // import { render } from 'react-dom';
 
-function Home() {
+function Home(props) {
     /* const [user, setUser] = useState({ status: false });
     useEffect(() => {
         async function fetchData() {
@@ -38,15 +41,15 @@ function Home() {
         <div>
             <Nav />
             <div className="row">
-                <Search />
+                <Search></Search>
             </div>
             <div className="row">
                 <form method="post">
-                    <TinyMCE />
+                    <TinyMCE></TinyMCE>
                 </form>
             </div>
             <div className="row">
-                <Feed />
+                <Feed></Feed>
             </div>
         </div>
     );
