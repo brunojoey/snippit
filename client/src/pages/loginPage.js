@@ -1,17 +1,41 @@
 
-import React, { useEffect, useState } from 'react';
-import { Redirect } from 'react-router-dom';
-import Signup from '../components/signup';
-import LoginComponent from '../components/login';
-import statusAPI from '../utils/statusAPI';
+import React from 'react';
+import { Row, Col, Tabs, Tab } from 'react-materialize';
+import Signup from '../components/Signup';
+import LoginComp from '../components/Login';
 
-function Login(props) {
-  
+function Login() {
 
   return(
-    <div>
-      <LoginComponent></LoginComponent>
-      <Signup></Signup>
+    <div className='container'>
+      <Row>
+        <Col s={12} m={6} offset='m3'>
+          <Tabs className='tab-demo z-depth-1 tabs-fixed-width' options={{ swipeable: true }}>
+            <Tab
+              options={{
+                duration: 150,
+                onShow: null,
+                responsiveThreshold: Infinity,
+                swipeable: false
+              }}
+              title='Login'
+            >
+              <LoginComp />
+            </Tab>
+            <Tab
+              options={{
+                duration: 150,
+                onShow: null,
+                responsiveThreshold: Infinity,
+                swipeable: false
+              }}
+              title='Signup'
+            >
+              <Signup />
+            </Tab>
+          </Tabs>
+        </Col>
+      </Row>
     </div>
   );
 }

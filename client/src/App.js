@@ -15,9 +15,7 @@ function App() {
   useEffect(() => {
     // API call to see if user is logged in.
     async function fetchData() {
-      console.log('APP USE-EFFECT FETCH-DATA');
       let { data } = await statusAPI.getStatus();
-      console.log('DATA: ', data);
       setStatus(data);
     }
 
@@ -32,7 +30,7 @@ function App() {
 
   return (
     <Router>
-      <StatusContext.Provider value={status}>
+      <StatusContext.Provider value={{ status, updateStatus }}>
         <Nav />
         <Switch>
           <Route exact path='/user/:id' component={profilePage} />

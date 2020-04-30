@@ -18,7 +18,6 @@ router.get('/logout', (req, res) => {
 
 // Route to determine if user is logged in.
 router.get('/status', (req, res) => {
-  console.log('ROUTER POST /API/STATUS');
   if (req.user) {
     db.User.findById(req.user[0].id)
       .then(dbUser =>  res.json(dbUser))
