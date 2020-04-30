@@ -1,39 +1,19 @@
-import React from "react";
-import { Signup, Login, Nav } from "../components"
 
-function LoginPage() {
-    const [user, setUser] = useState({ status: false });
-    useEffect(() => {
-        async function fetchData() {
-            let { data } = await status();
-            setUser(data);
-        }
-        fetchData();
-    }, []);
-    // const logoutUser = () => {
-    //   logout(); // from API 
-    // }
-    const renderBody = () => {
-        if (user.status === false) {
-            return <p>You are not logged in.</p>
-        } else {
-            return <p>You are logged in!</p>
-        }
-    };
+import React, { useEffect, useState } from 'react';
+import { Redirect } from 'react-router-dom';
+import Signup from '../components/signup';
+import LoginComponent from '../components/login';
+import statusAPI from '../utils/statusAPI';
 
-    return (
-        <div>
-            <Nav />
-            <div className="row">
-                <div className="col s6">
-                    <Signup />
-                </div>
-                <div className="col s6">
-                    <Login />
-                </div>
-            </div>
-        </div>
-    );
+function Login(props) {
+  
+
+  return(
+    <div>
+      <LoginComponent></LoginComponent>
+      <Signup></Signup>
+    </div>
+  );
 }
 
-export default LoginPage;
+export default Login;

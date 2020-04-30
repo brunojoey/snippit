@@ -1,11 +1,12 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { TextInput } from "react-materialize";
+import statusAPI from '../utils/statusAPI';
 
 function Login() {
     const [user, setUser] = useState({ status: false });
     useEffect(() => {
         async function fetchData() {
-            let { data } = await status();
+            let { data } = await statusAPI.getStatus();
             setUser(data);
         }
         fetchData();

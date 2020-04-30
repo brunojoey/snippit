@@ -1,8 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { Link, Redirect } from 'react-router-dom';
-import { status, logout } from '../utils/API';
+
+import statusAPI from '../utils/statusAPI';
 import { TinyMCE, Nav, Feed, Search } from "../components";
+
 import { render } from 'react-dom';
+
 function Home() {
     /* const [user, setUser] = useState({ status: false });
     useEffect(() => {
