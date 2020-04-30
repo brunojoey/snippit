@@ -1,14 +1,7 @@
-<<<<<<< HEAD
-const express = require('express');
-const mongoose = require('mongoose');
-const passport = require('passport');
-=======
 const express = require("express");
 const mongoose = require("mongoose");
 const passport = require("passport");
 const session = require('express-session');
->>>>>>> 53f7ed1c85d0014d2d699581c5c9366259368c58
-const routes = require('./routes');
 
 const PORT = process.env.PORT || 3001;
 const app = express();
