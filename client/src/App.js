@@ -24,11 +24,11 @@ function App() {
     fetchData();
   }, []);
 
-  // const updateStatus = async () => {
-  //   // API call to see if user is loggin in.
-  //   let { data } = await statusAPI.getStatus();
-  //   setStatus(data);
-  // }
+  const updateStatus = async () => {
+    // API call to see if user is loggin in.
+    let { data } = await statusAPI.getStatus();
+    setStatus(data);
+  }
 
   return (
     <Router>

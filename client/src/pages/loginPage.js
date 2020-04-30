@@ -13,7 +13,7 @@ function Login(props) {
       <LoginComponent></LoginComponent>
       <Signup></Signup>
     </div>
-  );
-}
+  )
+};
 
 export default Login;

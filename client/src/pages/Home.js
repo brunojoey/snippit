@@ -2,7 +2,8 @@ import React, { useEffect, useState } from 'react';
 // import { Link, Redirect } from 'react-router-dom';
 
 // import statusAPI from '../utils/statusAPI';
-import { TinyMCE, Nav, Feed, Search } from "../components";
+import TinyMCE from "../components/TinyMCE";
+import { Nav, Feed, Search } from "../components";
 
 // import { render } from 'react-dom';
 
