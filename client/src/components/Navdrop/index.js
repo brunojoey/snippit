@@ -5,7 +5,7 @@ function NavDrop() {
     return (
         <Navbar
             alignLinks="right"
-            brand={<a className="brand-logo" href="#">Snippit</a>}
+            brand={<a className="brand-logo" href="/home">Snippit</a>}
             centerlogo
             id="mobile-nav"
             menuIcon={<Icon>menu</Icon>}
@@ -38,8 +38,7 @@ function NavDrop() {
                     onOpenStart: null,
                     outDuration: 250
                 }}
-                trigger={<a href="#!">Dropdown{' '}<Icon right>arrow_drop_down</Icon></a>}
-                /*trigger=<img href={user.image} /> */
+                trigger={<a href="#!"><Icon right>Image</Icon></a>}
                 >
                 <a href="#">
                     Profile

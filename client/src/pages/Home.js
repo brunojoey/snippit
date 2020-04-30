@@ -39,7 +39,6 @@ function Home(props) {
              </form>
          </> */
         <div>
-            <Nav />
             <div className="row">
                 <Search></Search>
             </div>
