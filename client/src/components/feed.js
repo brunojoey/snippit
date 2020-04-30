@@ -6,12 +6,13 @@ function Feed() {
         <ul>
             <li>
                 <h5>
-                    {this.user.username}
-                    <img href={this.user.image} />
+                    Hello
+                    {/* {this.user.username}
+                    <img href={this.user.image} /> */}
                 </h5>
-                    <p>
+                    {/* <p>
                         {this.user.snip}
-                    </p>
+                    </p> */}
             </li>
         </ul>
     );

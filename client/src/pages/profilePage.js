@@ -1,9 +1,12 @@
 import React from 'react';
+import ProfilePanel from '../components/profilepanel';
 
 function Profile(props) {
   return (
-    <div>This is the profile page.</div>
+    <div>
+      <ProfilePanel />
+    </div>
   );
-}
+};
 
 export default Profile;
