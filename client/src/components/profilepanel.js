@@ -4,9 +4,9 @@ import { } from "react-materialize";
 function ProfilePanel() {
     return (
         <div className="row">
-            <div className="col s4">
+            {/* <div className="col s4">
                 <img href={this.user.image}></img>
-            </div>
+            </div> */}
             <div className="col s8">
                 
             </div>

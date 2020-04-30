@@ -11,18 +11,21 @@ function Login() {
         }
         fetchData();
     }, []);
-    
+
     return (
-        <form>
-            <TextInput
-                id="TextInput-4"
-                label="Username"
-            />
-            <TextInput
-                id="TextInput-4"
-                label="Password"
-            />
-        </form>
+        <div>
+            <h3> Login </h3>
+            <form>
+                <TextInput
+                    id="TextInput-4"
+                    label="Username"
+                />
+                <TextInput
+                    id="TextInput-4"
+                    label="Password"
+                />
+            </form>
+        </div>
     );
 }
 

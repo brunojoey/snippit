@@ -1,19 +1,26 @@
-import React from "react";
+import React, { useEffect } from "react";
+import snipsAPI from "../utils/snipsAPI";
 
-function Feed() {
+function Feed(props) {
+    /* useEffect(() => {
+        const { data } = snipsAPI.getSnips();
+    }, []) */
     return (
-        /* for each snip, return as an ul/li */
-        <ul>
-            <li>
-                <h5>
-                    {this.user.username}
-                    <img href={this.user.image} />
-                </h5>
-                    <p>
-                        {this.user.snip}
-                    </p>
-            </li>
-        </ul>
+        /* for each snip, return as a ul/li */
+        // <ul>
+        //     <li>
+        //         <h5>
+        //             {this.user.username}
+        //             <img href={this.user.image} />
+        //         </h5>
+        //             <p>
+        //                 {this.user.snip}
+        //             </p>
+        //     </li> 
+        // </ul>
+        <div>
+            
+        </div>
     );
 }
 

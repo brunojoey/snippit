@@ -21,7 +21,7 @@ function Nav() {
                 preventScrolling: true
             }}
             >
-            <NavItem href="login.html">
+            <NavItem href="/login">
                 Login/Sign-Up
             </NavItem>
         </Navbar>
