@@ -1,7 +1,6 @@
 import React from 'react';
 import { Editor } from '@tinymce/tinymce-react';
 
-
 class TinyMCE extends React.Component {
     handleEditorChange = (content, editor) => {
       console.log('Content was updated:', content);
