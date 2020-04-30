@@ -16,3 +16,5 @@ function FeedPage() {
         </div>
     );
 }
+
+export default FeedPage;
