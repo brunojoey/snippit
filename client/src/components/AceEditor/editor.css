@@ -1,6 +1,13 @@
 .editor-container {
+    padding-top: 2rem;
+}
+
+.editor-container h3 {
     text-align: center;
-    vertical-align: middle;
-    justify-content: center;
-    align-items: center;
+}
+
+.editor-spacing {
+    padding-right: 2rem;
+    padding-left: 2rem;
+    padding-top: 1rem;
 }
