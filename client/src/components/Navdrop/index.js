@@ -32,7 +32,6 @@ function NavDrop() {
                 preventScrolling: true
             }}
         >
-            <i className="fa fa-caret-down"></i>
             <Dropdown
                 id="dropdown"
                 options={{
@@ -50,7 +49,7 @@ function NavDrop() {
                     onOpenStart: null,
                     outDuration: 250
                 }}
-                trigger={<img src={`${status.imageUrl}`} alt='User Icon' height='50' className='circle'></img>}
+                trigger={<span className="fa fa-caret-down"><img src={`${status.imageUrl}`} alt='User Icon' height='50' className='circle'></img></span>}
             >
                 <Link to={`/users/${status._id}`}>Profile</Link>
                 <Link to='/home'>Feed</Link>
@@ -67,3 +66,4 @@ export default NavDrop;
 
 // {/* <img src={`${status.imageUrl}`} alt='User Icon' height='50' className='circle'></img> */}
 // <span className="fa fa-caret-down"></span>
+// <i className-"fa fa-caret-down"
