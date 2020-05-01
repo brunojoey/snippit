@@ -49,13 +49,13 @@ function Feed() {
   function renderSnips() {
     return (
       <>
-        {snipState.map(snip => {
-          let user;
-          if (userState) { user = userState.find(user => user._id === snip.userId) };
+        <Collection>
+          {snipState.map((snip, index) => {
+            let user;
+            if (userState) { user = userState.find(user => user._id === snip.userId) };
 
-          return(
-            <Collection>
-              <CollectionItem className='avatar'>
+            return(
+              <CollectionItem className='avatar' key={index}>
                 <Row>
                   <Col s={1}>
                     <img alt='Avatar' className='circle' src={(userState) ? user.imageUrl : 'https://picsum.photos/200'} />
@@ -68,19 +68,17 @@ function Feed() {
                   </Col>
                 </Row>
               </CollectionItem>
-            </Collection>
-          );
-        })}
+            );
+          })}
+        </Collection>
       </>
     );
   }
 
   return (
-    <Row>
-      <Col s={12} m={6} offset='m3'>
-        {(snipState) ? renderSnips() : <p>No tips for these snips.</p>}
-      </Col>
-    </Row>
+    <>
+      {(snipState) ? renderSnips() : <p>No tips for these snips.</p>}
+    </>
   );
 }
 

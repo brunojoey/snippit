@@ -2,6 +2,7 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const SnipSchema = new Schema({
+  tagLine: { type: String, require: true },
   body: { type: String, require: true },
   language: { type: String, require: true, default: 'javascript' },
   userId: { type: String, require: true },
