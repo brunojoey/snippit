@@ -11,6 +11,7 @@
     "mongoose": "^5.9.10",
     "passport": "^0.4.1",
     "passport-local": "^1.0.0",
+    "react-ace": "^8.1.0",
     "react-router-dom": "^5.1.2"
   },
   "devDependencies": {
