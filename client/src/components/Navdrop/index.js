@@ -55,10 +55,10 @@ function NavDrop() {
                 }}
                 trigger={<img src={`${status.imageUrl}`} alt='User Icon' height='64'></img>}
             >
-                <Link to='/home'>Profile</Link>
-                <Link to='/home'>Feed</Link>
+                <Link to={`/users/${status._id}`}>Profile</Link>
+                <Link to='/feed'>Feed</Link>
                 <Divider />
-                <Link to='/login' onClick={handleLogout}>Logout</Link>
+                <Link to='/home' onClick={handleLogout}>Logout</Link>
             </Dropdown>
         </Navbar>
     );
