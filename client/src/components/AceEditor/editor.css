@@ -1,13 +1,16 @@
 .editor-container {
     padding-top: 2rem;
+    padding-bottom: 2rem;
 }
 
-.editor-container h3 {
+.editor-container h4 {
     text-align: center;
+    color: black;
+    text-decoration: underline;
 }
 
-.editor-spacing {
+/* .editor-spacing {
     padding-right: 2rem;
     padding-left: 2rem;
-    padding-top: 1rem;
-}
+    padding-top: 2rem;
+} */

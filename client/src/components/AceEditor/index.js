@@ -16,9 +16,9 @@ function SnipEditor() {
         <div className="editor-container">
             <Row>
                 <Col s={12} m={6} offset='m3' className="editor-spacing">
-                    <h3>
+                    <h4>
                         JavaScript Editor
-                    </h3>
+                    </h4>
                     <AceEditor
                         placeholder="Placeholder Text"
                         mode="javascript"
@@ -29,7 +29,7 @@ function SnipEditor() {
                         showPrintMargin={true}
                         showGutter={true}
                         highlightActiveLine={true}
-                        value={'Try out your JavaScript with AceEditor!'}
+                        value={'Try out your js()=> with AceEditor!'}
                         setOptions={{
                             enableBasicAutocompletion: true,
                             enableLiveAutocompletion: true,
@@ -42,9 +42,9 @@ function SnipEditor() {
             </Row>
             <Row>
                 <Col s={12} m={6} offset='m3' className="editor-spacing">
-                    <h3>
+                    <h4>
                         HTML Editor
-                    </h3>
+                    </h4>
                     <AceEditor
                         placeholder="Placeholder Text"
                         mode="html"
@@ -68,9 +68,9 @@ function SnipEditor() {
             </Row>
             <Row>
                 <Col s={12} m={6} offset='m3' className="editor-spacing">
-                    <h3>
+                    <h4>
                         CSS Editor
-                    </h3>
+                    </h4>
                     <AceEditor
                         placeholder="Placeholder Text"
                         mode="css"
