@@ -5,7 +5,7 @@ import statusAPI from '../../utils/statusAPI';
 import StatusContext from '../../utils/StatusContext';
 
 function Login() {
-  const { _, updateStatus } = useContext(StatusContext);
+  const { status, updateStatus } = useContext(StatusContext);
   const [ redirect, setRedirect ] = useState(null);
   const [state, setState] = useState({
     username: '',
