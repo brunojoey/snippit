@@ -1,17 +1,11 @@
 import React, { useEffect, useState } from 'react';
 // import { Link, Redirect } from 'react-router-dom';
 
-<<<<<<< HEAD
-// import statusAPI from '../utils/statusAPI';
-import TinyMCE from "../components/TinyMCE";
-import { Nav, Feed, Search } from "../components";
-=======
 import statusAPI from '../utils/statusAPI';
 import TinyMCE from '../components/TinyMCE';
 import Nav from '../components/nav';
 import Feed from '../components/feed';
 import Search from '../components/feed';
->>>>>>> 5fe2c62dd4336c1a5d5ae28839cb584d074d455a
 
 // import { render } from 'react-dom';
 
