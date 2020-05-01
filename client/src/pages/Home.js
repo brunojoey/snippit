@@ -29,17 +29,7 @@ function Home(props) {
         }
     }; */
     return (
-        /* <>
-             <h1>HOME PAGE</h1>
-             {renderBody()}
-             <Link to='/login'>Login Page</Link>
-             <button type='button' onClick={() => logout()}>Logout</button>
-             <form method="post">
-                 <TinyMCE />
-             </form>
-         </> */
         <div>
-            <Nav />
             <div className="row">
                 <Search></Search>
             </div>
