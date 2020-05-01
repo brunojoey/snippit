@@ -106,8 +106,10 @@ db.User
     await db.Snip.remove({});
 
     await asyncForEach(users, async (user) => {
+      let seed = snipSeed;
+      seed.userId = user._id;
       await db.Snip
-        .create(snipSeed)
+        .create(seed)
         .then(dbSnip => db.User.findOneAndUpdate({ _id: user._id }, { $push: { snips: dbSnip._id } }, { new: true }))
         .catch(err => console.log(err));
     });

@@ -3,6 +3,9 @@ const Schema = mongoose.Schema;
 
 const SnipSchema = new Schema({
   body: { type: String, require: true },
+  language: { type: String, require: true, default: 'javascript' },
+  userId: { type: String, require: true },
+  createdAt: { type: Date, default: Date.now },
   responses: [{
     type: Schema.Types.ObjectId,
     ref: 'Snip'
