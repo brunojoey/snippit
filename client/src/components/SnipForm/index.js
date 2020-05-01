@@ -5,7 +5,8 @@ import StatusContext from '../../utils/StatusContext';
 import TinyMCE from '../TinyMCE';
 import './style.css';
 
-function SnipForm() {
+function SnipForm(props) {
+  console.log('FORM PROPS: ', props);
   const { status } = useContext(StatusContext);
   const [state, setState] = useState({
     tagLine: '',
@@ -25,7 +26,11 @@ function SnipForm() {
   
   async function handleSubmit(event) {
     event.preventDefault();
-    snipsAPI.createSnip(state);
+
+    if (state.tagLine.length !== 0 && state.body.length !== 0) {
+      const { data }  = await snipsAPI.createSnip(state);
+      props.setRedirect('/snips/' + data._id);
+    }
   }
 
   return (

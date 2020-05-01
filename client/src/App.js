@@ -40,8 +40,8 @@ function App() {
       <StatusContext.Provider value={{ status, updateStatus }}>
         {(status.status === false) ? <Nav /> : <Navdrop />}
         <Switch>
-          <Route exact path='/user/:id' component={profilePage} />
-          <Route exact path='/snip/:id' component={snipPage} />
+          <Route exact path='/users/:id' component={profilePage} />
+          <Route exact path='/snips/:id' component={snipPage} />
           <Route exact path={['/login', '/signup']} component={loginPage} />
           <Route exact path={['/', '/home', '/feed']} component={Home} />
           <Route exact path='/editor' component={editorPage} />
