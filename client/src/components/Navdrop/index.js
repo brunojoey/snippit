@@ -1,12 +1,27 @@
-import React from "react";
+import React, { useContext, useEffect } from "react";
+import { Link } from 'react-router-dom';
 import { Navbar, Icon, Dropdown, Divider } from "react-materialize";
+import statusAPI from '../../utils/statusAPI';
+import StatusContext from '../../utils/StatusContext';
 
 function NavDrop() {
+    const { status, updateStatus } = useContext(StatusContext);
+
+    // useEffect(() => {
+    //     console.log('USE-EFFECT STATUS: ', status);
+
+    // }, [])
+
+    async function handleLogout() {
+        const { data } = await statusAPI.logout();
+        console.log('DATA: ', data);
+        updateStatus(data);
+    }
+
     return (
         <Navbar
             alignLinks="right"
-            brand={<a className="brand-logo" href="#">Snippit</a>}
-            centerlogo
+            brand={<a className="brand-logo" href="/home">Snippit</a>}
             id="mobile-nav"
             menuIcon={<Icon>menu</Icon>}
             options={{
@@ -22,9 +37,9 @@ function NavDrop() {
             }}
             >
             <Dropdown
-                id="Dropdown_6"
+                id="dropdown"
                 options={{
-                    alignment: 'right',
+                    alignment: 'left',
                     autoTrigger: true,
                     closeOnClick: true,
                     constrainWidth: true,
@@ -38,19 +53,12 @@ function NavDrop() {
                     onOpenStart: null,
                     outDuration: 250
                 }}
-                trigger={<a href="#!">Dropdown{' '}<Icon right>arrow_drop_down</Icon></a>}
-                /*trigger=<img href={user.image} /> */
-                >
-                <a href="#">
-                    Profile
-                </a>
-                <a href="#">
-                    Feed
-                </a>
+                trigger={<img src={`${status.imageUrl}`} alt='User Icon' height='64'></img>}
+            >
+                <Link to='/user'>Profile</Link>
+                <Link to='/home'>Feed</Link>
                 <Divider />
-                <a href="#">
-                    Logout
-                </a>
+                <Link to='/login' onClick={handleLogout}>Logout</Link>
             </Dropdown>
         </Navbar>
     );

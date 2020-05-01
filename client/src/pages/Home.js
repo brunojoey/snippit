@@ -3,9 +3,8 @@ import React, { useEffect, useState } from 'react';
 
 import statusAPI from '../utils/statusAPI';
 import TinyMCE from '../components/TinyMCE';
-import Nav from '../components/nav';
 import Feed from '../components/feed';
-import Search from '../components/feed';
+import Search from '../components/search';
 
 // import { render } from 'react-dom';
 
@@ -39,7 +38,6 @@ function Home(props) {
              </form>
          </> */
         <div>
-            <Nav />
             <div className="row">
                 <Search></Search>
             </div>

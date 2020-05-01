@@ -1,16 +1,23 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Icon, Button } from 'react-materialize';
 
-function handleChange(event) {
-    const name = event.target.name;
-    setState({ ...state, [name]: event.target.value });
-};
-
 function SearchForm() {
+    const [search, setSearch] = useState('');
+
+    const resetSearchField = () => {
+        setSearch('');
+    };
+
+    const handleSubmit = (event) => {
+        event.preventDefault();
+        setSearch(search);
+        resetSearchField();
+    };
+
     return (
         <form>
             <div className="input-field">
-                <input id="search" type="search" required onChange={handleChange} />
+                <input id="search" type="search" required value={search} />
                 <label htmlFor="search">
                     <Icon>Search</Icon>
                 </label>
