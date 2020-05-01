@@ -7,6 +7,7 @@ import TinyMCE from '../components/TinyMCE';
 import Feed from '../components/Feed';
 import SnipForm from '../components/SnipForm';
 import StatusContext from '../utils/StatusContext';
+import Foot from '../components/Footer';
 
 // import Search from '../components/search';
 
@@ -26,7 +27,7 @@ function Home(props) {
     }
 
     return (
-        <div className="container">
+        <div className="container" id="home-container">
             <Row>
                 <Col s={12} m={6} offset='m3'>
                     {/* <Search /> */}
@@ -38,6 +39,7 @@ function Home(props) {
                     <Feed />
                 </Col>
             </Row>
+            <Foot />
         </div>
     );
 };

@@ -5,7 +5,10 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: #EFF7F6;
+  background: #ECE9E6;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #FFFFFF, #ECE9E6);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #FFFFFF, #ECE9E6); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
 }
 
 code {
@@ -15,6 +18,10 @@ code {
 
 .nav-wrapper {
   background-color: #7BDFF2;
+}
+
+#home-container {
+  background-color: #F5F9F9;
 }
 
 .tabs .tab a{
@@ -49,4 +56,10 @@ code {
 .fa {
   padding-right: 10px;
   font-size: 25px;
+}
+
+.footer {
+  background-color: #86CDCF;
+  color: white;
+  bottom: 0;
 }

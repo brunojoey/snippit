@@ -5,7 +5,7 @@ import SnipEditor from '../components/AceEditor';
 
 function Editor() {
     return (
-        <div className='container' id='UNIQUE_ID_OF_DIV'>
+        <div className='container'>
             <SnipEditor />
         </div>
     );
