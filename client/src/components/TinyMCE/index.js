@@ -5,11 +5,9 @@ function TinyMCE(props) {
 
   // Propogate state to SnipForm on input change.
   function handleEditorChange(content, editor) {
-    console.log('Content was updated:', content);
     props.setState({ ...props.state, body: content });
   }
  
-  console.log('API ', process.env.REACT_APP_TINY_MCE_API);
   return (
     <Editor
       apiKey={process.env.REACT_APP_TINY_MCE_API}

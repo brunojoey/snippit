@@ -30,10 +30,8 @@ function App() {
   }, []);
 
   const updateStatus = async () => {
-    console.log('INSIDE UPDATE-STATUS');
     // API call to see if user is loggin in.
     let { data } = await statusAPI.getStatus();
-    console.log('DATA: ', data);
     setStatus(data);
   }
 

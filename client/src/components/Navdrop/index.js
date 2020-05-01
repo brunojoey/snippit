@@ -9,7 +9,6 @@ function NavDrop() {
 
     async function handleLogout() {
         const { data } = await statusAPI.logout();
-        console.log('DATA: ', data);
         updateStatus(data);
     }
 

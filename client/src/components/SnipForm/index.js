@@ -15,7 +15,6 @@ function SnipForm() {
   });
 
   useEffect(() => {
-    console.log('USER ID: ', status._id);
     setState({ ...state, userId: status._id });
   }, [status])
 
@@ -26,8 +25,6 @@ function SnipForm() {
   
   async function handleSubmit(event) {
     event.preventDefault();
-
-    console.log('STATE: ', state);
     snipsAPI.createSnip(state);
   }
 
