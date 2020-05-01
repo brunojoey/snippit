@@ -9,75 +9,82 @@ mongoose.connect(
   }
 );
 
+// Used to add snips for each user.
+async function asyncForEach(array, callback) {
+  for (let index = 0; index < array.length; index++) {
+    await callback(array[index], index, array);
+  }
+}
+
 const userSeed = [
   {
-    username: 'user1',
+    username: 'harry',
     password: 'password',
     imageUrl: 'https://picsum.photos/200',
     snips: []
   },
   {
-    username: 'user2',
+    username: 'hermoine',
     password: 'password',
     imageUrl: 'https://picsum.photos/200',
     snips: []
   },
   {
-    username: 'user3',
+    username: 'ron',
     password: 'password',
     imageUrl: 'https://picsum.photos/200',
     snips: []
   },
   {
-    username: 'user4',
+    username: 'malfoy',
     password: 'password',
     imageUrl: 'https://picsum.photos/200',
     snips: []
   },
   {
-    username: 'user5',
+    username: 'voldemort',
     password: 'password',
     imageUrl: 'https://picsum.photos/200',
     snips: []
   },
   {
-    username: 'user6',
+    username: 'umbridge',
     password: 'password',
     imageUrl: 'https://picsum.photos/200',
     snips: []
   },
   {
-    username: 'user7',
+    username: 'snape',
     password: 'password',
     imageUrl: 'https://picsum.photos/200',
     snips: []
   },
   {
-    username: 'user8',
+    username: 'dumbledore',
     password: 'password',
     imageUrl: 'https://picsum.photos/200',
     snips: []
   },
   {
-    username: 'user9',
+    username: 'longbottom',
     password: 'password',
     imageUrl: 'https://picsum.photos/200',
     snips: []
   },
   {
-    username: 'user10',
+    username: 'lovegood',
     password: 'password',
     imageUrl: 'https://picsum.photos/200',
     snips: []
   },
   {
-    username: 'user11',
+    username: 'sirius',
     password: 'password',
     imageUrl: 'https://picsum.photos/200',
     snips: []
   },
   {
-    username: 'user12',
+    username: 'hagrid',
     password: 'password',
     imageUrl: 'https://picsum.photos/200',
     snips: []
@@ -92,11 +99,25 @@ const snipSeed = {
 db.User
   .remove({})
   .then(() => db.User.collection.insertMany(userSeed))
-  .then(data => {
+  .then(async data => {
     console.log(data.result.n + ' records inserted!');
+
+    const users = await db.User.find();
+    await db.Snip.remove({});
+
+    await asyncForEach(users, async (user) => {
+      let seed = snipSeed;
+      seed.userId = user._id;
+      await db.Snip
+        .create(seed)
+        .then(dbSnip => db.User.findOneAndUpdate({ _id: user._id }, { $push: { snips: dbSnip._id } }, { new: true }))
+        .catch(err => console.log(err));
+    });
+
     process.exit(0);
   })
   .catch(err => {
     console.error(err);
     process.exit(1);
   });
+
