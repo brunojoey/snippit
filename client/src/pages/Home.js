@@ -3,7 +3,6 @@ import React, { useEffect, useState } from 'react';
 
 import statusAPI from '../utils/statusAPI';
 import TinyMCE from '../components/TinyMCE';
-import Nav from '../components/nav';
 import Feed from '../components/feed';
 import Search from '../components/feed';
 
