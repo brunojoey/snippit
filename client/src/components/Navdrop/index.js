@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext } from "react";
 import { Link } from 'react-router-dom';
 import { Navbar, Icon, Dropdown, Divider } from "react-materialize";
 import statusAPI from '../../utils/statusAPI';
@@ -6,11 +6,6 @@ import StatusContext from '../../utils/StatusContext';
 
 function NavDrop() {
     const { status, updateStatus } = useContext(StatusContext);
-
-    // useEffect(() => {
-    //     console.log('USE-EFFECT STATUS: ', status);
-
-    // }, [])
 
     async function handleLogout() {
         const { data } = await statusAPI.logout();
