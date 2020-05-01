@@ -7,6 +7,7 @@ import Navdrop from './components/Navdrop';
 import loginPage from './pages/loginPage';
 import profilePage from './pages/profilePage';
 import snipPage from './pages/snipPage';
+import editorPage from './pages/editorPage';
 import Home from './pages/Home';
 import './App.css';
 
@@ -45,6 +46,7 @@ function App() {
           <Route exact path='/snip/:id' component={snipPage} />
           <Route exact path={['/login', '/signup']} component={loginPage} />
           <Route exact path={['/', '/home', '/feed']} component={Home} />
+          <Route exact path='/editor' component={editorPage} />
           <Route component={Home} />
         </Switch>
       </StatusContext.Provider>

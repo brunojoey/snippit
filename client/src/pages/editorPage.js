@@ -1,12 +1,12 @@
 import React from 'react';
-import AceEditor from '../components/AceEditor';
+import SnipEditor from '../components/AceEditor';
 import { Row } from 'react-materialize';
 
 function Editor() {
     return (
-        <div className="container">
+        <div className='container' id='UNIQUE_ID_OF_DIV'>
             <Row>
-                <AceEditor></AceEditor>
+                <SnipEditor />
             </Row>
         </div>
     );
