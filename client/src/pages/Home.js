@@ -15,7 +15,7 @@ function Home(props) {
         <div className="container">
             <Row>
                 <Col s={12} m={6} offset='m3'>
-                    <Search />
+                    <h4>hello</h4>
                 </Col>
             </Row>
             <Row>

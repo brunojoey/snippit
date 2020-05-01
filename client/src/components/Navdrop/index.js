@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { Link } from 'react-router-dom';
-import { Navbar, Icon, Dropdown, Divider } from "react-materialize";
+import { Navbar, Icon, Dropdown, Divider, Chip } from "react-materialize";
 import statusAPI from '../../utils/statusAPI';
 import StatusContext from '../../utils/StatusContext';
 
@@ -31,7 +31,8 @@ function NavDrop() {
                 outDuration: 200,
                 preventScrolling: true
             }}
-            >
+        >
+            <i className="fa fa-caret-down"></i>
             <Dropdown
                 id="dropdown"
                 options={{
@@ -49,7 +50,7 @@ function NavDrop() {
                     onOpenStart: null,
                     outDuration: 250
                 }}
-                trigger={<img src={`${status.imageUrl}`} alt='User Icon' height='64'></img>}
+                trigger={<img src={`${status.imageUrl}`} alt='User Icon' height='50' className='circle'></img>}
             >
                 <Link to={`/users/${status._id}`}>Profile</Link>
                 <Link to='/home'>Feed</Link>
@@ -63,3 +64,6 @@ function NavDrop() {
 }
 
 export default NavDrop;
+
+// {/* <img src={`${status.imageUrl}`} alt='User Icon' height='50' className='circle'></img> */}
+// <span className="fa fa-caret-down"></span>
