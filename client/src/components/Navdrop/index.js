@@ -16,7 +16,8 @@ function NavDrop() {
     return (
         <Navbar
             alignLinks="right"
-            brand={<a className="brand-logo" href="/home">Snippit</a>}
+            brand={<a className="brand-logo" href="/home"> Snippit</a>}
+            centerLogo
             id="mobile-nav"
             menuIcon={<Icon>menu</Icon>}
             options={{
@@ -51,7 +52,9 @@ function NavDrop() {
                 trigger={<img src={`${status.imageUrl}`} alt='User Icon' height='64'></img>}
             >
                 <Link to={`/users/${status._id}`}>Profile</Link>
-                <Link to='/feed'>Feed</Link>
+                <Link to='/home'>Feed</Link>
+                <Link to='/editor'>Editor</Link>
+
                 <Divider />
                 <Link to='/home' onClick={handleLogout}>Logout</Link>
             </Dropdown>
