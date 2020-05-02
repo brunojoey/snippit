@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Row, Col } from 'react-materialize';
 import ProfileImage from './Cloudinary/index';
+import './style.css';
 
 const [user, setUser] = useState();
 const [biography, setBiography] = useState('');
