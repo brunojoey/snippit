@@ -5,7 +5,7 @@ import './style.css';
 
 function ProfilePanel() {
     return (
-        <Row>
+        <Row className='panel'>
             <Col s={4} className='avatar'>
                 <ProfileImage />
             </Col>

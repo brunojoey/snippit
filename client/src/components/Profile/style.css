@@ -1,8 +1,12 @@
 .bio {
     text-align: center;
-    color: black;
+    color: white;
 }
 
 .avatar {
-    text-align: left;
+    text-align: center;
+}
+
+.panel {
+    background-color: #7BDFF2;
 }
