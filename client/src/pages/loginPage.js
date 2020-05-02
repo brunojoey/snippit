@@ -41,7 +41,7 @@ function Login() {
         </Col>
       </Row>
     </div>
-  );
-}
+  )
+};
 
 export default Login;

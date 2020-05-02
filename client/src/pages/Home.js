@@ -5,11 +5,10 @@ import { Row, Col } from 'react-materialize';
 // import statusAPI from '../utils/statusAPI';
 import TinyMCE from '../components/TinyMCE';
 import Feed from '../components/Feed';
+import Search from '../components/search';
 import SnipForm from '../components/SnipForm';
 import StatusContext from '../utils/StatusContext';
 import Foot from '../components/Footer';
-
-// import Search from '../components/search';
 
 // import { render } from 'react-dom';
 

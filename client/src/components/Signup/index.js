@@ -3,6 +3,7 @@ import { Redirect } from 'react-router-dom';
 import { TextInput, Row, Col, Button } from "react-materialize";
 import statusAPI from '../../utils/statusAPI';
 import StatusContext from '../../utils/StatusContext';
+import ProfileImage from "../Cloudinary";
 
 function Login() {
   const { _, updateStatus } = useContext(StatusContext);
@@ -52,7 +53,7 @@ function Login() {
         </Col>
       </Row>
       <Row>
-        <p>Input image url here.</p>
+        <ProfileImage />
       </Row>
       <Button node='button' type='submit' waves='light' onClick={handleSubmit}>Submit</Button>
     </form>

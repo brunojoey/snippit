@@ -3,7 +3,7 @@ import ProfilePanel from '../components/Profile';
 import Foot from '../components/Footer';
 import { Row } from 'react-materialize';
 
-function Profile(props) {
+function Profile() {
   return (
     <div className="containter" id="home-container">
       <Row>

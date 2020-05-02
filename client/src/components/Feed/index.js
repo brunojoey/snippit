@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 import { Row, Col, Collection, CollectionItem, Icon } from 'react-materialize';
 import snipsAPI from '../../utils/snipsAPI';
 import usersAPI from '../../utils/usersAPI';
+import setLanguage from "../../utils/LanguageContext";
+import setKeywords from "../../utils/KeywordContext";
 
 function Feed() {
   const [userState, setUserState] = useState(null);
