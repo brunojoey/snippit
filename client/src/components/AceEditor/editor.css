@@ -1,0 +1,34 @@
+.editor-container {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+    vertical-align: middle;
+    text-align: center;
+}
+
+.editor-container h4 {
+    text-align: center;
+    color: black;
+    text-decoration: underline;
+}
+
+.tabs {
+    width: 500px;
+}
+
+.tabs .tab a{
+    color:#000;
+} /*Black color to the text*/
+
+.tabs .tab a:hover {
+    background-color:#eee;
+    color:#000;
+} /*Text color on hover*/
+
+.tabs .tab a.active {
+    background-color:#888;
+    color:#000;
+} /*Background and text color when a tab is active*/
+
+.tabs .indicator {
+    background-color:#000;
+} /*Color of underline*/

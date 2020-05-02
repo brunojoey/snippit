@@ -1,25 +1,26 @@
-import React, { useState } from 'react';
+import React, { useContext } from 'react';
 import { Icon, Button } from 'react-materialize';
+import KeywordContext from '../utils/KeywordContext';
 
 function SearchForm() {
-    const [search, setSearch] = useState('');
+    const { keywords, updateKeywords } = useContext(KeywordContext);
 
     const resetSearchField = () => {
-        setSearch('');
+        updateKeywords('');
     };
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        setSearch(search);
+        updateKeywords(keywords);
         resetSearchField();
     };
 
     return (
         <form>
             <div className="input-field">
-                <input id="search" type="search" required value={search} />
+                <input id="search" type="search" required value={keywords} />
                 <label htmlFor="search">
-                    <Icon>Search</Icon>
+                <Icon>Search</Icon>
                 </label>
                 <Button node='button' type='submit' waves='light' onClick={handleSubmit}>Submit</Button>
                 <Icon>Close</Icon>

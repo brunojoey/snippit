@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext } from "react";
 import { Link } from 'react-router-dom';
 import { Navbar, Icon, Dropdown, Divider } from "react-materialize";
 import statusAPI from '../../utils/statusAPI';
@@ -6,11 +6,6 @@ import StatusContext from '../../utils/StatusContext';
 
 function NavDrop() {
     const { status, updateStatus } = useContext(StatusContext);
-
-    // useEffect(() => {
-    //     console.log('USE-EFFECT STATUS: ', status);
-
-    // }, [])
 
     async function handleLogout() {
         const { data } = await statusAPI.logout();
@@ -21,7 +16,8 @@ function NavDrop() {
     return (
         <Navbar
             alignLinks="right"
-            brand={<a className="brand-logo" href="/home">Snippit</a>}
+            brand={<a className="brand-logo" href="/home"> Snippit</a>}
+            centerLogo
             id="mobile-nav"
             menuIcon={<Icon>menu</Icon>}
             options={{
@@ -55,10 +51,12 @@ function NavDrop() {
                 }}
                 trigger={<img src={`${status.imageUrl}`} alt='User Icon' height='64'></img>}
             >
-                <Link to='/user'>Profile</Link>
+                <Link to={`/user/${status._id}`}>Profile</Link>
                 <Link to='/home'>Feed</Link>
+                <Link to='/editor'>Editor</Link>
+
                 <Divider />
-                <Link to='/login' onClick={handleLogout}>Logout</Link>
+                <Link to='/home' onClick={handleLogout}>Logout</Link>
             </Dropdown>
         </Navbar>
     );

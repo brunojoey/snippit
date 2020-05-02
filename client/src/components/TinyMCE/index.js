@@ -13,8 +13,8 @@ class TinyMCE extends React.Component {
           initialValue='<p>This is the initial content of the editor</p>'
           apiKey={process.env.REACT_APP_TINY_MCE_API}
           init={{
-            height: 500,
-            width: 600,
+            height: 250,
+            width: 450,
             menubar: false,
             plugins: [
               'codesample advlist autolink lists link image charmap print preview anchor',

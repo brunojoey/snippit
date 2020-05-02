@@ -9,15 +9,16 @@ import Navdrop from './components/Navdrop';
 import loginPage from './pages/loginPage';
 import profilePage from './pages/profilePage';
 import snipPage from './pages/snipPage';
+import editorPage from './pages/editorPage';
 import Home from './pages/Home';
 import './App.css';
-import searchLanguage from './components/SearchLanguage';
-import SearchForm from './components/search';
+// import SearchLanguage from './components/SearchLanguage';
+// import SearchForm from './components/search';
 
 function App() {
   const [status, setStatus] = useState({ status: false });
   const [language, setLanguage] = useState({ language: 'Javascript' });
-  const [keyword, setKeyword] = useState('');
+  const [keywords, setKeywords] = useState([]);
 
   useEffect(() => {
     let mounted = true;
@@ -42,18 +43,22 @@ function App() {
     setStatus(data);
   }
 
-  const updateKeyword = async () => {
+  const updateKeywords = async (event) => {
     console.log('UPDATE KEYWORD');
-    if (keyword > 3) {
-      let { data } = await SearchForm();
+    const word = event.target.keywords
+    if (keywords > 3) {
+      let { data } = await keywords;
       console.log('KEYWORD DATA: ', data);
-      setKeyword(data);
-    };
+      setKeywords([...keywords].push(word.toLowerCase()));
+
+    } else {
+      return "Please add more characters."
+    }
   };
 
   const updateLanguage = async () => {
     console.log('UPDATE LANGUAGE');
-    let { data } = await searchLanguage();
+    let { data } = await language;
     console.log('LANGUAGE DATA: ', data);
     setLanguage(data);
   };
@@ -63,12 +68,13 @@ function App() {
       <StatusContext.Provider value={{ status, updateStatus }}>
         {(status.status === false) ? <Nav /> : <Navdrop />}
         <LanguageContext.Provider value={{ language, updateLanguage }}>
-        <KeywordContext.Provider value={{ keyword, updateKeyword }}>
+        <KeywordContext.Provider value={{ keywords, updateKeywords }}>
         <Switch>
           <Route exact path='/user/:id' component={profilePage} />
           <Route exact path='/snip/:id' component={snipPage} />
           <Route exact path={['/login', '/signup']} component={loginPage} />
           <Route exact path={['/', '/home', '/feed']} component={Home} />
+          <Route exact path='/editor' component={editorPage} />
           <Route component={Home} />
         </Switch>
         </KeywordContext.Provider>

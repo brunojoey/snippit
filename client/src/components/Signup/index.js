@@ -14,7 +14,7 @@ function Login() {
   });
 
   function checkRedirect() {
-    if (redirect) { return <Redirect to='/home' /> };
+    if (redirect) { return <Redirect to={redirect} /> };
   }
 
   function handleChange(event) {

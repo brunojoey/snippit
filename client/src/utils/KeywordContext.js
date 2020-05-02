@@ -1,8 +1,8 @@
 import React from 'react';
 
 const KeywordContext = React.createContext({
-    keyword: '',
-    updateKeyword: () => {}
+  keywords: [],
+  updateKeywords: () => {}
 });
 
 export default KeywordContext;

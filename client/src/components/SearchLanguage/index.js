@@ -1,32 +1,26 @@
-import React, {useState} from 'react';
+import React, {useContext} from 'react';
 import Select from 'react-materialize';
+import LanguageContext from '../../utils/LanguageContext';
 
-function searchLanguage() {
-    const [option, setOption] = useState();
+const {language, updateLanguage} = useContext(LanguageContext);
+const handleLanguage = (event) => {
+    event.preventDefault();
+    const option = event.target.language;
+    console.log('OPTION: ', option);
+    updateLanguage(option);
+    resetLanguage();
+};
 
-    const handleOption = (event) => {
-        event.preventDefault();
-        setOption(option);
-        resetOptions();
-    };
+const resetLanguage = () => {
+    updateLanguage('');
+};
 
-    const resetOptions = () => {
-        setOption('');
-    };
-
-    const handleOnClick = (event) => {
-        // set option variable
-        const option = event.target.option;
-        console.log(option);
-        // filter all snips with the given option. Map the options then filter?
-
-    };
-
+function SearchLanguage() {
     return (
         <Select
             id="Select-9"
             multiple={false}
-            onChange={handleOnClick}
+            onChange={function noRefCheck(){}}
             options={{
                 classes: '',
                 dropdownOptions: {
@@ -46,9 +40,9 @@ function searchLanguage() {
             }}
             value=""
         >
-            <option onClick={handleOption}
+            <option onClick={handleLanguage}
                 disabled
-                value=""
+                value={language}
             >
                 Choose your option
             </option>
@@ -83,4 +77,4 @@ function searchLanguage() {
     )
 };
 
-export default searchLanguage;
+export default SearchLanguage;
