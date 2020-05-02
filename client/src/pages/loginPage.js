@@ -10,7 +10,7 @@ function Login() {
   const { status } = useContext(StatusContext);
 
   return(
-    <div className='container'>
+    <div className='container' id="home-container">
       {(status.status !== false) ? <Redirect to='/home' /> : <></>}
       <Row>
         <Col s={12} m={6} offset='m3'>

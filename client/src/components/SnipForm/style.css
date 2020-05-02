@@ -1,0 +1,16 @@
+.mb-0 {
+  margin-bottom: 0px;
+}
+
+.input-field {
+  margin-bottom: 2px;
+}
+
+.center {
+  text-align: center;
+}
+
+.center .btn {
+  color: white;
+  background-color: #7BDFF2;
+}

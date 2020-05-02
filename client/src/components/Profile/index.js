@@ -48,6 +48,7 @@ function ProfilePanel() {
                 </Col>
             </Row>
         </div>
+
     );
 }
 
