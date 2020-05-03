@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useRef, useEffect } from 'react';
 import { Button } from 'react-materialize';
 import StatusContext from '../../utils/StatusContext';
 import snipsAPI from '../../utils/snipsAPI';
@@ -6,12 +6,12 @@ import Editor from '../../components/Editor';
 import './style.css';
 
 function Form(props) {
-  // Values added to form information state when submit button is clicked.
+  // Couldn't use state for code because state rerenders emptied the ace object.
   let aceCode = '';
-  let text = '';
 
   // Currently logged in user.
   const { status } = useContext(StatusContext);
+  const bodyRef = useRef();
 
   // True when user adds a block of code to his/her snip.
   const [block, setBlock] = useState(false);
@@ -25,9 +25,28 @@ function Form(props) {
     userId: status._id,
   });
 
-  function handleChange(event) {
-    // Ace editor onChange hijacks regular event. Workaround with if else.
-    (typeof event === 'string') ? aceCode = event : text = event.target.value;
+  useEffect(() => {
+    // Used to handle form submission.
+    async function fetchData() {
+      if (state.isResponse && (state.body.length > 1 || state.code.length > 1)) {
+
+        // Create new response snip and add it to the main snip's responses array.
+        const { data } = await snipsAPI.createSnip(state);
+        await snipsAPI.updateSnip(props.snipId, { $push: { responses: data._id } });
+
+        props.setForm(false);
+      } else {
+        // const { data } = await snipsAPI.createSnip(state);
+        // props.setRedirect('/snips/' + data._id);
+      }
+
+    }
+    fetchData();
+
+  }, [state]);
+
+  function handleChange(code) {
+    aceCode = code;
   }
 
   function displayBlock() {
@@ -56,36 +75,18 @@ function Form(props) {
   }
 
   async function handleSubmit(event) {
-    console.log('HANDLE-SUBMIT');
     event.preventDefault();
+    const body = bodyRef.current.value;
 
-    if (aceCode.length < 1 && state.body.length < 1) { return console.log('NOTHING ENTERED') }
-    setState({ ...state, code: aceCode, body: text });
-
-    await snipsAPI.createSnip(state).then(async ({ data }) => {
-      console.log('NEW SNIP: ', data);
-  
-      console.log('IS RESPONSE: ', props.isResponse);
-      // If this is a response, stay on current page. If this is an initial snip, redirect.
-      if (props.isResponse) {
-        console.log('IN IF');
-        // insert id of response into response array of current page's id.
-        console.log('PROPS.SNIP-ID: ', props.snipId);
-        console.log('DATA._ID: ', data._id)
-        const response = await snipsAPI.updateSnip(props.snipId, { $push: { responses: data._id } });
-        console.log('RESPONSE; ', response);
-      } else {
-        console.log('IN ELSE');
-        props.setRedirect('/snips/' + data._id);
-      }
-    });
+    if (aceCode.length < 1 && body.length < 1) { console.log('No data was entered.') }
+    setState({ ...state, code: aceCode, body: body });
   }
   
   function renderForm() {
     return (
       <>
         <form>
-          <textarea name='body' onChange={handleChange}></textarea>
+          <textarea name='body' ref={bodyRef}></textarea>
           {(block) ? displayBlock() : displayBlockBtn() }
           <Button
             type='submit' node='button' name='submit'
@@ -99,9 +100,7 @@ function Form(props) {
   }
 
   return (
-    <>
-      {renderForm()}
-    </>
+    <> {renderForm()}</>
   );
 }
 

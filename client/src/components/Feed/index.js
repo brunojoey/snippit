@@ -24,7 +24,7 @@ function Feed() {
       let users = [];
       
       // Get snips and filter them if needed.
-      if (language) { snips = snips.filter(snip => snip.language === language); }
+      if (language) { snips = snips.filter(snip => (!snip.isResponse && snip.language === language)); }
       if (keywords) {
         snips = snips.filter(snip => {
           const snipWords = snip.body.split(' ');

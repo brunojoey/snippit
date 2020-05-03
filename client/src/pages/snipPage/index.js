@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react';
+import { Redirect } from 'react-router-dom';
 import { Container, Row, Col, Button } from 'react-materialize';
 import StatusContext from '../../utils/StatusContext';
 import usersAPI from '../../utils/usersAPI';
@@ -8,13 +9,13 @@ import Form from '../../components/Form';
 import './style.css';
 
 function Snip(props) {
-  console.log('PROPS: ', props);
   const { status } = useContext(StatusContext);
   const signedIn = (status.status !== false)    // True when user is signed in.
-
+  
   // State is the snip data retrieved from snipAPI.
   const [state, setState] = useState(null);
   const [form, setForm] = useState(false);
+  const [redirect, setRedirect] = useState(null);
 
   useEffect(() => {
     
@@ -27,6 +28,10 @@ function Snip(props) {
     fetchData();
 
   }, []);
+
+  function checkRedirect() {
+    if (redirect) { return <Redirect to={redirect} /> };
+  }
 
   function renderSnip() {
     let code = state.body.split(/<code>|<\/code>/);
@@ -44,13 +49,19 @@ function Snip(props) {
   function renderForm() {
     return (
       <Col s={8} offset='s2'>
-        <Form snipId={props.match.params.id} isResponse={true} language={state.language} />
+        <Form 
+          setForm={setForm}
+          setRedirect={setRedirect}
+          snipId={props.match.params.id} 
+          language={state.language}
+          isResponse={true} />
       </Col>
     );
   }
 
   return (
     <>
+      {checkRedirect()}
       <Container>
         <Row>
           <Col s={8} offset='s2'>

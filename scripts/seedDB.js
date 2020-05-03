@@ -92,6 +92,7 @@ const userSeed = [
 ];
 
 const snipSeed = {
+  isResponse: false,
   language: 'html',
   tagLine: 'How do you insert an element into an array?',
   body: '<code><p>I\'m suuuuper confused by this. Please help!</p></code>',
