@@ -10,7 +10,7 @@ import './style.css';
 
 function Snip(props) {
   const { status } = useContext(StatusContext);
-  const signedIn = (status.status !== false)    // True when user is signed in.
+  const loggedIn = (status.status !== false)    // True when user is signed in.
   
   // State is the snip data retrieved from snipAPI.
   const [state, setState] = useState(null);
@@ -59,6 +59,24 @@ function Snip(props) {
     );
   }
 
+  function renderResponseBtn() {
+    return (
+      <Row>
+        <Col s={8} offset='s2'>
+          <Button 
+            type='button' 
+            node='button' 
+            name='response-btn' 
+            onClick={() => setForm(!form)}
+          >
+            {(form) ? 'Nevermind' : 'Add Response' }
+          </Button>
+        </Col>
+        {(form) ? renderForm() : <></>}
+      </Row>
+    );
+  }
+
   return (
     <>
       {checkRedirect()}
@@ -68,19 +86,7 @@ function Snip(props) {
             {(state) ? renderSnip() : <></>}
           </Col>
         </Row>
-        <Row>
-          <Col s={8} offset='s2'>
-            <Button 
-              type='button' 
-              node='button' 
-              name='response-btn' 
-              onClick={() => setForm(!form)}
-            >
-              {(form) ? 'Nevermind' : 'Add Response' }
-            </Button>
-          </Col>
-          {(form) ? renderForm() : <></>}
-        </Row>
+        {(loggedIn) ? renderResponseBtn() : <></>}
         <Row>
           
         </Row>
