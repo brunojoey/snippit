@@ -14,8 +14,11 @@ export default {
     return axios.get('/api/snips/' + id);
   },
   // Update snip with data.
-  updateSnip: function(id, data) {
-    return axios.put('/api/snips/' + id, data);
+  updateSnip: async function(id, data) {
+    console.log('UPDATE-SNIP');
+    console.log('ID: ', id);
+    console.log('DATA: ', data);
+    return await axios.put('/api/snips/' + id, data);
   },
   // Delete snip with given id.
   deleteSnip: function(id) {

@@ -13,8 +13,6 @@ function Editor(props) {
     theme: ''
   })
 
-  console.log('PROPS.CODE: ', props.code);
-
   useEffect(() => {
     if (props.readOnly) {
       setOptions({
@@ -32,8 +30,9 @@ function Editor(props) {
     }
   }, []);
 
-  function onChange(newValue) {
+  function onChange(newValue, event) {
     console.log("change", newValue);
+    console.log('event: ', event)
   }
 
   // Render editor
@@ -44,7 +43,7 @@ function Editor(props) {
       value={options.value}
       height={options.height}
       theme={options.theme}
-      onChange={onChange}
+      onChange={props.handleChange}
       name='editor'
       width='auto'
       highlightActiveLine={true}

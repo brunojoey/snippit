@@ -44,7 +44,7 @@ function Snip(props) {
   function renderForm() {
     return (
       <Col s={8} offset='s2'>
-        <Form language={state.language} />
+        <Form snipId={props.match.params.id} isResponse={true} language={state.language} />
       </Col>
     );
   }
