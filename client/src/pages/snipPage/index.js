@@ -39,16 +39,17 @@ function Snip(props) {
 
   useEffect(() => {
     if (state && state.responses.length > 1) {
-      
+
       async function fetchData() {
-        const responses = state.responses;
+        let responses = [];
         let users = [];
         
-        // Get users for each snip.
-        await asyncForEach(responses, async (response) => {
+        // Get users for each response
+        await asyncForEach(state.responses, async (response) => {
           const { data } = await snipsAPI.getSnip(response);
           const user = await usersAPI.getUser(data.userId)
 
+          responses.push(data);
           users.push(user.data);
         });
   
@@ -116,28 +117,26 @@ function Snip(props) {
   function renderResponses() {
     return(
       <Row>
-        {/* <h2 className='center'>Recent Snips</h2>
+        <h2 className='center'>Responses</h2>
         <Collection>
-          {state.responses.map((snip, index) => {
-            const user = snip.find(user => user._id === snip.userId) };
+          {responses.map((response, index) => {
+            const user = users.find(user => user._id === response.userId);
 
             return(
               <CollectionItem className='avatar' key={index}>
                 <Row>
-                  <Col s={1}>
-                    <img alt='Avatar' className='circle' src={(userState) ? user.imageUrl : 'https://picsum.photos/200'} />
-                  </Col>
-                  <Col s={9}>
-                    <span className='title'>{snip.tagLine}</span>
-                  </Col>
                   <Col s={2}>
-                    <Link to={`/snips/${snip._id}`} className='secondary-content'><Icon>Go</Icon></Link>
+                    <img alt='Avatar' className='circle' src={(user.imageUrl.length > 0) ? user.imageUrl : 'https://picsum.photos/200'} />
+                  </Col>
+                  <Col s={10}>
+                    <textarea readOnly>{response.body}</textarea>
+                    {(response.code.length > 0) ? <Editor language={response.language} code={response.code} readOnly={true} /> : <></>}
                   </Col>
                 </Row>
               </CollectionItem>
             );
           })}
-        </Collection> */}
+        </Collection>
       </Row>
     );
   }
@@ -152,7 +151,7 @@ function Snip(props) {
           </Col>
         </Row>
         {(loggedIn) ? renderResponseBtn() : <></>}
-        {renderResponses()}
+        {(responses && users) ? renderResponses() : <></>}
       </Container>
     </>
   );
