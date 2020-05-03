@@ -92,9 +92,11 @@ const userSeed = [
 ];
 
 const snipSeed = {
+  language: 'html',
   tagLine: 'How do you insert an element into an array?',
-  body: '<p>I\'m suuuuper confused by this. Please help!</p>',
-  responses: []
+  body: '<code><p>I\'m suuuuper confused by this. Please help!</p></code>',
+  responses: [],
+  createAt: Date.now
 }
 
 db.User

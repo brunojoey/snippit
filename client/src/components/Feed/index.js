@@ -8,7 +8,7 @@ import './style.css';
 function Feed() {
   const [userState, setUserState] = useState(null);
   const [snipState, setSnipState] = useState(null);
-  const [language, setLanguage] = useState('javascript')  // Get from context or prop. Should be a single string.
+  const [language, setLanguage] = useState('html')  // Get from context or prop. Should be a single string.
   const [keywords, setKeywords] = useState(null);         // Get from context or prop. Should be an array of words.
 
   async function asyncForEach(array, callback) {
