@@ -6,7 +6,7 @@ import Nav from './components/Nav';
 import Navdrop from './components/Navdrop';
 import loginPage from './pages/loginPage';
 import profilePage from './pages/profilePage';
-import snipPage from './pages/snipPage';
+import snipPage from './pages/snipPage/index';
 import editorPage from './pages/editorPage';
 import Home from './pages/Home';
 import './App.css';

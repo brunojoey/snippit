@@ -4,14 +4,32 @@ import AceEditor from "react-ace";
 import "ace-builds/src-noconflict/mode-javascript";
 import 'ace-builds/src-noconflict/mode-html';
 import 'ace-builds/src-noconflict/theme-cobalt';
+import 'ace-builds/src-noconflict/theme-clouds';
 
 function Editor(props) {
-  const [height, setHeight] = useState();
+  const [options, setOptions] = useState({
+    height: '',
+    value: '',
+    theme: ''
+  })
 
   console.log('PROPS.CODE: ', props.code);
 
   useEffect(() => {
-    (props.readOnly) ? setHeight('200px') : setHeight('300px');
+    if (props.readOnly) {
+      setOptions({
+        ...options,
+        height: '400px',
+        value: props.code,
+        theme: 'cobalt'
+      })
+    } else {
+      setOptions({
+        ...options,
+        height: '200px',
+        theme: 'clouds'
+      })
+    }
   }, []);
 
   function onChange(newValue) {
@@ -23,10 +41,10 @@ function Editor(props) {
     <AceEditor
       readOnly={props.readOnly}
       mode={props.language}
-      value={props.code}
-      height={height}
+      value={options.value}
+      height={options.height}
+      theme={options.theme}
       onChange={onChange}
-      theme='cobalt'
       name='editor'
       width='auto'
       highlightActiveLine={true}
