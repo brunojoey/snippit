@@ -1,15 +1,15 @@
 import React from 'react';
-import ProfilePanel from '../components/profilepanel';
-import { Row, Col } from 'react-materialize';
+import ProfilePanel from '../components/Profile';
+import Foot from '../components/Footer';
+import { Row } from 'react-materialize';
 
-function Profile(props) {
+function Profile() {
   return (
-    <div className="containter">
+    <div className="containter" id="home-container">
       <Row>
-        <Col s={12} m={6} offset='m3'>
           <ProfilePanel />
-        </Col>
       </Row>
+      <Foot />
     </div>
   );
 };

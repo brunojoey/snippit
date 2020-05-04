@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import statusAPI from './utils/statusAPI';
 import StatusContext from './utils/StatusContext';
+import LanguageContext from './utils/LanguageContext';
+import KeywordContext from './utils/KeywordContext';
 import Nav from './components/Nav';
 import Navdrop from './components/Navdrop';
 import loginPage from './pages/loginPage';
@@ -10,9 +12,13 @@ import snipPage from './pages/snipPage/index';
 import editorPage from './pages/editorPage';
 import Home from './pages/Home';
 import './App.css';
+// import SearchLanguage from './components/SearchLanguage';
+// import SearchForm from './components/search';
 
 function App() {
   const [status, setStatus] = useState({ status: false });
+  const [language, setLanguage] = useState({ language: 'Javascript' });
+  const [keywords, setKeywords] = useState([]);
 
   useEffect(() => {
     let mounted = true;
@@ -35,10 +41,32 @@ function App() {
     setStatus(data);
   }
 
+  const updateKeywords = async (event) => {
+    console.log('UPDATE KEYWORD');
+    const word = event.currentTarget.keywords;
+    if (keywords > 3) {
+      let { data } = await keywords;
+      console.log('KEYWORD DATA: ', data);
+      setKeywords(keywords.concat(word.toLowerCase()));
+
+    } else {
+      return "Please add more characters."
+    }
+  };
+
+  const updateLanguage = async () => {
+    console.log('UPDATE LANGUAGE');
+    let { data } = await language;
+    console.log('LANGUAGE DATA: ', data);
+    setLanguage(data);
+  };
+
   return (
     <Router>
       <StatusContext.Provider value={{ status, updateStatus }}>
         {(status.status === false) ? <Nav /> : <Navdrop />}
+        <LanguageContext.Provider value={{ language, updateLanguage }}>
+        <KeywordContext.Provider value={{ keywords, updateKeywords }}>
         <Switch>
           <Route exact path='/users/:id' component={profilePage} />
           <Route exact path='/snips/:id' component={snipPage} />
@@ -47,6 +75,8 @@ function App() {
           <Route exact path='/editor' component={editorPage} />
           <Route component={Home} />
         </Switch>
+        </KeywordContext.Provider>
+        </LanguageContext.Provider>
       </StatusContext.Provider>
     </Router>
   );

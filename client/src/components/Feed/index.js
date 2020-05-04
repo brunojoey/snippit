@@ -6,6 +6,8 @@ import usersAPI from '../../utils/usersAPI';
 import './style.css';
 
 function Feed() {
+  // const {language, updateLanguage} = useContext({LanguageContext});
+  // const {keywords, updateKeywords} = useContext({KeywordContext});
   const [userState, setUserState] = useState(null);
   const [snipState, setSnipState] = useState(null);
   const [language, setLanguage] = useState('html')  // Get from context or prop. Should be a single string.
@@ -59,7 +61,7 @@ function Feed() {
             return(
               <CollectionItem className='avatar' key={index}>
                 <Row>
-                  <Col s={1}>
+                  <Col s={2}>
                     <img alt='Avatar' className='circle' src={(userState) ? user.imageUrl : 'https://picsum.photos/200'} />
                   </Col>
                   <Col s={9}>

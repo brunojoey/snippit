@@ -5,7 +5,7 @@ import 'ace-builds/src-noconflict/mode-javascript';
 import 'ace-builds/src-noconflict/mode-css';
 import 'ace-builds/src-noconflict/mode-html';
 import 'ace-builds/src-noconflict/mode-python';
-import 'ace-builds/src-noconflict/theme-monokai';
+import 'ace-builds/src-noconflict/theme-twilight';
 import './editor.css'
 
 function SnipEditor() {
@@ -29,7 +29,7 @@ function SnipEditor() {
                             <AceEditor
                                 placeholder="Placeholder Text"
                                 mode="javascript"
-                                theme="monokai"
+                                theme="twilight"
                                 name="UNIQUE_ID_OF_DIV"
                                 onChange={onChange}
                                 fontSize={14}
@@ -56,7 +56,7 @@ function SnipEditor() {
                             <AceEditor
                                 placeholder="Placeholder Text"
                                 mode="html"
-                                theme="monokai"
+                                theme="twilight"
                                 name="UNIQUE_ID_OF_DIV"
                                 onChange={onChange}
                                 fontSize={14}
@@ -83,7 +83,7 @@ function SnipEditor() {
                             <AceEditor
                                 placeholder="Placeholder Text"
                                 mode="css"
-                                theme="monokai"
+                                theme="twilight"
                                 name="UNIQUE_ID_OF_DIV"
                                 onChange={onChange}
                                 fontSize={14}
@@ -110,7 +110,7 @@ function SnipEditor() {
                             <AceEditor
                                 placeholder="Placeholder Text"
                                 mode="python"
-                                theme="monokai"
+                                theme="twilight"
                                 name="UNIQUE_ID_OF_DIV"
                                 onChange={onChange}
                                 fontSize={14}
