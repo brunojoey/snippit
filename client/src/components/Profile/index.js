@@ -2,6 +2,7 @@ import React, { useState, useContext } from "react";
 import { Row, Col, Button } from 'react-materialize';
 import StatusContext from '../../utils/StatusContext';
 import ProfileImage from '../Cloudinary/index';
+import StatusContext from '../../utils/StatusContext';
 import './style.css';
 
 
@@ -51,7 +52,7 @@ function ProfilePanel() {
                     <ProfileImage />
                 </Col>
                 <Col s={8}>
-                    <Button className='far fa-edit' node='button' type='submit' waves='light' onClick={handleEdit}>Submit</Button>
+                    <Button node='button' type='submit' waves='light' onClick={handleEdit}>Submit</Button>
                     <p>{status.biography}</p>
                 </Col>
             </Row>
