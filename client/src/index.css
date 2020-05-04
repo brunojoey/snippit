@@ -68,4 +68,9 @@ code {
   text-align: center;
   margin-right: 15px;
   margin-left: 15px;
+  background-color: #7bdff2;
+}
+
+.btn:hover {
+  background-color: #86CDCF;
 }
