@@ -33,11 +33,10 @@ function Form(props) {
         // Create new response snip and add it to the main snip's responses array.
         const { data } = await snipsAPI.createSnip(state);
         const response = await snipsAPI.updateSnip(props.snipId, { $push: { responses: data._id } });
-        console.log('ORIGINAL SNIP ID: ', props.snipId);
-        console.log('SNIP AFTER ADDING RESPONSE: ', response.data);
-        console.log('NEW SNIP RESPONSSE: ', data);
 
+        // Reset values.
         props.setForm(false);
+        props.setResponses([ ...props.responses, data]);
       } else {
         // const { data } = await snipsAPI.createSnip(state);
         // props.setRedirect('/snips/' + data._id);

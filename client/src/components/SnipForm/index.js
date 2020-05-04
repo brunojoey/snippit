@@ -6,7 +6,6 @@ import TinyMCE from '../TinyMCE';
 import './style.css';
 
 function SnipForm(props) {
-  console.log('FORM PROPS: ', props);
   const { status } = useContext(StatusContext);
   const [state, setState] = useState({
     tagLine: '',

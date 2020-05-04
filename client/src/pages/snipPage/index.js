@@ -17,7 +17,7 @@ function Snip(props) {
   const [form, setForm] = useState(false);
   const [redirect, setRedirect] = useState(null);
 
-  const [responses, setResponses] = useState(null);
+  const [responses, setResponses] = useState([]);
   const [users, setUsers] = useState(null);
 
   async function asyncForEach(array, callback) {
@@ -38,7 +38,7 @@ function Snip(props) {
   }, []);
 
   useEffect(() => {
-    if (state && state.responses.length > 1) {
+    if (state) {
 
       async function fetchData() {
         let responses = [];
@@ -58,7 +58,6 @@ function Snip(props) {
       }
       fetchData();
 
-
     } else {
       console.log('No responses yet.')
     }
@@ -76,7 +75,7 @@ function Snip(props) {
       <>
         <h2>{state.tagLine}</h2>
         <div>
-          <textarea readOnly value={state.body}></textarea>
+          <div>{state.body}</div>
           <Editor language={state.language} code={code[1]} readOnly={true} />
         </div>
       </>
@@ -85,8 +84,10 @@ function Snip(props) {
 
   function renderForm() {
     return (
-      <Col s={8} offset='s2'>
+      <Col s={12} m={8} offset='m2'>
         <Form 
+          responses={responses}
+          setResponses={setResponses}
           setForm={setForm}
           setRedirect={setRedirect}
           snipId={props.match.params.id} 
@@ -99,7 +100,7 @@ function Snip(props) {
   function renderResponseBtn() {
     return (
       <Row>
-        <Col s={8} offset='s2'>
+        <Col s={12} m={8} offset='m2'>
           <Button 
             type='button' 
             node='button' 
@@ -125,11 +126,11 @@ function Snip(props) {
             return(
               <CollectionItem className='avatar' key={index}>
                 <Row>
-                  <Col s={2}>
-                    <img alt='Avatar' className='circle' src={(user.imageUrl.length > 0) ? user.imageUrl : 'https://picsum.photos/200'} />
+                  <Col s={1}>
+                    <img alt='Avatar' className='circle' src={(user) ? user.imageUrl : 'https://picsum.photos/200'} />
                   </Col>
-                  <Col s={10}>
-                    <textarea readOnly>{response.body}</textarea>
+                  <Col s={11}>
+                    <div>{response.body}</div>
                     {(response.code.length > 0) ? <Editor language={response.language} code={response.code} readOnly={true} /> : <></>}
                   </Col>
                 </Row>
@@ -146,12 +147,16 @@ function Snip(props) {
       {checkRedirect()}
       <Container>
         <Row>
-          <Col s={8} offset='s2'>
+          <Col s={12} m={8} offset='m2'>
             {(state) ? renderSnip() : <></>}
           </Col>
         </Row>
         {(loggedIn) ? renderResponseBtn() : <></>}
-        {(responses && users) ? renderResponses() : <></>}
+        <Row>
+          <Col s={12} m={8} offset='m2'>
+            {(responses && users) ? renderResponses() : <></>}
+          </Col>
+        </Row>
       </Container>
     </>
   );

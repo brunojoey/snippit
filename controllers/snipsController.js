@@ -22,16 +22,9 @@ module.exports = {
       .catch(err => res.status(422).json(err));
   },
   update: function(req, res) {
-    console.log('UPDATE');
-    console.log('REQ.PARAMS.ID: ', req.params.id);
-    console.log('REQ.BODY: ', req.body);
     db.Snip
       .findOneAndUpdate({ _id: req.params.id }, req.body)
-      .then(dbModel => {
-        console.log('INSIDE FIND-ONE-AND-UPDATE');
-        console.log('DB-MODEL: ', dbModel);
-        return res.json(dbModel)
-      })
+      .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },
   remove: function(req, res) {
