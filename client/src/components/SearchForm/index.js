@@ -43,7 +43,7 @@ function SearchForm(props) {
                         <SearchLanguage handleChange={handleChange}/>
                     </Col>
                     <Col s={6} m={2}>
-                        <Button node='button' type='submit' waves='light' onClick={handleSubmit}>Submit</Button>
+                        <Button id='submit-search' node='button' type='submit' waves='light' onClick={handleSubmit}>Submit</Button>
                     </Col>
                 </Row>
             </div>
