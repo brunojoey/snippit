@@ -14,16 +14,18 @@
 Joey Bruno, Tyler Kennedy, Brandon Cansler
 
 ## Description
-This is a ...
+Snippit is a social developer question application where you can post questions, or snips, that you have for certain coding languages that you can filter for your snip and also answer different snips you see. When creating a snip, you can also add code within that snip so you can better explain that to the viewer of your snip.
 
 ## Technologies Used
 * React
-* React - Spring
-* Tiny MCE
+* Ace Editor
 * Node JS
 * Express
 * MongoDB
-
+* React Materialize
+* Passport
+* Bcrypt 
+* Express - Session
 
 ## Installation
 To install this application you clone the SSH Key from the main hub page of this repository and you paste that clone link into your Terminal with git clone.
@@ -35,7 +37,7 @@ To use this application you go to the deployed link available within this README
 To contribute, clone this repository into your terminal, work on the project, then create a pull request.
 
 ## Deployment Application Link
-[Deployed SNIPPIT APP EVENTUALLY](new html link)
+[Deployed Snippit Application](https://thawing-meadow-26405.herokuapp.com/)
 
 ## Application in Use
-![SNIPPIT Application In Use EVENTUALLY](new gif of project link)
+![Snippit Application In Use](/Snippit.gif)
