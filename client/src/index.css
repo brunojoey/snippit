@@ -20,9 +20,9 @@ code {
   background-color: #7BDFF2;
 }
 
-/* #home-container {
-  background-color: #F5F9F9;
-} */
+#home-container {
+  text-align: center;
+}
 
 .tabs .tab a{
   color:#000;
@@ -62,4 +62,10 @@ code {
   background-color: #86CDCF;
   color: white;
   bottom: 0;
+}
+
+.btn {
+  text-align: center;
+  margin-right: 15px;
+  margin-left: 15px;
 }
