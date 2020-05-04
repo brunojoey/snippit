@@ -74,3 +74,8 @@ code {
 .btn:hover {
   background-color: #86CDCF;
 }
+
+#submit-search {
+  text-align: center;
+  margin: 16px auto 0px auto;
+}
