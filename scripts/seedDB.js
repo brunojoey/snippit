@@ -92,8 +92,13 @@ const userSeed = [
 ];
 
 const snipSeed = {
-  body: 'Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old.',
-  responses: []
+  isResponse: false,
+  language: 'html',
+  tagLine: 'How do you insert an element into an array?',
+  body: 'Can someone please help?',
+  code: '<p>I\'m suuuuper confused by this. Please help!</p>',
+  responses: [],
+  createAt: Date.now
 }
 
 db.User

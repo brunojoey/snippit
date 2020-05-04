@@ -2,8 +2,10 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const SnipSchema = new Schema({
-  tagLine: { type: String, require: true },
-  body: { type: String, require: true },
+  isResponse: { type: Boolean, require: true },
+  tagLine: { type: String, require: false },
+  body: { type: String, require: false },
+  code: { type: String, require: false },
   language: { type: String, require: true, default: 'javascript' },
   userId: { type: String, require: true },
   createdAt: { type: Date, default: Date.now },

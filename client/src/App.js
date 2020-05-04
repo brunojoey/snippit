@@ -8,7 +8,7 @@ import Nav from './components/Nav';
 import Navdrop from './components/Navdrop';
 import loginPage from './pages/loginPage';
 import profilePage from './pages/profilePage';
-import snipPage from './pages/snipPage';
+import snipPage from './pages/snipPage/index';
 import editorPage from './pages/editorPage';
 import Home from './pages/Home';
 import './App.css';
@@ -68,8 +68,8 @@ function App() {
         <LanguageContext.Provider value={{ language, updateLanguage }}>
         <KeywordContext.Provider value={{ keywords, updateKeywords }}>
         <Switch>
-          <Route exact path='/user/:id' component={profilePage} />
-          <Route exact path='/snip/:id' component={snipPage} />
+          <Route exact path='/users/:id' component={profilePage} />
+          <Route exact path='/snips/:id' component={snipPage} />
           <Route exact path={['/login', '/signup']} component={loginPage} />
           <Route exact path={['/', '/home', '/feed']} component={Home} />
           <Route exact path='/editor' component={editorPage} />

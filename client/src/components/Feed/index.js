@@ -3,13 +3,14 @@ import { Link } from 'react-router-dom';
 import { Row, Col, Collection, CollectionItem, Icon } from 'react-materialize';
 import snipsAPI from '../../utils/snipsAPI';
 import usersAPI from '../../utils/usersAPI';
+import './style.css';
 
 function Feed() {
   // const {language, updateLanguage} = useContext({LanguageContext});
   // const {keywords, updateKeywords} = useContext({KeywordContext});
   const [userState, setUserState] = useState(null);
   const [snipState, setSnipState] = useState(null);
-  const [language, setLanguage] = useState('javascript')  // Get from context or prop. Should be a single string.
+  const [language, setLanguage] = useState('html')  // Get from context or prop. Should be a single string.
   const [keywords, setKeywords] = useState(null);         // Get from context or prop. Should be an array of words.
 
   async function asyncForEach(array, callback) {
@@ -25,7 +26,7 @@ function Feed() {
       let users = [];
       
       // Get snips and filter them if needed.
-      if (language) { snips = snips.filter(snip => snip.language === language); }
+      if (language) { snips = snips.filter(snip => (!snip.isResponse && snip.language === language)); }
       if (keywords) {
         snips = snips.filter(snip => {
           const snipWords = snip.body.split(' ');
@@ -51,6 +52,7 @@ function Feed() {
   function renderSnips() {
     return (
       <>
+        <h2 className='center'>Recent Snips</h2>
         <Collection>
           {snipState.map((snip, index) => {
             let user;
@@ -62,14 +64,11 @@ function Feed() {
                   <Col s={2}>
                     <img alt='Avatar' className='circle' src={(userState) ? user.imageUrl : 'https://picsum.photos/200'} />
                   </Col>
-                  {/* <Col s={1}>
-                    <span className='languageTag'>{snip.language}</span>
-                  </Col> */}
-                  <Col s={8}>
-                    <span className='title'>{snip.body}</span>
+                  <Col s={9}>
+                    <span className='title'>{snip.tagLine}</span>
                   </Col>
                   <Col s={2}>
-                    <Link to={`/snips/${snip._id}`} className='secondary-content'><Icon>See Snip</Icon></Link>
+                    <Link to={`/snips/${snip._id}`} className='secondary-content'><Icon>Go</Icon></Link>
                   </Col>
                 </Row>
               </CollectionItem>
@@ -82,7 +81,7 @@ function Feed() {
 
   return (
     <>
-      {(snipState) ? renderSnips() : <p>No tips for these snips.</p>}
+      {(snipState) ? renderSnips() : <p className='center'>No tips for these snips.</p>}
     </>
   );
 }
