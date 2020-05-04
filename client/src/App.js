@@ -43,11 +43,11 @@ function App() {
 
   const updateKeywords = async (event) => {
     console.log('UPDATE KEYWORD');
-    const word = event.target.keywords
+    const word = event.currentTarget.keywords;
     if (keywords > 3) {
       let { data } = await keywords;
       console.log('KEYWORD DATA: ', data);
-      setKeywords([...keywords].push(word.toLowerCase()));
+      setKeywords(keywords.concat(word.toLowerCase()));
 
     } else {
       return "Please add more characters."
