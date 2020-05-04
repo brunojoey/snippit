@@ -1,35 +1,52 @@
-import React, { useContext } from 'react';
-import { Icon, Button } from 'react-materialize';
-import SearchLanguage from '../SearchLanguage/index';
+import React, { useState, useContext } from 'react';
+import { Row, Col, Icon, Button, TextInput } from 'react-materialize';
+import SearchLanguage from '../SearchLanguage';
 import KeywordContext from '../../utils/KeywordContext';
+import LanguageContext from '../../utils/LanguageContext';
 
 function SearchForm(props) {
+    const { language, updateLanguage } = useContext(LanguageContext);
     const { keywords, updateKeywords } = useContext(KeywordContext);
+    const [state, setState] = useState({
+        search: '',
+        language: ''
+    });
 
-    const resetSearchField = () => {
-        updateKeywords();
-    };
+    function handleChange(event) {
+        console.log('HANDLE CHANGE');
 
-    const handleSubmit = () => {
-        if (props.snip.body.includes(keywords)) {
-            updateKeywords(keywords);
-            resetSearchField();
-        } else {
-            return "You need keywords in the search bar.";
-        }
+        const name = event.target.name;
+        console.log('NAME: ', name);
+        console.log('VALUE: ', event.target.value);
+        setState({ ...state, [name]: event.target.value })
+    }
+
+    function handleSubmit(event) {
+        event.preventDefault();
+        const words = state.search.split(' ');
+
+        words.forEach(word => {
+            updateKeywords(word);
+        });
+
+        updateLanguage(state.language);
     };
 
     return (
         <form>
             <div className="input-field">
-                <input id="search" type="search" required />
-                <label htmlFor="search">
-                <Icon>Search</Icon>
-                </label>
-                <Button node='button' type='submit' waves='light' onClick={handleSubmit}>Submit</Button>
-                <Icon>Close</Icon>
+                <Row>
+                    <Col s={12} m={7}>
+                        <TextInput className='search' name='search' placeholder="Search" noLayout onChange={handleChange} />
+                    </Col>
+                    <Col s={6} m={3}>
+                        <SearchLanguage handleChange={handleChange}/>
+                    </Col>
+                    <Col s={6} m={2}>
+                        <Button node='button' type='submit' waves='light' onClick={handleSubmit}>Submit</Button>
+                    </Col>
+                </Row>
             </div>
-            {/* <SearchLanguage /> */}
         </form>
     )
 };
