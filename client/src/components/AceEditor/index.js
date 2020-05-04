@@ -14,7 +14,7 @@ function SnipEditor() {
     }
 
     return (
-        <div className="editor-container">
+        <div className="container">
             <Row>
                 <Col s={12} m={6} offset='m3' className="editor-spacing">
                     <Tabs className='tab-demo z-depth-1 tabs-fixed-width' options={{ swipeable: false }}>

@@ -40,23 +40,25 @@ function Login() {
   }
 
   return (
-    <form>
-      {checkRedirect()}
-      <Row>
-        <Col s={10} offset='s1'>
-          <TextInput id='username' name='username' label='Username' onChange={handleChange}/>
-        </Col>
-      </Row>
-      <Row>
-        <Col s={10} offset='s1'>
-          <TextInput password id='password' name='password' label='Password' onChange={handleChange}/>
-        </Col>
-      </Row>
-      <Row>
-        <ProfileImage />
-      </Row>
-      <Button node='button' type='submit' waves='light' onClick={handleSubmit}>Submit</Button>
-    </form>
+    <>
+      <form>
+        {checkRedirect()}
+        <Row>
+          <Col s={10} offset='s1'>
+            <TextInput id='username' name='username' label='Username' noLayout onChange={handleChange}/>
+          </Col>
+        </Row>
+        <Row>
+          <Col s={10} offset='s1'>
+            <TextInput password id='password' name='password' label='Password' noLayout onChange={handleChange}/>
+          </Col>
+        </Row>
+        <Row>
+          <ProfileImage />
+        </Row>
+        <Button node='button' type='submit' waves='light' onClick={handleSubmit}>Submit</Button>
+      </form>
+    </>
   );
 }
 
