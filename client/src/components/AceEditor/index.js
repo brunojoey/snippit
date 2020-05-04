@@ -5,7 +5,7 @@ import 'ace-builds/src-noconflict/mode-javascript';
 import 'ace-builds/src-noconflict/mode-css';
 import 'ace-builds/src-noconflict/mode-html';
 import 'ace-builds/src-noconflict/mode-python';
-import 'ace-builds/src-noconflict/theme-twilight';
+import 'ace-builds/src-noconflict/theme-clouds';
 import './editor.css'
 
 function SnipEditor() {

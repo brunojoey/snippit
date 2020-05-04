@@ -19,6 +19,9 @@ function Home() {
     function renderForm() {
         return (
             <Row>
+                <h4>
+                    Post a Snip!
+                </h4>
                 <Col s={12} m={8} offset='m2'>
                     {/* <SnipForm setRedirect={setRedirect}/> */}
                     <Form setRedirect={setRedirect} isResponse={false} />
@@ -42,8 +45,10 @@ function Home() {
                         <Feed />
                     </Col>
                 </Row>
-                <Foot />
             </div>
+            <>
+            <Foot />
+            </>
         </>
     );
 };

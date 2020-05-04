@@ -5,12 +5,16 @@ import { Row } from 'react-materialize';
 
 function Profile() {
   return (
-    <div className="containter" id="home-container">
-      <Row>
+    <>
+      <div className="containter" id="home-container">
+        <Row>
           <ProfilePanel />
-      </Row>
-      <Foot />
-    </div>
+        </Row>
+      </div>
+      <>
+        <Foot />
+      </>
+    </>
   );
 };
 
