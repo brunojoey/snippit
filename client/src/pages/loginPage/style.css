@@ -1,0 +1,15 @@
+.container {
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+  vertical-align: middle;
+  text-align: center;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.login-form {
+  margin-top: 48px;
+  border: 1px solid gray;
+  margin-left: auto;
+  margin-right: auto;
+}

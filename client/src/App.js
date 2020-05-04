@@ -6,7 +6,7 @@ import LanguageContext from './utils/LanguageContext';
 import KeywordContext from './utils/KeywordContext';
 import Nav from './components/Nav';
 import Navdrop from './components/Navdrop';
-import loginPage from './pages/loginPage';
+import loginPage from './pages/loginPage/index';
 import profilePage from './pages/profilePage';
 import snipPage from './pages/snipPage/index';
 import editorPage from './pages/editorPage';
