@@ -13,7 +13,7 @@ function SearchLanguage() {
     };
 
     const resetLanguage = () => {
-        updateLanguage(language);
+        updateLanguage();
     };
 
     // const { status } = useContext(StatusContext);

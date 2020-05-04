@@ -18,12 +18,10 @@ This is a ...
 
 ## Technologies Used
 * React
-* React - Spring
-* Tiny MCE
+* Ace Editor
 * Node JS
 * Express
 * MongoDB
-
 
 ## Installation
 To install this application you clone the SSH Key from the main hub page of this repository and you paste that clone link into your Terminal with git clone.
@@ -35,7 +33,7 @@ To use this application you go to the deployed link available within this README
 To contribute, clone this repository into your terminal, work on the project, then create a pull request.
 
 ## Deployment Application Link
-[Deployed SNIPPIT APP EVENTUALLY](new html link)
+[Deployed Snippit Application](https://thawing-meadow-26405.herokuapp.com/)
 
 ## Application in Use
 ![SNIPPIT Application In Use EVENTUALLY](new gif of project link)

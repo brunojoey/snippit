@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Row, Col, Button } from 'react-materialize';
 import ProfileImage from '../Cloudinary/index';
+import StatusContext from '../../utils/StatusContext';
 import './style.css';
 
 
