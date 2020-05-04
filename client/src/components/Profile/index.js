@@ -52,7 +52,7 @@ function ProfilePanel() {
                     <ProfileImage />
                 </Col>
                 <Col s={8}>
-                    <Button className='far fa-edit' node='button' type='submit' waves='light' onClick={handleEdit}>Submit</Button>
+                    <Button node='button' type='submit' waves='light' onClick={handleEdit}>Submit</Button>
                     <p>{status.biography}</p>
                 </Col>
             </Row>

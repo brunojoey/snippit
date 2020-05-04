@@ -40,13 +40,13 @@ function Login() {
     <form>
       {checkRedirect()}
       <Row>
-        <Col s={12}>
-          <TextInput id='username' name='username' label='Username' onChange={handleChange}/>
+        <Col s={10} offset='s2'>
+          <TextInput id='username' name='username' label='Username' noLayout onChange={handleChange}/>
         </Col>
       </Row>
       <Row>
-        <Col s={12}>
-          <TextInput password id='password' name='password' label='Password' onChange={handleChange}/>
+        <Col s={10} offset='s2'>
+          <TextInput password id='password' name='password' label='Password' noLayout onChange={handleChange}/>
         </Col>
       </Row>
       <Button node='button' type='submit' waves='light' onClick={handleSubmit}>Submit</Button>

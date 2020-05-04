@@ -10,3 +10,7 @@ textarea {
   border-bottom: 0px;
   padding-bottom: 0px;
 }
+
+.fa {
+  padding-right: 0px !important;
+}

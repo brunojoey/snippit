@@ -5,7 +5,7 @@ import 'ace-builds/src-noconflict/mode-javascript';
 import 'ace-builds/src-noconflict/mode-css';
 import 'ace-builds/src-noconflict/mode-html';
 import 'ace-builds/src-noconflict/mode-python';
-import 'ace-builds/src-noconflict/theme-twilight';
+import 'ace-builds/src-noconflict/theme-clouds';
 import './editor.css'
 
 function SnipEditor() {
@@ -14,7 +14,7 @@ function SnipEditor() {
     }
 
     return (
-        <div className="editor-container">
+        <div className="container">
             <Row>
                 <Col s={12} m={6} offset='m3' className="editor-spacing">
                     <Tabs className='tab-demo z-depth-1 tabs-fixed-width' options={{ swipeable: false }}>
@@ -29,7 +29,7 @@ function SnipEditor() {
                             <AceEditor
                                 placeholder="Placeholder Text"
                                 mode="javascript"
-                                theme="twilight"
+                                theme="clouds"
                                 name="UNIQUE_ID_OF_DIV"
                                 onChange={onChange}
                                 fontSize={14}
