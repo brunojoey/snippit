@@ -1,10 +1,13 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { Row, Col, Button } from 'react-materialize';
+import StatusContext from '../../utils/StatusContext';
 import ProfileImage from '../Cloudinary/index';
 import './style.css';
 
 
 function ProfilePanel() {
+    const { status, updateStatus } = useContext(StatusContext);
+
     const [user, setUser] = useState();
     const [biography, setBiography] = useState('');
     const [snips, setSnips] = useState();
@@ -40,7 +43,7 @@ function ProfilePanel() {
         <div>
             <Row>
                 <Col s={10}>
-                    <h3 handle={getUser}>{this.user}</h3>
+                    <h3>{status.username}</h3>
                 </Col>
             </Row>
             <Row>
@@ -49,13 +52,13 @@ function ProfilePanel() {
                 </Col>
                 <Col s={8}>
                     <Button className='far fa-edit' node='button' type='submit' waves='light' onClick={handleEdit}>Submit</Button>
-                    <p>{this.biography}</p>
+                    <p>{status.biography}</p>
                 </Col>
             </Row>
             <Row>
                 <Col>
                     <ul handle={getSnips}>
-                        <li>{this.snips}</li>
+                        {/* <li>{this.sn}</li> */}
                     </ul>
                 </Col>
             </Row>

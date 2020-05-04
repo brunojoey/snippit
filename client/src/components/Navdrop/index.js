@@ -50,7 +50,7 @@ function NavDrop() {
                 }}
                 trigger={<span className="fa fa-caret-down"><img src={`${status.imageUrl}`} alt='User Icon' height='50' className='circle'></img></span>}
             >
-                <Link to={`/user/${status._id}`}>Profile</Link>
+                <Link to={`/users/${status._id}`}>Profile</Link>
                 <Link to='/home'>Feed</Link>
                 <Link to='/editor'>Editor</Link>
 
