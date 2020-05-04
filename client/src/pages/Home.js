@@ -5,7 +5,7 @@ import Feed from '../components/Feed';
 import SnipForm from '../components/SnipForm';
 import Form from '../components/Form';
 import StatusContext from '../utils/StatusContext';
-import Search from '../components/Search';
+import SearchForm from '../components/SearchForm';
 import Foot from '../components/Footer';
 
 function Home() {
@@ -34,7 +34,7 @@ function Home() {
             <div className="container" id="home-container">
                 <Row>
                     <Col s={12} m={6} offset='m3'>
-                        <Search />
+                        <SearchForm />
                     </Col>
                 </Row>
                 {(status.status !== false) ? renderForm() : <></>}

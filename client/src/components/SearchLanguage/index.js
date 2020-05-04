@@ -1,10 +1,10 @@
 import React, { useContext } from 'react';
-import Select from 'react-materialize';
+import { Select } from 'react-materialize';
 import LanguageContext from '../../utils/LanguageContext';
 
 function SearchLanguage() {
     const { language, updateLanguage } = useContext(LanguageContext);
-    const handleLanguage = (event) => {
+    function handleLanguage(event) {
         // event.preventDefault();
         const option = event.currentTarget.language;
         console.log('OPTION: ', option);
@@ -12,8 +12,8 @@ function SearchLanguage() {
         resetLanguage();
     };
 
-    const resetLanguage = () => {
-        updateLanguage();
+    function resetLanguage() {
+        updateLanguage('javascript');
     };
 
     // const { status } = useContext(StatusContext);
@@ -70,7 +70,7 @@ function SearchLanguage() {
                 <option value="python" onClick={handleLanguage}>Python</option>
             </Select>
         </div>
-    )
-};
+    );
+}
 
 export default SearchLanguage;
