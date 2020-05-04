@@ -11,7 +11,7 @@ function SearchForm(props) {
     };
 
     const handleSubmit = () => {
-        if (props.snip.body === keywords) {
+        if (props.snip.body.includes(keywords)) {
             updateKeywords(keywords);
             resetSearchField();
         } else {
