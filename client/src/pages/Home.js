@@ -5,7 +5,7 @@ import { Row, Col } from 'react-materialize';
 // import statusAPI from '../utils/statusAPI';
 import TinyMCE from '../components/TinyMCE';
 import Feed from '../components/Feed';
-import Search from '../components/search';
+import Search from '../components/Search';
 import SnipForm from '../components/SnipForm';
 import StatusContext from '../utils/StatusContext';
 import Foot from '../components/Footer';
@@ -29,7 +29,7 @@ function Home(props) {
         <div className="container" id="home-container">
             <Row>
                 <Col s={12} m={6} offset='m3'>
-                    {/* <Search /> */}
+                    <Search />
                 </Col>
             </Row>
             {(status.status !== false) ? renderForm() : <></>}

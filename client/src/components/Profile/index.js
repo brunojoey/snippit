@@ -1,35 +1,46 @@
 import React, { useState } from "react";
-import { Row, Col } from 'react-materialize';
-import ProfileImage from './Cloudinary/index';
+import { Row, Col, Button } from 'react-materialize';
+import ProfileImage from '../Cloudinary/index';
 import './style.css';
 
-const [user, setUser] = useState();
-const [biography, setBiography] = useState('');
-const [snips, setSnips] = useState();
 
 function ProfilePanel() {
+    const [user, setUser] = useState();
+    const [biography, setBiography] = useState('');
+    const [snips, setSnips] = useState();
+    
     const getUser = (event) => {
-        let userInfo = event.target.user;
-        setUser(userInfo);
+        if (user) {
+            let userInfo = event.target.user;
+            setUser(userInfo);
+        };
     };
 
     const getSnips = (event) => {
         event.preventDefault();
-        let userSnips = event.target.snips;
-        setSnips(userSnips);
+        if (snips) {
+            let userSnips = event.target.snips;
+            setSnips(userSnips);
+        };
+    };
+
+    const getBio = (event) => {
+        event.preventDefault();
+        if (biography) {
+            let bio = event.target.biography;
+            setBiography(bio);
+        };
     };
 
     const handleEdit = (event) => {
-        event.preventDefault();
-        const bio = event.target.biography;
-        setBiography(bio);
+
     };
 
     return (
         <div>
             <Row>
                 <Col s={10}>
-                    <h3 >{this.user}</h3>
+                    <h3 handle={getUser}>{this.user}</h3>
                 </Col>
             </Row>
             <Row>
@@ -37,12 +48,13 @@ function ProfilePanel() {
                     <ProfileImage />
                 </Col>
                 <Col s={8}>
-                    <p className="far fa-edit ">{this.biography}</p>
+                    <Button className='far fa-edit' node='button' type='submit' waves='light' onClick={handleEdit}>Submit</Button>
+                    <p>{this.biography}</p>
                 </Col>
             </Row>
             <Row>
                 <Col>
-                    <ul>
+                    <ul handle={getSnips}>
                         <li>{this.snips}</li>
                     </ul>
                 </Col>

@@ -3,10 +3,10 @@ import { Link } from 'react-router-dom';
 import { Row, Col, Collection, CollectionItem, Icon } from 'react-materialize';
 import snipsAPI from '../../utils/snipsAPI';
 import usersAPI from '../../utils/usersAPI';
-import setLanguage from "../../utils/LanguageContext";
-import setKeywords from "../../utils/KeywordContext";
 
 function Feed() {
+  // const {language, updateLanguage} = useContext({LanguageContext});
+  // const {keywords, updateKeywords} = useContext({KeywordContext});
   const [userState, setUserState] = useState(null);
   const [snipState, setSnipState] = useState(null);
   const [language, setLanguage] = useState('javascript')  // Get from context or prop. Should be a single string.
@@ -59,10 +59,13 @@ function Feed() {
             return(
               <CollectionItem className='avatar' key={index}>
                 <Row>
-                  <Col s={1}>
+                  <Col s={2}>
                     <img alt='Avatar' className='circle' src={(userState) ? user.imageUrl : 'https://picsum.photos/200'} />
                   </Col>
-                  <Col s={9}>
+                  {/* <Col s={1}>
+                    <span className='languageTag'>{snip.language}</span>
+                  </Col> */}
+                  <Col s={8}>
                     <span className='title'>{snip.body}</span>
                   </Col>
                   <Col s={2}>
