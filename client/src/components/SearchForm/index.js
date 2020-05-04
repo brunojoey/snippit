@@ -13,11 +13,8 @@ function SearchForm(props) {
     });
 
     function handleChange(event) {
-        console.log('HANDLE CHANGE');
 
         const name = event.target.name;
-        console.log('NAME: ', name);
-        console.log('VALUE: ', event.target.value);
         setState({ ...state, [name]: event.target.value })
     }
 
@@ -25,19 +22,20 @@ function SearchForm(props) {
         event.preventDefault();
         const words = state.search.split(' ');
 
-        words.forEach(word => {
-            updateKeywords(word);
-        });
-
+        updateKeywords(words);
         updateLanguage(state.language);
     };
+
+    function handleClick() {
+        updateKeywords([]);
+    }
 
     return (
         <form>
             <div className="input-field">
                 <Row>
                     <Col s={12} m={7}>
-                        <TextInput className='search' name='search' placeholder="Search" noLayout onChange={handleChange} />
+                        <TextInput className='search' name='search' placeholder="Search" noLayout onChange={handleChange} onClick={handleClick}/>
                     </Col>
                     <Col s={6} m={3}>
                         <SearchLanguage handleChange={handleChange}/>

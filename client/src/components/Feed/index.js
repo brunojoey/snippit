@@ -26,6 +26,10 @@ function Feed() {
       let snips = data;
       let users = [];
 
+      console.log('INSIDE FETCH DATA');
+      console.log('LANGUAGE: ', language);
+      console.log('KEYWORDS: ', keywords);  
+
       // Get snips and filter them if needed.
       if (language.length > 0) { snips = snips.filter(snip => (!snip.isResponse && snip.language === language)); }
       if (keywords.length > 0) {
@@ -35,9 +39,8 @@ function Feed() {
 
           return found;
         });
-        updateKeywords([]);
       }
-
+      
       // Get users for each snip.
       snips = snips.splice(0, 10);
       await asyncForEach(snips, async (snip) => {
