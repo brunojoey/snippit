@@ -17,7 +17,7 @@ import './App.css';
 
 function App() {
   const [status, setStatus] = useState({ status: false });
-  const [language, setLanguage] = useState({ language: 'Javascript' });
+  const [language, setLanguage] = useState('');
   const [keywords, setKeywords] = useState([]);
 
   useEffect(() => {
@@ -41,24 +41,16 @@ function App() {
     setStatus(data);
   }
 
-  const updateKeywords = async (event) => {
-    console.log('UPDATE KEYWORD');
-    const word = event.currentTarget.keywords;
-    if (keywords > 3) {
-      let { data } = await keywords;
-      console.log('KEYWORD DATA: ', data);
-      setKeywords(keywords.concat(word.toLowerCase()));
-
+  const updateKeywords = (word) => {
+    if (word.length > 0) { 
+      setKeywords([ ...keywords, word.toLowerCase() ]);
     } else {
-      return "Please add more characters."
+      setKeywords([]);
     }
   };
 
-  const updateLanguage = async () => {
-    console.log('UPDATE LANGUAGE');
-    let { data } = await language;
-    console.log('LANGUAGE DATA: ', data);
-    setLanguage(data);
+  const updateLanguage = (language) => {
+    setLanguage(language);
   };
 
   return (

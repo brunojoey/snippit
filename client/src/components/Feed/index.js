@@ -1,17 +1,18 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { Row, Col, Collection, CollectionItem, Icon } from 'react-materialize';
+import KeywordsContext from '../../utils/KeywordContext';
+import LanguageContext from '../../utils/LanguageContext';
 import snipsAPI from '../../utils/snipsAPI';
 import usersAPI from '../../utils/usersAPI';
 import './style.css';
 
 function Feed() {
-  // const {language, updateLanguage} = useContext({LanguageContext});
-  // const {keywords, updateKeywords} = useContext({KeywordContext});
   const [userState, setUserState] = useState(null);
   const [snipState, setSnipState] = useState(null);
-  const [language, setLanguage] = useState('html')  // Get from context or prop. Should be a single string.
-  const [keywords, setKeywords] = useState(null);         // Get from context or prop. Should be an array of words.
+
+  const { keywords, updateKeywords } = useContext(KeywordsContext);
+  const { language } = useContext(LanguageContext);
 
   async function asyncForEach(array, callback) {
     for (let index = 0; index < array.length; index++) {
@@ -24,24 +25,26 @@ function Feed() {
       let { data } = await snipsAPI.getSnips();
       let snips = data;
       let users = [];
-      
+
       // Get snips and filter them if needed.
-      if (language) { snips = snips.filter(snip => (!snip.isResponse && snip.language === language)); }
-      if (keywords) {
+      if (language.length > 0) { snips = snips.filter(snip => (!snip.isResponse && snip.language === language)); }
+      if (keywords.length > 0) {
         snips = snips.filter(snip => {
-          const snipWords = snip.body.split(' ');
-          const found = snipWords.some(word => keywords.includes(word));
+          const snipWords = snip.tagLine.split(' ');
+          const found = snipWords.some(word => keywords.includes(word.toLowerCase()));
 
           return found;
         });
+        updateKeywords([]);
       }
+
       // Get users for each snip.
       snips = snips.splice(0, 10);
       await asyncForEach(snips, async (snip) => {
         const response = await usersAPI.getUser(snip.userId)
         users.push(response.data);
       });
-
+      
       setSnipState(snips);
       setUserState(users);
     }
@@ -62,7 +65,7 @@ function Feed() {
               <CollectionItem className='avatar' key={index}>
                 <Row>
                   <Col s={2}>
-                    <img alt='Avatar' className='circle' src={(userState) ? user.imageUrl : 'https://picsum.photos/200'} />
+                    <img alt='Avatar' className='circle' src={(user) ? user.imageUrl : 'https://picsum.photos/200'} />
                   </Col>
                   <Col s={9}>
                     <span className='title'>{snip.tagLine}</span>

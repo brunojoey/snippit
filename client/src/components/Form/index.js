@@ -105,7 +105,7 @@ function Form(props) {
               id='select-language'
               multiple={false}
               onChange={handleChange}
-              value=''
+              value='javascript'
               options={{
                 classes: '',
                 dropdownOptions: {
