@@ -29,7 +29,7 @@ function SnipEditor() {
                             <AceEditor
                                 placeholder="Placeholder Text"
                                 mode="javascript"
-                                theme="twilight"
+                                theme="clouds"
                                 name="UNIQUE_ID_OF_DIV"
                                 onChange={onChange}
                                 fontSize={14}
