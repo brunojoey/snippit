@@ -50,7 +50,7 @@ function Form(props) {
   
   function displayBlock() {
     return (
-      <div>
+      <>
         <Editor handleChange={handleChange} language={state.language} code='' readOnly={false} />
         <Button 
           type='button' node='button' name='minus-btn' 
@@ -58,7 +58,7 @@ function Form(props) {
           >
           <i className='fa fa-minus'></i>
         </Button>
-      </div>
+      </>
     );
   }
   

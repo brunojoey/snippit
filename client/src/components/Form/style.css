@@ -14,3 +14,8 @@ textarea {
 .fa {
   padding-right: 0px !important;
 }
+
+.btn {
+  margin-top: 5px !important;
+  margin-bottom: 5px !important;
+}
