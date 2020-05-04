@@ -2,11 +2,10 @@ import React, { useState, useContext } from 'react';
 import { Redirect } from 'react-router-dom';
 import { Row, Col } from 'react-materialize';
 import Feed from '../components/Feed';
-import Search from '../components/Search';
 import SnipForm from '../components/SnipForm';
 import Form from '../components/Form';
 import StatusContext from '../utils/StatusContext';
-import Search from '../components/search';
+import Search from '../components/Search';
 import Foot from '../components/Footer';
 
 function Home() {
@@ -35,7 +34,7 @@ function Home() {
             <div className="container" id="home-container">
                 <Row>
                     <Col s={12} m={6} offset='m3'>
-                        {/* <Search /> */}
+                        <Search />
                     </Col>
                 </Row>
                 {(status.status !== false) ? renderForm() : <></>}
