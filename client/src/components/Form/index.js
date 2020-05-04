@@ -19,7 +19,7 @@ function Form(props) {
   // Form information that will be used to create snip.
   const [state, setState] = useState({
     isResponse: props.isResponse,
-    language: ((props.language) ? props.language : ''),
+    language: ((props.language) ? props.language : 'javascript'),
     body: '',
     code: '',
     userId: status._id,
@@ -51,9 +51,11 @@ function Form(props) {
   }, [state]);
   
   function displayBlock() {
+    console.log('INSIDE DISPLAY-BLOCK');
+    console.log('STATE.LANGUAGE: ', state.language);
     return (
       <div>
-        <Editor handleChange={handleChange} language={props.language} code='' readOnly={false} />
+        <Editor handleChange={handleChange} language={state.language} code='' readOnly={false} />
         <Button 
           type='button' node='button' name='minus-btn' 
           onClick={() => setBlock(false)}
@@ -83,6 +85,9 @@ function Form(props) {
     }
 
     const name = event.target.name;
+    console.log('INSIDE HANDLE-CHANGE');
+    console.log('NAME: ', name);
+    console.log('EVENT.TARGET.VALUE: ', event.target.value);
     setState({ ...state, [name]: event.target.value })
   }
 
