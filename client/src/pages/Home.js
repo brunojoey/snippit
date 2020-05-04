@@ -11,7 +11,6 @@ import Foot from '../components/Footer';
 function Home() {
     const { status } = useContext(StatusContext);
     const [redirect, setRedirect] = useState(null);
-
     
     function checkRedirect() {
         if (redirect) { return <Redirect to={redirect} /> };

@@ -28,7 +28,7 @@ function SearchLanguage(props) {
                         outDuration: 250
                     }
                 }}
-            >
+                >
                 <option value=''>Language</option>
                 <option value="javascript">JavaScript</option>
                 <option value="html">HTML</option>
@@ -36,7 +36,7 @@ function SearchLanguage(props) {
                 <option value="python">Python</option>
             </Select>
         </div>
-    );
-}
+    )
+};
 
 export default SearchLanguage;
