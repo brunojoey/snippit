@@ -17,7 +17,7 @@ export default {
     return await axios.post('/login', data);
   },
 
-  signup: async function(data) {
-    return await axios.post('/signup', data);
+  signup: function(data) {
+    return axios.post('/signup', data);
   }
 };

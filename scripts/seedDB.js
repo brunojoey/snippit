@@ -1,3 +1,4 @@
+const bcrypt = require('bcrypt');
 const mongoose = require('mongoose');
 const db = require('../models');
 
@@ -90,6 +91,11 @@ const userSeed = [
     snips: []
   }
 ];
+
+userSeed.forEach(user => {
+  const salt = bcrypt.genSaltSync(10);
+  user.password = bcrypt.hashSync(user.password, salt);
+})
 
 const snipSeed = {
   isResponse: false,

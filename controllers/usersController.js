@@ -1,3 +1,4 @@
+const bcrypt = require('bcrypt');
 const db = require('../models');
 
 // Methods for users controller.
@@ -15,6 +16,9 @@ module.exports = {
       .catch(err => res.status(422).json(err));
   },
   create: function(req, res) {
+    const salt = bcrypt.genSaltSync(10);
+    req.body.password = bcrypt.hashSync(req.body.password, salt);
+
     db.User
       .create(req.body)
       .then(dbModel => res.json(dbModel))

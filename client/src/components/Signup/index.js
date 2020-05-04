@@ -25,10 +25,10 @@ function Login() {
   async function handleSubmit(event) {
     event.preventDefault();
     const { data } = await statusAPI.signup(state);
-    const { user } = await statusAPI.login(data);
+    const user  = await statusAPI.login(state);
 
     // Update status. This will change StatusContext from falsy object to user object.
-    await updateStatus(user);
+    await updateStatus(user.data);
 
     if (data.message) {
       // set message data here
