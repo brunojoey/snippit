@@ -13,7 +13,7 @@ function SearchLanguage() {
     };
 
     const resetLanguage = () => {
-        updateLanguage();
+        updateLanguage(language);
     };
 
     // const { status } = useContext(StatusContext);
@@ -40,7 +40,7 @@ function SearchLanguage() {
 
     return (
         <div>
-            <input id="searchLanguage" type="searchLanguage" required />
+            <input id="searchLanguage" type="searchLanguage" required/>
             <label htmlFor="searchLanguage" />
             <Select
                 id="Select-9"

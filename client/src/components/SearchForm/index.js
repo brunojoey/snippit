@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { Icon, Button } from 'react-materialize';
-// import SearchLanguage from '../SearchLanguage';
+import SearchLanguage from '../SearchLanguage/index';
 import KeywordContext from '../../utils/KeywordContext';
 
 function SearchForm(props) {
