@@ -3,6 +3,7 @@ const router = require('express').Router();
 const passport = require('../config/passport');
 const apiRoutes = require('./api');
 const db = require('../models');
+const usersController = require('../controllers/usersController');
 
 // Catch all API routes.
 router.use('/api', apiRoutes);
@@ -11,12 +12,7 @@ router.use('/api', apiRoutes);
 
 // Route to signup. If the user is created successfully, respond with the user information. The
 // client side should hanlde login upon successful creation.
-router.post('/signup', (req, res) => {
-  db.User
-    .create(req.body)
-    .then(dbModel => res.json(dbModel))
-    .catch(err => res.status(401).json(err));
-});
+router.route('/signup').post(usersController.create);
 
 // Route to login. Uses passport.authenticate middleware that was set up with local strategy.
 // If the user has valid login credentials, sign them in. Otherwise send an error.

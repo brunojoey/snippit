@@ -5,13 +5,12 @@ import Feed from '../components/Feed';
 import SnipForm from '../components/SnipForm';
 import Form from '../components/Form';
 import StatusContext from '../utils/StatusContext';
-import Search from '../components/Search';
+import SearchForm from '../components/SearchForm';
 import Foot from '../components/Footer';
 
 function Home() {
     const { status } = useContext(StatusContext);
     const [redirect, setRedirect] = useState(null);
-
     
     function checkRedirect() {
         if (redirect) { return <Redirect to={redirect} /> };
@@ -33,8 +32,8 @@ function Home() {
             {checkRedirect()}
             <div className="container" id="home-container">
                 <Row>
-                    <Col s={12} m={6} offset='m3'>
-                        <Search />
+                    <Col s={12}>
+                        <SearchForm />
                     </Col>
                 </Row>
                 {(status.status !== false) ? renderForm() : <></>}
