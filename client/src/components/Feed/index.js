@@ -2,6 +2,7 @@ import React, { useEffect, useState, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { Row, Col, Collection, CollectionItem, Icon } from 'react-materialize';
 import KeywordsContext from '../../utils/KeywordContext';
+import LanguageContext from '../../utils/LanguageContext';
 import snipsAPI from '../../utils/snipsAPI';
 import usersAPI from '../../utils/usersAPI';
 import './style.css';
@@ -11,7 +12,7 @@ function Feed() {
   const [snipState, setSnipState] = useState(null);
 
   const { keywords, updateKeywords } = useContext(KeywordsContext);
-  const [language, setLanguage] = useState('html')  // Get from context or prop. Should be a single string.
+  const { language } = useContext(LanguageContext);
 
   async function asyncForEach(array, callback) {
     for (let index = 0; index < array.length; index++) {
@@ -26,7 +27,7 @@ function Feed() {
       let users = [];
 
       // Get snips and filter them if needed.
-      if (language) { snips = snips.filter(snip => (!snip.isResponse && snip.language === language)); }
+      if (language.length > 0) { snips = snips.filter(snip => (!snip.isResponse && snip.language === language)); }
       if (keywords.length > 0) {
         snips = snips.filter(snip => {
           const snipWords = snip.tagLine.split(' ');

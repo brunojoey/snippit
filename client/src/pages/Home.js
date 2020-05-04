@@ -33,7 +33,7 @@ function Home() {
             {checkRedirect()}
             <div className="container" id="home-container">
                 <Row>
-                    <Col s={12} m={6} offset='m3'>
+                    <Col s={12}>
                         <SearchForm />
                     </Col>
                 </Row>

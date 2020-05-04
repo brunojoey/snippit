@@ -1,51 +1,16 @@
 import React, { useContext } from 'react';
 import { Select } from 'react-materialize';
-import LanguageContext from '../../utils/LanguageContext';
 
-function SearchLanguage() {
-    const { language, updateLanguage } = useContext(LanguageContext);
-    function handleLanguage(event) {
-        // event.preventDefault();
-        const option = event.currentTarget.language;
-        console.log('OPTION: ', option);
-        updateLanguage(option);
-        resetLanguage();
-    };
-
-    function resetLanguage() {
-        updateLanguage('javascript');
-    };
-
-    // const { status } = useContext(StatusContext);
-    // const [state, setState] = useState({
-    //   tagLine: '',
-    //   language: 'javascript',
-    //   body: '',
-    //   userId: '',
-    // });
-  
-    // useEffect(() => {
-    //   setState({ ...state, userId: status._id });
-    // }, [status])
-  
-    // function handleChange(event) {
-    //   const name = event.target.name;
-    //   setState({ ...state, [name]: event.target.value })
-    // }
-    
-    // async function handleSubmit(event) {
-    //   event.preventDefault();
-    //   snipsAPI.getSnip(state);
-    // }
+function SearchLanguage(props) {
 
     return (
         <div>
-            <input id="searchLanguage" type="searchLanguage" required />
             <label htmlFor="searchLanguage" />
             <Select
                 id="Select-9"
                 multiple={false}
-                onChange={resetLanguage}
+                onChange={props.handleChange}
+                name='language'
                 options={{
                     classes: '',
                     dropdownOptions: {
@@ -64,10 +29,11 @@ function SearchLanguage() {
                     }
                 }}
             >
-                <option value="javascript" onClick={handleLanguage}>JavaScript</option>
-                <option value="html" onClick={handleLanguage}>HTML</option>
-                <option value="css" onClick={handleLanguage}>CSS</option>
-                <option value="python" onClick={handleLanguage}>Python</option>
+                <option value=''>Language</option>
+                <option value="javascript">JavaScript</option>
+                <option value="html">HTML</option>
+                <option value="css">CSS</option>
+                <option value="python">Python</option>
             </Select>
         </div>
     );

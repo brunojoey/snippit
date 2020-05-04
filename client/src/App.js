@@ -17,7 +17,7 @@ import './App.css';
 
 function App() {
   const [status, setStatus] = useState({ status: false });
-  const [language, setLanguage] = useState({ language: 'Javascript' });
+  const [language, setLanguage] = useState('');
   const [keywords, setKeywords] = useState([]);
 
   useEffect(() => {
@@ -49,11 +49,8 @@ function App() {
     }
   };
 
-  const updateLanguage = async () => {
-    console.log('UPDATE LANGUAGE');
-    let { data } = language;
-    console.log('LANGUAGE DATA: ', data);
-    setLanguage(data);
+  const updateLanguage = (language) => {
+    setLanguage(language);
   };
 
   return (
