@@ -39,8 +39,6 @@ function Form(props) {
           props.setForm(false);
           props.setResponses([ ...props.responses, data]);
         } else {
-          console.log('INSIDE ELSE');
-          console.log('STATE: ', state);
           const { data } = await snipsAPI.createSnip(state);
           props.setRedirect('/snips/' + data._id);
         }
@@ -51,8 +49,6 @@ function Form(props) {
   }, [state]);
   
   function displayBlock() {
-    console.log('INSIDE DISPLAY-BLOCK');
-    console.log('STATE.LANGUAGE: ', state.language);
     return (
       <div>
         <Editor handleChange={handleChange} language={state.language} code='' readOnly={false} />
@@ -85,22 +81,12 @@ function Form(props) {
     }
 
     const name = event.target.name;
-    console.log('INSIDE HANDLE-CHANGE');
-    console.log('NAME: ', name);
-    console.log('EVENT.TARGET.VALUE: ', event.target.value);
     setState({ ...state, [name]: event.target.value })
   }
 
   async function handleSubmit(event) {
-    console.log('INSIDE HANLDE SUBMIT');
-    console.log('EVENT: ', event);
-
     event.preventDefault();
-
     const body = bodyRef.current.value;
-
-    console.log('BODY: ', body);
-    console.log('ACE-CODE: ', aceCode);
 
     if (aceCode.length < 1 && body.length < 1) { console.log('No data was entered.'); return; }
     setState({ ...state, code: aceCode, body: body });
