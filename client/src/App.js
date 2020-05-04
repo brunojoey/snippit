@@ -18,7 +18,7 @@ import './App.css';
 function App() {
   const [status, setStatus] = useState({ status: false });
   const [language, setLanguage] = useState('');
-  const [keywords, setKeywords] = useState([]);
+  const [keywords, setKeywords] = useState('');
 
   useEffect(() => {
     let mounted = true;
@@ -41,9 +41,9 @@ function App() {
     setStatus(data);
   }
 
-  const updateKeywords = (word) => {
-    if (word.length > 0) { 
-      setKeywords([ ...keywords, word.toLowerCase() ]);
+  const updateKeywords = (words) => {
+    if (words.length > 0) { 
+      setKeywords(words);
     } else {
       setKeywords([]);
     }
