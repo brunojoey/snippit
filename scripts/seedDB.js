@@ -96,7 +96,7 @@ const snipSeed = {
   language: 'html',
   tagLine: 'How do you insert an element into an array?',
   body: 'Can someone please help?',
-  code: '<code><p>I\'m suuuuper confused by this. Please help!</p></code>',
+  code: '<p>I\'m suuuuper confused by this. Please help!</p>',
   responses: [],
   createAt: Date.now
 }

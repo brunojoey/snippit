@@ -69,14 +69,14 @@ function Snip(props) {
   }
 
   function renderSnip() {
-    let code = state.code.split(/<code>|<\/code>/);
+    let code = state.code;
 
     return (
       <>
         <h2>{state.tagLine}</h2>
         <div>
           <div>{state.body}</div>
-          <Editor language={state.language} code={code[1]} readOnly={true} />
+          <Editor language={state.language} code={code} readOnly={true} />
         </div>
       </>
     );
