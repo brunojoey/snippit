@@ -37,7 +37,7 @@ To use this application you go to the deployed link available within this README
 To contribute, clone this repository into your terminal, work on the project, then create a pull request.
 
 ## Deployment Application Link
-[Deployed Snippit Application](https://thawing-meadow-26405.herokuapp.com/)
+[Deployed Snippit Application](https://enigmatic-savannah-04948.herokuapp.com/home)
 
 ## Application in Use
 ![Snippit Application In Use](/Snippit.gif)
