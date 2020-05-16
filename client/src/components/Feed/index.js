@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { Row, Col, Collection, CollectionItem, Icon } from 'react-materialize';
-import KeywordsContext from '../../utils/KeywordContext';
+import TaglineContext from '../../utils/TaglineContext';
 import LanguageContext from '../../utils/LanguageContext';
 import snipsAPI from '../../utils/snipsAPI';
 import usersAPI from '../../utils/usersAPI';
@@ -11,7 +11,7 @@ function Feed() {
   const [userState, setUserState] = useState(null);
   const [snipState, setSnipState] = useState(null);
 
-  const { keywords, updateKeywords } = useContext(KeywordsContext);
+  const { taglines, updateTaglines } = useContext(TaglineContext);
   const { language } = useContext(LanguageContext);
 
   async function asyncForEach(array, callback) {
@@ -23,19 +23,18 @@ function Feed() {
   useEffect(() => {
     async function fetchData() {
       let { data } = await snipsAPI.getSnips();
+      console.log('DATA: ', data);
       let snips = data;
       let users = [];
 
-      console.log('INSIDE FETCH DATA');
-      console.log('LANGUAGE: ', language);
-      console.log('KEYWORDS: ', keywords);  
-
+      console.log('SNIPS: ', snips);
       // Get snips and filter them if needed.
       if (language.length > 0) { snips = snips.filter(snip => (!snip.isResponse && snip.language === language)); }
-      if (keywords.length > 0) {
+      if (taglines.length > 0) {
         snips = snips.filter(snip => {
+          console.log('SNIP: ', snip);
           const snipWords = snip.tagLine.split(' ');
-          const found = snipWords.some(word => keywords.includes(word.toLowerCase()));
+          const found = snipWords.some(word => taglines.includes(word.toLowerCase()));
 
           return found;
         });
@@ -53,7 +52,7 @@ function Feed() {
     }
     fetchData();
 
-  }, [language, keywords]);
+  }, [language, taglines]);
 
   function renderSnips() {
     return (
