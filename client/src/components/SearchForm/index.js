@@ -44,16 +44,14 @@ function SearchForm(props) {
             {(redirect !== null) ? <Redirect to={redirect} /> : <></>}
             <Row>
                 <Col s={12} m={8} offset='m2'>
-                    <form>
-                        <Autocomplete 
-                            id='searchField'
-                            options={options}
-                            placeholder="What's your question?"
-                            style={{ width: '100%' }}
-                            onClick={handleClick}
-                            onKeyDown={handleKeyDown}
-                        />
-                    </form>
+                    <Autocomplete 
+                        id='searchField'
+                        options={options}
+                        placeholder="What's your question?"
+                        style={{ width: '100%' }}
+                        onClick={handleClick}
+                        onKeyDown={handleKeyDown}
+                    />
                 </Col>
             </Row>
         </>
