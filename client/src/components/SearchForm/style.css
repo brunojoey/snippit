@@ -1,3 +1,10 @@
+ul.autocomlete-content, ul.dropdown-content {
+  display: block;
+  left: 2% !important;
+  top: 44px !important;
+  width: 96% !important;
+}
+
 .row .col {
   float: none;
 }

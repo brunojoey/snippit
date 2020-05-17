@@ -1,65 +1,62 @@
 import React, { useState, useContext, useEffect } from 'react';
+import { Redirect } from 'react-router-dom';
 import { Row, Col, Icon, Button, TextInput, Autocomplete } from 'react-materialize';
-import TaglineContext from '../../utils/TaglineContext';
 import snipsAPI from '../../utils/snipsAPI';
 import './style.css';
 
 function SearchForm(props) {
-    const [state, setState] = useState({ search: '' });
-    const [options, setOptions] = useState({
-        data: {}
-    })
-
+    const [options, setOptions] = useState({ data: {} })
+    const [taglines, setTaglines] = useState([ { id: null, tagline: null } ]);
+    const [redirect, setRedirect] = useState(null);
+    
     useEffect(() => {
-        
         async function fetchData() {
             const { data } = await snipsAPI.getSnips();
             let options = { data: { }};
+            let taglines = [];
 
-            data.forEach(snip => { options.data[snip.tagLine] = null; });
+            data.forEach(snip => { 
+                options.data[snip.tagLine] = null; 
+                taglines.push({ id: snip._id, tagline: snip.tagLine });
+            });
+
             setOptions(options);
+            setTaglines(taglines);
         }
         fetchData();
-        console.log('OPTIONS: ', options);
 
     }, []);
 
-    // function handleChange(event) {
+    async function handleKeyDown(event) {
+        if (event.key === 'Enter') { 
+            event.preventDefault();
+            let tagline = taglines.find(obj => obj.tagline === event.target.value);
 
-    //     const name = event.target.name;
-    //     setState({ ...state, [name]: event.target.value })
-    // }
+            if (tagline) { setRedirect('/snips/' + tagline.id) }
+            return;
+        }
+    }
 
-    // function handleSubmit(event) {
-    //     event.preventDefault();
-    //     const words = state.search.split(' ');
-
-    //     updateTaglines(words);
-    // };
-
-    // function handleClick() {
-    //     updateTaglines([]);
-    // }
+    function handleClick(event) { event.target.value = ''; }
 
     return (
-        <Row>
-            <Col s={12} m={8} offset='m2'>
-                <Autocomplete 
-                    id="searchField"
-                    options={options}
-                    placeholder="What's your question?"
-                />
-            </Col>
-        </Row>
-        // <form>
-        //     <div className="input-field">
-        //         <Row>
-        //             <Col s={12} m={8} offset='m2'>
-        //                 <TextInput className='search' name='search' placeholder="Search" noLayout onChange={handleChange} onClick={handleClick}/>
-        //             </Col>
-        //         </Row>
-        //     </div>
-        // </form>
+        <>
+            {(redirect !== null) ? <Redirect to={redirect} /> : <></>}
+            <Row>
+                <Col s={12} m={8} offset='m2'>
+                    <form>
+                        <Autocomplete 
+                            id='searchField'
+                            options={options}
+                            placeholder="What's your question?"
+                            style={{ width: '100%' }}
+                            onClick={handleClick}
+                            onKeyDown={handleKeyDown}
+                        />
+                    </form>
+                </Col>
+            </Row>
+        </>
     )
 };
 
