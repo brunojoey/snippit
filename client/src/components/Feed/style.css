@@ -13,8 +13,8 @@ h2 {
 }
 
 .feed-item {
-  margin: 16px 2px;
+  margin: 24px 2px;
   padding-top: 12px;
   border-bottom: 1px solid #dbdbdb;
-  border-left: 1px solid #dadada;
+  border-left: 2px solid #dadada;
 }

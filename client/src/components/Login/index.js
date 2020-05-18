@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { Redirect } from 'react-router-dom';
 import { TextInput, Row, Col, Button } from "react-materialize";
 import statusAPI from '../../utils/statusAPI';
@@ -6,11 +6,19 @@ import StatusContext from '../../utils/StatusContext';
 
 function Login() {
   const { status, updateStatus } = useContext(StatusContext);
-  const [ redirect, setRedirect ] = useState(null);
+  const [redirect, setRedirect] = useState(null);
   const [state, setState] = useState({
     username: '',
     password: ''
   });
+
+  useEffect(() => {
+    // Check redirect in hook to prevent react state update on unmounted object during submit.
+    if (status.status !== false) {
+      (status.message) ? setRedirect('/login') : setRedirect('/home');
+    }
+
+  }, [status]);
 
   function handleChange(event) {
     const name = event.target.name;
@@ -21,13 +29,7 @@ function Login() {
     event.preventDefault();
     const { data } = await statusAPI.login(state);
     // Update status. This will change StatusContext from falsy object to user object.
-    await updateStatus(data);
-
-    if (data.message) {
-      setRedirect('/login');
-    } else {
-      setRedirect('/home');
-    }
+    updateStatus(data);
   }
 
   return (

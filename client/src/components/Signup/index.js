@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { Redirect } from 'react-router-dom';
 import { TextInput, Row, Col, Button } from "react-materialize";
 import statusAPI from '../../utils/statusAPI';
@@ -6,12 +6,20 @@ import StatusContext from '../../utils/StatusContext';
 import ProfileImage from "../Cloudinary";
 
 function Login() {
-  const { _, updateStatus } = useContext(StatusContext);
-  const [ redirect, setRedirect ] = useState(null);
+  const { status, updateStatus } = useContext(StatusContext);
+  const [redirect, setRedirect] = useState(null);
   const [state, setState] = useState({
     username: '',
     password: ''
   });
+
+  useEffect(() => {
+    // Check redirect in hook to prevent react state update on unmounted object during submit.
+    if (status.status !== false) {
+      (status.message) ? setRedirect('/signup') : setRedirect('/home');
+    }
+
+  }, [status]);
 
   function handleChange(event) {
     const name = event.target.name;
@@ -21,16 +29,10 @@ function Login() {
   async function handleSubmit(event) {
     event.preventDefault();
     const { data } = await statusAPI.signup(state);
-    const user  = await statusAPI.login(state);
+    const user = await statusAPI.login(state);
 
     // Update status. This will change StatusContext from falsy object to user object.
-    await updateStatus(user.data);
-
-    if (data.message) {
-      setRedirect('/signup')
-    } else {
-      setRedirect('/home');
-    }
+    updateStatus(user.data);
   }
 
   return (
