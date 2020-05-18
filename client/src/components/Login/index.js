@@ -36,12 +36,12 @@ function Login() {
     <form>
       {(redirect !== null ? <Redirect push to={redirect} /> : <></>)}
       <Row>
-        <Col s={10} offset='s2'>
+        <Col s={10} offset='s1'>
           <TextInput id='username' name='username' label='Username' noLayout onChange={handleChange}/>
         </Col>
       </Row>
       <Row>
-        <Col s={10} offset='s2'>
+        <Col s={10} offset='s1'>
           <TextInput password id='password' name='password' label='Password' noLayout onChange={handleChange}/>
         </Col>
       </Row>

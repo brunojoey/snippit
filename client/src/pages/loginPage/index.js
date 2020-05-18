@@ -13,37 +13,32 @@ function Login() {
   return(
     <Container>
       <div className='login-form'>
-        <Container className='container'>
-          {(status.status !== false) ? <Redirect push to='/home' /> : <></>}
-          <Row>
-            <Col s={12}>
-              <Tabs className='tab-demo z-depth-1 tabs-fixed-width' >
-                <Tab
-                  options={{
-                    duration: 150,
-                    onShow: null,
-                    responsiveThreshold: Infinity,
-                    swipeable: true
-                  }}
-                  title='Login'
-                >
-                  <LoginComp />
-                </Tab>
-                <Tab
-                  options={{
-                    duration: 150,
-                    onShow: null,
-                    responsiveThreshold: Infinity,
-                    swipeable: true
-                  }}
-                  title='Signup'
-                >
-                  <Signup />
-                </Tab>
-              </Tabs>
-            </Col>
-          </Row>
-        </Container>
+        {(status.status !== false) ? <Redirect push to='/home' /> : <></>}
+
+        <Tabs className='tabs-fixed-width z-depth-1' options={{ swipeable: true }}>
+          <Tab
+            options={{
+              duration: 50,
+              onShow: null,
+              responsiveThreshold: Infinity,
+              swipeable: false
+            }}
+            title='Login'
+          >
+            <LoginComp />
+          </Tab>
+          <Tab
+            options={{
+              duration: 50,
+              onShow: null,
+              responsiveThreshold: Infinity,
+              swipeable: false
+            }}
+            title='Signup'
+          >
+            <Signup />
+          </Tab>
+        </Tabs>
       </div>
     </Container>
   )
