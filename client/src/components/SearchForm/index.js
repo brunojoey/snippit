@@ -49,7 +49,7 @@ function SearchForm(props) {
         <>
             {(redirect !== null) ? <Redirect push to={redirect} /> : <></>}
             <Row>
-                <Col s={12} m={8} offset='m2'>
+                <Col s={12} m={8} offset='m2' id='searchInput'>
                     <Autocomplete 
                         options={options}
                         placeholder="What's your question?"

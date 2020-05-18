@@ -1,7 +1,7 @@
-ul.autocomlete-content, ul.dropdown-content {
+#searchInput ul.autocomlete-content, #searchInput ul.dropdown-content {
   display: block;
   left: 2% !important;
-  top: 44px !important;
+  top: 50px !important;
   width: 96% !important;
 }
 
