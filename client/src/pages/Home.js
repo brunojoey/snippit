@@ -28,7 +28,7 @@ function Home() {
     return (
         <>
             {(redirect !== null) ? <Redirect push to={redirect} /> : <></>}
-            <div className="container" id="home-container">
+            <div className="container home-container">
                 <Row>
                     <Col s={12}>
                         <SearchForm />

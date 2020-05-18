@@ -6,3 +6,15 @@ h2 {
 .center {
   text-align: center;
 }
+
+.user-icon {
+  margin: -12px 2px 2px 40%;
+  border-radius: 50%;
+}
+
+.feed-item {
+  margin: 16px 2px;
+  padding-top: 12px;
+  border-bottom: 1px solid #dbdbdb;
+  border-left: 1px solid #dadada;
+}

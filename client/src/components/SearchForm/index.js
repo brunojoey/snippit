@@ -10,9 +10,6 @@ function SearchForm(props) {
     const [redirect, setRedirect] = useState(null);
     
     useEffect(() => {
-        console.log('SEARCH FORM');
-        console.log('REDIRECT: ', redirect);
-
         async function fetchData() {
             const { data } = await snipsAPI.getSnips();
             let options = { data: { }};

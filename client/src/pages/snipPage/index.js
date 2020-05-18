@@ -38,8 +38,6 @@ function Snip(props) {
   }, []);
 
   useEffect(() => {
-    console.log('SNIP PAGE');
-    console.log('REDIRECT: ', redirect);
     if (state) {
 
       async function fetchData() {

@@ -5,6 +5,6 @@ ul.autocomlete-content, ul.dropdown-content {
   width: 96% !important;
 }
 
-.row .col {
+.row .col .input-field {
   float: none;
 }
