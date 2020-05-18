@@ -12,10 +12,6 @@ function Login() {
     password: ''
   });
 
-  function checkRedirect() {
-    if (redirect) { return <Redirect to={redirect} /> };
-  }
-
   function handleChange(event) {
     const name = event.target.name;
     setState({ ...state, [name]: event.target.value })
@@ -28,8 +24,6 @@ function Login() {
     await updateStatus(data);
 
     if (data.message) {
-      // set message data here
-      console.log('DATA.MESSAGE: ', data.message);
       setRedirect('/login');
     } else {
       setRedirect('/home');
@@ -38,7 +32,7 @@ function Login() {
 
   return (
     <form>
-      {checkRedirect()}
+      {(redirect !== null ? <Redirect push to={redirect} /> : <></>)}
       <Row>
         <Col s={10} offset='s2'>
           <TextInput id='username' name='username' label='Username' noLayout onChange={handleChange}/>

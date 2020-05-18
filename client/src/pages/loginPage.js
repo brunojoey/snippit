@@ -11,7 +11,7 @@ function Login() {
 
   return(
     <div className='container' id="home-container">
-      {(status.status !== false) ? <Redirect to='/home' /> : <></>}
+      {(status.status !== false) ? <Redirect push to='/home' /> : <></>}
       <Row>
         <Col s={12} m={6} offset='m3'>
           <Tabs className='tab-demo z-depth-1 tabs-fixed-width' options={{ swipeable: true }}>

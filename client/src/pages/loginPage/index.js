@@ -14,7 +14,7 @@ function Login() {
     <Container>
       <div className='login-form'>
         <Container className='container'>
-          {(status.status !== false) ? <Redirect to='/home' /> : <></>}
+          {(status.status !== false) ? <Redirect push to='/home' /> : <></>}
           <Row>
             <Col s={12}>
               <Tabs className='tab-demo z-depth-1 tabs-fixed-width' >

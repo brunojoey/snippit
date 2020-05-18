@@ -1,6 +1,6 @@
-import React, { useState, useContext, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Redirect } from 'react-router-dom';
-import { Row, Col, Icon, Button, TextInput, Autocomplete } from 'react-materialize';
+import { Row, Col, Autocomplete } from 'react-materialize';
 import snipsAPI from '../../utils/snipsAPI';
 import './style.css';
 
@@ -10,6 +10,9 @@ function SearchForm(props) {
     const [redirect, setRedirect] = useState(null);
     
     useEffect(() => {
+        console.log('SEARCH FORM');
+        console.log('REDIRECT: ', redirect);
+
         async function fetchData() {
             const { data } = await snipsAPI.getSnips();
             let options = { data: { }};
@@ -24,13 +27,12 @@ function SearchForm(props) {
             setTaglines(taglines);
         }
         fetchData();
-
     }, []);
 
     async function handleKeyDown(event) {
         if (event.key === 'Enter') { 
             event.preventDefault();
-            let tagline = taglines.find(obj => obj.tagline === event.target.value);
+            const tagline = taglines.find(obj => obj.tagline === event.target.value);
 
             if (tagline) { setRedirect('/snips/' + tagline.id) }
             return;
@@ -41,7 +43,7 @@ function SearchForm(props) {
 
     return (
         <>
-            {(redirect !== null) ? <Redirect to={redirect} /> : <></>}
+            {(redirect !== null) ? <Redirect push to={redirect} /> : <></>}
             <Row>
                 <Col s={12} m={8} offset='m2'>
                     <Autocomplete 
@@ -55,7 +57,7 @@ function SearchForm(props) {
                 </Col>
             </Row>
         </>
-    )
+    );
 };
 
 export default SearchForm;
