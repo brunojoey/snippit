@@ -43,7 +43,7 @@ function Feed() {
           if (userState) { user = userState.find(user => user._id === snip.userId) }
 
           return (
-            <Row className='feed-item'>
+            <Row className='feed-item' key={index}>
               <Col s={10}>
                 <Link to={`/snips/${snip._id}`}>{snip.tagLine}</Link>
               </Col>
