@@ -49,7 +49,7 @@ function App() {
   return (
     <Router>
       <StatusContext.Provider value={{ status, updateStatus }}>
-        {(status.status === false) ? <Nav path={path} setPath={setPath}/> : <Navdrop />}
+        {(status.status === false) ? <Nav path={path} setPath={setPath}/> : <Navdrop path={path} setPath={setPath}/>}
         <TaglineContext.Provider value={{ taglines, updateTaglines }}>
           <Switch>
             <Route exact path='/users/:id' component={profilePage} />
