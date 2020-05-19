@@ -21,7 +21,11 @@ function SearchForm(props) {
             data.forEach(snip => {
                 options.data[snip.tagLine] = null;
                 taglines.push({ id: snip._id, tagline: snip.tagLine });
-            });
+			});
+			
+			// Must update search with autocomplete option because onChange event
+			// isn't triggered when an autocompleted option is clicked.
+			options.onAutocomplete = (event) => setSearch(event);
 
             setOptions(options);
             setTaglines(taglines);
@@ -31,7 +35,13 @@ function SearchForm(props) {
 	}, []);
 	
 	function handleChange(event) {
+		event.preventDefault();
 		setSearch(event.target.value);
+	}
+
+	function handleAutoClick(event) {
+		event.preventDefault();
+		if (search === '') { event.target.value = '' }
 	}
 
     function handleKeyDown(event) {
@@ -41,16 +51,16 @@ function SearchForm(props) {
 
             if (tagline) { setRedirect('/snips/' + tagline.id); }
             return;
-        }
+		}
     }
-    
-    function handleClick(event) {
-	  event.preventDefault();
-	  const entered = search.toLowerCase();
-	  const tagline = taglines.find(obj => obj.tagline.toLowerCase() === entered);
 
-	  if (tagline) { setRedirect('/snips/' + tagline.id); return; }
-	//   if (options.data[tagline] === undefined) { event.target.value = ''; return; }
+    function handleClick(event) {
+		event.preventDefault();
+		const entered = search.toLowerCase();
+		const tagline = taglines.find(obj => obj.tagline.toLowerCase() === entered);
+
+		if (tagline) { setRedirect('/snips/' + tagline.id); return; }
+		if (options.data[tagline] === undefined) { setSearch('') }
     }
 
     return (
@@ -67,6 +77,7 @@ function SearchForm(props) {
 									style={{ width: '100%' }}
 									onKeyDown={handleKeyDown}
 									onChange={handleChange}
+									onClick={handleAutoClick}
 								/>
 							</Col>
 							<Col s={1} className='no-padding-left'>
