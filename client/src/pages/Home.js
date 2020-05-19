@@ -36,7 +36,7 @@ function Home() {
                 </Row>
                 {(status.status !== false) ? renderForm() : <></>}
                 <Row>
-                    <Col s={12} m={8} offset='m2'>
+                    <Col s={12} m={10} offset='m1'>
                         <Feed />
                     </Col>
                 </Row>

@@ -7,14 +7,21 @@ h2 {
   text-align: center;
 }
 
-.user-icon {
-  margin: -12px 2px 2px 40%;
-  border-radius: 50%;
+.feed-item {
+  border-bottom: 1px solid #dbdbdb;
+  margin-bottom: 36px;
 }
 
-.feed-item {
-  margin: 24px 2px;
-  padding-top: 12px;
-  border-bottom: 1px solid #dbdbdb;
+.feed-item-link {
+  height: 42px;
   border-left: 2px solid #dadada;
+}
+
+.feed-item-language-icon {
+  transform: translateY(8px);
+}
+
+.feed-user-icon {
+  margin: 3px 2px 2px 0px;
+  border-radius: 50%;
 }
