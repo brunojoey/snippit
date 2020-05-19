@@ -48,7 +48,7 @@ function Feed() {
 
           return (
             <Row className='feed-item' key={index}>
-              <Col s={2} l={1} className='center'>
+              <Col s={2} l={1} className='rel-wrapper'>
                 {(user) 
                   ? 
                   <Link to={`/users/${user._id}`}>
@@ -63,10 +63,10 @@ function Feed() {
                   <p>Icon</p>
                 }
               </Col>
-              <Col s={9} l={10} className='feed-item-link'>
+              <Col s={8} l={10} className='feed-item-link'>
                 <Link to={`/snips/${snip._id}`}>{snip.tagLine}</Link>
               </Col>
-              <Col s={1} className='feed-item-language-icon'>
+              <Col s={2} l={1} className='feed-item-language-icon'>
                 <div>{language.icon}</div>
               </Col>
             </Row>

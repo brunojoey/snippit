@@ -3,10 +3,6 @@ h2 {
   text-transform: uppercase;
 }
 
-.center {
-  text-align: center;
-}
-
 .feed-item {
   border-bottom: 1px solid #dbdbdb;
   margin-bottom: 36px;
@@ -22,6 +18,18 @@ h2 {
 }
 
 .feed-user-icon {
-  margin: 3px 2px 2px 0px;
   border-radius: 50%;
+}
+
+.rel-wrapper {
+  position: relative;
+  text-align: center;
+}
+
+@media only screen and (max-width: 576px) {
+  .feed-user-icon {
+    position: absolute;
+    right: 4px;
+    bottom: -36px;
+  }
 }
