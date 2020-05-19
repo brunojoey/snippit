@@ -1,13 +1,16 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Redirect } from 'react-router-dom';
 import { Row, Col, Autocomplete } from 'react-materialize';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import snipsAPI from '../../utils/snipsAPI';
 import './style.css';
 
 function SearchForm(props) {
     const [options, setOptions] = useState({ data: {} });
     const [taglines, setTaglines] = useState([ { id: null, tagline: null } ]);
-    const [redirect, setRedirect] = useState(null);
+	const [redirect, setRedirect] = useState(null);
+	const [search, setSearch] = useState('');
 
     useEffect(() => {
         async function fetchData() {
@@ -15,8 +18,8 @@ function SearchForm(props) {
             let options = { data: { }};
             let taglines = [];
 
-            data.forEach(snip => { 
-                options.data[snip.tagLine] = null; 
+            data.forEach(snip => {
+                options.data[snip.tagLine] = null;
                 taglines.push({ id: snip._id, tagline: snip.tagLine });
             });
 
@@ -25,10 +28,14 @@ function SearchForm(props) {
         }
         fetchData();
 
-    }, []);
+	}, []);
+	
+	function handleChange(event) {
+		setSearch(event.target.value);
+	}
 
     function handleKeyDown(event) {
-        if (event.key === 'Enter') { 
+        if (event.key === 'Enter') {
             const entered = event.target.value.toLowerCase();
             const tagline = taglines.find(obj => obj.tagline.toLowerCase() === entered);
 
@@ -36,30 +43,42 @@ function SearchForm(props) {
             return;
         }
     }
+    
+    function handleClick(event) {
+	  event.preventDefault();
+	  const entered = search.toLowerCase();
+	  const tagline = taglines.find(obj => obj.tagline.toLowerCase() === entered);
 
-    function handleClick(event) { 
-        event.preventDefault();
-        const tagline = taglines.find(obj => obj.tagline === event.target.value);
-
-        if (tagline) { setRedirect('/snips/' + tagline.id); return; }
-        if (options.data[tagline] === undefined) { event.target.value = ''; return; }
+	  if (tagline) { setRedirect('/snips/' + tagline.id); return; }
+	//   if (options.data[tagline] === undefined) { event.target.value = ''; return; }
     }
 
     return (
-        <>
-            {(redirect !== null) ? <Redirect push to={redirect} /> : <></>}
-            <Row>
-                <Col s={12} m={8} offset='m2' id='searchInput'>
-                    <Autocomplete 
-                        options={options}
-                        placeholder="What's your question?"
-                        style={{ width: '100%' }}
-                        onClick={handleClick}
-                        onKeyDown={handleKeyDown}
-                    />
-                </Col>
-            </Row>
-        </>
+		<>
+			{(redirect !== null) ? <Redirect push to={redirect} /> : <></>}
+			<Row>
+				<Col s={12} m={8} offset='m2' id='searchInput'>
+					<form>
+						<Row>
+							<Col s={11} className='no-padding-right'>
+								<Autocomplete
+									options={options}
+									placeholder="What's your question?"
+									style={{ width: '100%' }}
+									onKeyDown={handleKeyDown}
+									onChange={handleChange}
+								/>
+							</Col>
+							<Col s={1} className='no-padding-left'>
+								<button className='search-button' onClick={handleClick}>
+									<FontAwesomeIcon size='2x' icon={faSearch}></FontAwesomeIcon>
+								</button>
+							</Col>
+						</Row>
+					</form>
+				</Col>
+			</Row>
+		</>
     );
 };
 
