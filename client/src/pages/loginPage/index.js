@@ -10,9 +10,7 @@ import './style.css';
 function Login(props) {
   const { status } = useContext(StatusContext);
   const path = props.match.path;
-
-  console.log('PROPS: ', props);
-
+  
   return(
     <Container>
       <Row>

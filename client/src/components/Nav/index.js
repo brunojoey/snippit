@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { Navbar, Icon, NavItem, Button } from 'react-materialize';
 
 function Nav() {
+  const path = window.location.pathname;
 
   return (
     <Navbar
@@ -23,7 +24,8 @@ function Nav() {
         preventScrolling: true
       }}
     >
-      <NavItem href='/login'>login | sign-up</NavItem>
+      {(path !== '/login' && path !== '/signup') ? <Link to='/login' style={{ width: '72px' }}>Login</Link> : <></>}
+      {(path !== '/login' && path !== '/signup')? <Link to='/signup' style={{ marginRight: '12px', width: '72px'}}>Signup</Link> : <></>}
     </Navbar>
   );
 }
