@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Navbar, Icon, NavItem, Button } from 'react-materialize';
 
-function Nav() {
-  const path = window.location.pathname;
+function Nav(props) {
+  const path = props.path;
 
   return (
     <Navbar
@@ -24,8 +24,18 @@ function Nav() {
         preventScrolling: true
       }}
     >
-      {(path !== '/login' && path !== '/signup') ? <Link to='/login' style={{ width: '72px' }}>Login</Link> : <></>}
-      {(path !== '/login' && path !== '/signup')? <Link to='/signup' style={{ marginRight: '12px', width: '72px'}}>Signup</Link> : <></>}
+      {(path !== '/login' && path !== '/signup') 
+        ? 
+          <Link to='/login' style={{ width: '72px' }} onClick={() => props.setPath('/login')}>Login</Link> 
+        : 
+          <></>
+        }
+      {(path !== '/login' && path !== '/signup')
+        ? 
+          <Link to='/signup' style={{ marginRight: '12px', width: '72px'}} onClick={() => props.setPath('/signup')}>Signup</Link> 
+        : 
+          <></>
+        }
     </Navbar>
   );
 }

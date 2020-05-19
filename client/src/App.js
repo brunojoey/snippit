@@ -15,6 +15,7 @@ import './App.css';
 function App() {
   const [status, setStatus] = useState({ status: false });
   const [taglines, setTaglines] = useState('');
+  const [path, setPath] = useState(window.location.pathname);
 
   useEffect(() => {
     let mounted = true;
@@ -48,7 +49,7 @@ function App() {
   return (
     <Router>
       <StatusContext.Provider value={{ status, updateStatus }}>
-        {(status.status === false) ? <Nav /> : <Navdrop />}
+        {(status.status === false) ? <Nav path={path} setPath={setPath}/> : <Navdrop />}
         <TaglineContext.Provider value={{ taglines, updateTaglines }}>
           <Switch>
             <Route exact path='/users/:id' component={profilePage} />
