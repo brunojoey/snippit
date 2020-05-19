@@ -3,6 +3,7 @@ import { Redirect } from 'react-router-dom';
 import { TextInput, Row, Col, Button } from "react-materialize";
 import statusAPI from '../../utils/statusAPI';
 import StatusContext from '../../utils/StatusContext';
+import '../../pages/loginPage/style.css';
 
 function Login() {
   const { status, updateStatus } = useContext(StatusContext);
@@ -33,19 +34,19 @@ function Login() {
   }
 
   return (
-    <form>
+    <form className='login-form'>
       {(redirect !== null ? <Redirect push to={redirect} /> : <></>)}
       <Row>
         <Col s={10} offset='s1'>
-          <TextInput id='username' name='username' label='Username' noLayout onChange={handleChange}/>
+          <TextInput className='login-input' id='username' name='username' label='Username' noLayout onChange={handleChange}/>
         </Col>
       </Row>
       <Row>
         <Col s={10} offset='s1'>
-          <TextInput password id='password' name='password' label='Password' noLayout onChange={handleChange}/>
+          <TextInput password className='login-input' id='password' name='password' label='Password' noLayout onChange={handleChange}/>
         </Col>
       </Row>
-      <Button node='button' type='submit' waves='light' onClick={handleSubmit}>Submit</Button>
+      <Button className='login-submit' node='button' type='submit' waves='light' onClick={handleSubmit}>Submit</Button>
     </form>
   );
 }
