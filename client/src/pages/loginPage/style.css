@@ -1,18 +1,14 @@
-.container {
-  padding-top: 2rem;
-  padding-bottom: 2rem;
-  vertical-align: middle;
-}
-
 .login-card {
-  margin-top: 5%;
+  margin-top: 32px;
   border: 1px solid #41ead4;
   border-radius: 2px;
   background-color: #e6f7ff;
+  position: relative;
+  height: 416px;
 }
 
 .login-form {
-  margin: 15% auto;
+  margin: 48px auto;
 }
 
 .login-form label {
@@ -67,6 +63,8 @@
   /*Custom Color Of Indicator*/
 }
 
+
+
 .login-submit {
   position: absolute;
   left: 0;
@@ -75,11 +73,3 @@
   margin-left: auto;
   margin-right: auto;
 }
-
-/* .login-tabs li.tab.col {
-  background: #fdfffc;
-}
-
-.login-tabs li.tab.col:focus {
-  background: #c00624 !important;
-} */

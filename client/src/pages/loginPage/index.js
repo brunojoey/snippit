@@ -1,5 +1,5 @@
 
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { Redirect } from 'react-router-dom';
 import { Row, Col, Tabs, Tab, Container } from 'react-materialize';
 import Signup from '../../components/Signup';
@@ -7,8 +7,11 @@ import LoginComp from '../../components/Login';
 import StatusContext from '../../utils/StatusContext';
 import './style.css';
 
-function Login() {
+function Login(props) {
   const { status } = useContext(StatusContext);
+  const path = props.match.path;
+
+  console.log('PROPS: ', props);
 
   return(
     <Container>
@@ -17,8 +20,9 @@ function Login() {
           <div className='login-card'>
             {(status.status !== false) ? <Redirect push to='/home' /> : <></>}
 
-            <Tabs className='tabs-fixed-width z-depth-1 login-tabs' options={{ swipeable: true }}>
+            <Tabs className='tabs-fixed-width login-tabs' options={{ swipeable: false }}>
               <Tab
+                active={(path === '/login')}
                 options={{
                   duration: 200,
                   onShow: null,
@@ -30,6 +34,7 @@ function Login() {
                 <LoginComp />
               </Tab>
               <Tab
+                active={(path === '/signup')}
                 options={{
                   duration: 200,
                   onShow: null,
