@@ -4,12 +4,15 @@ import { Navbar, Icon, Dropdown, Divider, Chip } from "react-materialize";
 import statusAPI from '../../utils/statusAPI';
 import StatusContext from '../../utils/StatusContext';
 
-function NavDrop() {
+function NavDrop(props) {
     const { status, updateStatus } = useContext(StatusContext);
+    const path = props.path;
 
     async function handleLogout() {
         const { data } = await statusAPI.logout();
+
         updateStatus(data);
+        props.setPath('/home');
     }
 
     return (

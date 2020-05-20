@@ -11,10 +11,6 @@ import Foot from '../components/Footer';
 function Home() {
     const { status } = useContext(StatusContext);
     const [redirect, setRedirect] = useState(null);
-    
-    function checkRedirect() {
-        if (redirect) { return <Redirect to={redirect} /> };
-    }
 
     function renderForm() {
         return (
@@ -23,7 +19,6 @@ function Home() {
                     Post a Snip!
                 </h4>
                 <Col s={12} m={8} offset='m2'>
-                    {/* <SnipForm setRedirect={setRedirect}/> */}
                     <Form setRedirect={setRedirect} isResponse={false} />
                 </Col>
             </Row>
@@ -32,8 +27,8 @@ function Home() {
 
     return (
         <>
-            {checkRedirect()}
-            <div className="container" id="home-container">
+            {(redirect !== null) ? <Redirect push to={redirect} /> : <></>}
+            <div className="container home-container">
                 <Row>
                     <Col s={12}>
                         <SearchForm />
@@ -41,7 +36,7 @@ function Home() {
                 </Row>
                 {(status.status !== false) ? renderForm() : <></>}
                 <Row>
-                    <Col s={12} m={8} offset='m2'>
+                    <Col s={12} m={10} offset='m1'>
                         <Feed />
                     </Col>
                 </Row>

@@ -64,10 +64,6 @@ function Snip(props) {
 
   }, [state]);
 
-  function checkRedirect() {
-    if (redirect) { return <Redirect to={redirect} /> };
-  }
-
   function renderSnip() {
     let code = state.code;
 
@@ -144,7 +140,7 @@ function Snip(props) {
 
   return (
     <>
-      {checkRedirect()}
+      {(redirect !== null) ? <Redirect push to={redirect} /> : <></>}
       <Container>
         <Row>
           <Col s={12} m={8} offset='m2'>

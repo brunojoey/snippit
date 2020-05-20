@@ -1,18 +1,16 @@
-import React, { useEffect, useState, useContext } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Row, Col, Collection, CollectionItem, Icon } from 'react-materialize';
-import KeywordsContext from '../../utils/KeywordContext';
-import LanguageContext from '../../utils/LanguageContext';
+import { Row, Col } from 'react-materialize';
 import snipsAPI from '../../utils/snipsAPI';
 import usersAPI from '../../utils/usersAPI';
+import { languages } from '../../utils/languages';
 import './style.css';
 
 function Feed() {
   const [userState, setUserState] = useState(null);
   const [snipState, setSnipState] = useState(null);
 
-  const { keywords, updateKeywords } = useContext(KeywordsContext);
-  const { language } = useContext(LanguageContext);
+  console.log('LANGUAGES: ', languages);
 
   async function asyncForEach(array, callback) {
     for (let index = 0; index < array.length; index++) {
@@ -23,64 +21,57 @@ function Feed() {
   useEffect(() => {
     async function fetchData() {
       let { data } = await snipsAPI.getSnips();
-      let snips = data;
       let users = [];
-
-      console.log('INSIDE FETCH DATA');
-      console.log('LANGUAGE: ', language);
-      console.log('KEYWORDS: ', keywords);  
-
-      // Get snips and filter them if needed.
-      if (language.length > 0) { snips = snips.filter(snip => (!snip.isResponse && snip.language === language)); }
-      if (keywords.length > 0) {
-        snips = snips.filter(snip => {
-          const snipWords = snip.tagLine.split(' ');
-          const found = snipWords.some(word => keywords.includes(word.toLowerCase()));
-
-          return found;
-        });
-      }
       
       // Get users for each snip.
-      snips = snips.splice(0, 10);
-      await asyncForEach(snips, async (snip) => {
-        const response = await usersAPI.getUser(snip.userId)
-        users.push(response.data);
+      data = data.splice(0, 10);
+      await asyncForEach(data, async (snips) => {
+        const { data } = await usersAPI.getUser(snips.userId)
+        users.push(data);
       });
       
-      setSnipState(snips);
+      setSnipState(data);
       setUserState(users);
     }
     fetchData();
 
-  }, [language, keywords]);
+  }, []);
 
   function renderSnips() {
     return (
       <>
         <h2 className='center'>Recent Snips</h2>
-        <Collection>
-          {snipState.map((snip, index) => {
-            let user;
-            if (userState) { user = userState.find(user => user._id === snip.userId) };
+        {snipState.map((snip, index) => {
+          let user;
+          let language = languages.find(language => language.name === snip.language);
+          if (userState) { user = userState.find(user => user._id === snip.userId) }
 
-            return(
-              <CollectionItem className='avatar' key={index}>
-                <Row>
-                  <Col s={2}>
-                    <img alt='Avatar' className='circle' src={(user) ? user.imageUrl : 'https://picsum.photos/200'} />
-                  </Col>
-                  <Col s={9}>
-                    <span className='title'>{snip.tagLine}</span>
-                  </Col>
-                  <Col s={2}>
-                    <Link to={`/snips/${snip._id}`} className='secondary-content'><Icon>Go</Icon></Link>
-                  </Col>
-                </Row>
-              </CollectionItem>
-            );
-          })}
-        </Collection>
+          return (
+            <Row className='feed-item' key={index}>
+              <Col s={2} l={1} className='rel-wrapper'>
+                {(user) 
+                  ? 
+                  <Link to={`/users/${user._id}`}>
+                    <img 
+                      src={user.imageUrl}
+                      alt='Avatar' 
+                      className='feed-user-icon' 
+                      style={{ width: '32px', height: '32px'  }}
+                    />
+                  </Link>
+                  :
+                  <p>Icon</p>
+                }
+              </Col>
+              <Col s={8} l={10} className='feed-item-link'>
+                <Link to={`/snips/${snip._id}`}>{snip.tagLine}</Link>
+              </Col>
+              <Col s={2} l={1} className='feed-item-language-icon'>
+                <div>{language.icon}</div>
+              </Col>
+            </Row>
+          );
+        })}
       </>
     );
   }

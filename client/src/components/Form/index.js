@@ -1,5 +1,7 @@
 import React, { useState, useContext, useRef, useEffect } from 'react';
 import { Row, Col, TextInput, Select, Button } from 'react-materialize';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faStickyNote, faCode, faMinus } from '@fortawesome/free-solid-svg-icons';
 import StatusContext from '../../utils/StatusContext';
 import snipsAPI from '../../utils/snipsAPI';
 import Editor from '../../components/Editor';
@@ -50,26 +52,25 @@ function Form(props) {
   
   function displayBlock() {
     return (
-      <>
-        <Editor handleChange={handleChange} language={state.language} code='' readOnly={false} />
-        <Button 
-          type='button' node='button' name='minus-btn' 
-          onClick={() => setBlock(false)}
-          >
-          <i className='fa fa-minus'></i>
-        </Button>
-      </>
+      <Editor handleChange={handleChange} language={state.language} code='' readOnly={false} />
     );
   }
   
   function displayBlockBtn() {
     return (
-      <Button 
-      type='button' node='button' name='code-btn' 
-      onClick={() => setBlock(true)}
-      >
-        <i className='fa fa-code'></i>
-      </Button>
+      <button type='button' name='code-btn' className='form-button button-with-icon' onClick={() => setBlock(true)}>
+        <span className='form-button-text'>Code</span>
+        <FontAwesomeIcon size='2x' icon={faCode} className='form-button-icon'></FontAwesomeIcon>
+      </button>
+    );
+  }
+
+  function removeBlockBtn() {
+    return (
+      <button type='button' name='minus-btn' className='form-button button-with-icon' onClick={() => setBlock(false)}>
+        <span className='form-button-text'>Code</span>
+        <FontAwesomeIcon size='2x' icon={faMinus} className='form-button-icon'></FontAwesomeIcon>
+      </button >
     );
   }
   
@@ -138,15 +139,14 @@ function Form(props) {
     return (
       <>
         <form method='post'>
-          {(!state.isResponse) ? showAdditional() : <></>}
-          <textarea name='body' ref={bodyRef}></textarea>
-          {(block) ? displayBlock() : displayBlockBtn() }
-          <Button
-            type='submit' node='button' name='submit'
-            onClick={handleSubmit}
-          >
-            Snippit!
-          </Button>
+          {(!state.isResponse) ? showAdditional() : <></> }
+          <button type='submit' name='submit' className='form-button button-with-icon' onClick={handleSubmit}>
+            <span className='form-button-text'>Snip It</span>
+            <FontAwesomeIcon size='2x' icon={faStickyNote} className='form-button-icon'></FontAwesomeIcon>
+          </button>
+          {(block) ? removeBlockBtn() : displayBlockBtn() }
+          <textarea name='body' ref={bodyRef} className='form-textarea'></textarea>
+          {(block) ? displayBlock() : <></> }
         </form>
       </>
     );

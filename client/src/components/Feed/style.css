@@ -3,6 +3,33 @@ h2 {
   text-transform: uppercase;
 }
 
-.center {
+.feed-item {
+  border-bottom: 1px solid #dbdbdb;
+  margin-bottom: 36px;
+}
+
+.feed-item-link {
+  height: 42px;
+  border-left: 2px solid #dadada;
+}
+
+.feed-item-language-icon {
+  transform: translateY(8px);
+}
+
+.feed-user-icon {
+  border-radius: 50%;
+}
+
+.rel-wrapper {
+  position: relative;
   text-align: center;
+}
+
+@media only screen and (max-width: 576px) {
+  .feed-user-icon {
+    position: absolute;
+    right: 4px;
+    bottom: -36px;
+  }
 }

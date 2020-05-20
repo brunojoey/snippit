@@ -1,5 +1,5 @@
 
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { Redirect } from 'react-router-dom';
 import { Row, Col, Tabs, Tab, Container } from 'react-materialize';
 import Signup from '../../components/Signup';
@@ -7,44 +7,46 @@ import LoginComp from '../../components/Login';
 import StatusContext from '../../utils/StatusContext';
 import './style.css';
 
-function Login() {
+function Login(props) {
   const { status } = useContext(StatusContext);
-
+  const path = props.match.path;
+  
   return(
     <Container>
-      <div className='login-form'>
-        <Container className='container'>
-          {(status.status !== false) ? <Redirect to='/home' /> : <></>}
-          <Row>
-            <Col s={12}>
-              <Tabs className='tab-demo z-depth-1 tabs-fixed-width' >
-                <Tab
-                  options={{
-                    duration: 150,
-                    onShow: null,
-                    responsiveThreshold: Infinity,
-                    swipeable: true
-                  }}
-                  title='Login'
-                >
-                  <LoginComp />
-                </Tab>
-                <Tab
-                  options={{
-                    duration: 150,
-                    onShow: null,
-                    responsiveThreshold: Infinity,
-                    swipeable: true
-                  }}
-                  title='Signup'
-                >
-                  <Signup />
-                </Tab>
-              </Tabs>
-            </Col>
-          </Row>
-        </Container>
-      </div>
+      <Row>
+        <Col s={12} m={8} l={6} offset='m2 l3'>
+          <div className='login-card'>
+            {(status.status !== false) ? <Redirect push to='/home' /> : <></>}
+
+            <Tabs className='tabs-fixed-width login-tabs' options={{ swipeable: false }}>
+              <Tab
+                active={(path === '/login')}
+                options={{
+                  duration: 200,
+                  onShow: null,
+                  responsiveThreshold: Infinity,
+                  swipeable: false
+                }}
+                title='Login'
+              >
+                <LoginComp />
+              </Tab>
+              <Tab
+                active={(path === '/signup')}
+                options={{
+                  duration: 200,
+                  onShow: null,
+                  responsiveThreshold: Infinity,
+                  swipeable: false
+                }}
+                title='Signup'
+              >
+                <Signup />
+              </Tab>
+            </Tabs>
+          </div>
+        </Col>
+      </Row>
     </Container>
   )
 };
