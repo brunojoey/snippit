@@ -1,4 +1,4 @@
-textarea {
+/* textarea {
   margin-top: 4px;
   padding: 8px 8px;
   resize: none;
@@ -18,4 +18,27 @@ textarea {
 .btn {
   margin-top: 5px;
   margin-bottom: 5px;
+} */
+
+.form-textarea {
+  border: none;
+}
+
+.form-button {
+  margin: 4px 4px 0px 0px;
+  width: 108px;
+}
+
+.button-with-icon {
+  line-height: 24px;
+}
+
+.form-button-icon {
+  font-size: 22px;
+  margin-bottom: -2px;
+}
+
+.form-button-text {
+  font-size: 18px;
+  margin-right: 8px;
 }
