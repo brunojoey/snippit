@@ -16,6 +16,8 @@
 
 .snip-content {
   background-color: white;
+  padding-right: 8px;
+  border-right: 2px solid #b3b3b3;
 }
 
 .snip-body {

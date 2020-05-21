@@ -1,8 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { Link, Redirect } from 'react-router-dom';
-import { Container, Row, Col, Button, Collection, CollectionItem } from 'react-materialize';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faQuestion, faLongArrowAltRight } from '@fortawesome/free-solid-svg-icons';
+import { Container, Row, Col } from 'react-materialize';
 import StatusContext from '../../utils/StatusContext';
 import usersAPI from '../../utils/usersAPI';
 import snipsAPI from '../../utils/snipsAPI';

@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from "react";
 import AceEditor from "react-ace";
-
 import "ace-builds/src-noconflict/mode-javascript";
 import 'ace-builds/src-noconflict/mode-html';
 import 'ace-builds/src-noconflict/theme-cobalt';
 import 'ace-builds/src-noconflict/theme-clouds';
-import { text } from "@fortawesome/fontawesome-svg-core";
+import './style.css';
 
 function Editor(props) {
   const [options, setOptions] = useState({
@@ -52,6 +51,8 @@ function Editor(props) {
       enableLiveAutocompletion={true}
       enableSnippets={true}
       showLineNumbers={true}
+      showGutter={true}
+      showPrintMargin={false}
       tabSize={4}
     />
   );
