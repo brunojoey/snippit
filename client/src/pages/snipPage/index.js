@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react';
-import { Redirect } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import { Container, Row, Col, Button, Collection, CollectionItem } from 'react-materialize';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faQuestion, faLongArrowAltRight } from '@fortawesome/free-solid-svg-icons';
@@ -114,28 +114,41 @@ function Snip(props) {
 
   function renderResponses() {
     return(
-      <Row>
-        <h2 className='center'>Responses</h2>
-        <Collection>
+      <>
+        <h2 className='snip-response-header'>Responses</h2>
+        <hr></hr>
+        <div className='snip-content'>
           {responses.map((response, index) => {
             const user = users.find(user => user._id === response.userId);
 
             return(
-              <CollectionItem className='avatar' key={index}>
-                <Row>
-                  <Col s={1}>
-                    <img alt='Avatar' className='circle' src={(user) ? user.imageUrl : 'https://picsum.photos/200'} />
-                  </Col>
-                  <Col s={11}>
-                    <div>{response.body}</div>
+              <Row className='response-item' key={index}>
+                <Col s={12} m={2} l={1} className='center'>
+                  {(user) 
+                    ? 
+                    <Link to={`/users/${user._id}`}>
+                      <img 
+                        src={user.imageUrl}
+                        alt='Avatar' 
+                        className='response-user-icon' 
+                        style={{ width: '32px', height: '32px'  }}
+                      />
+                    </Link>
+                    :
+                    <p>Icon</p>
+                  }
+                </Col>
+                <Col s={12} m={10} l={11}>
+                  <div className='response-body'>{response.body}</div>
+                  <div>
                     {(response.code.length > 0) ? <Editor language={response.language} code={response.code} readOnly={true} /> : <></>}
-                  </Col>
-                </Row>
-              </CollectionItem>
+                  </div>
+                </Col>
+              </Row>
             );
           })}
-        </Collection>
-      </Row>
+        </div>
+      </>
     );
   }
 
@@ -144,14 +157,14 @@ function Snip(props) {
       {(redirect !== null) ? <Redirect push to={redirect} /> : <></>}
       <Container>
         <div className='snip-page-container'>
-          <Row className='no-bottom'>
-            <Col s={12} m={8} offset='m2'>
+          <Row>
+            <Col s={12} xl={10} offset='xl1'>
               {(state) ? renderSnip() : <></>}
             </Col>
           </Row>
           {(loggedIn) ? renderResponseBtn() : <></>}
           <Row>
-            <Col s={12} m={8} offset='m2'>
+            <Col s={12} xl={10} offset='xl1'>
               {(responses && users) ? renderResponses() : <></>}
             </Col>
           </Row>

@@ -15,13 +15,12 @@
 }
 
 .snip-content {
-  margin-left: 8px;
-  margin-right: 8px;
+  background-color: white;
 }
 
 .snip-body {
   font-size: 1rem;
-  margin: 12px auto;
+  margin: 0px auto 12px auto;
 }
 
 .snip-page-button {
@@ -29,12 +28,22 @@
   width: 108px;
 }
 
-.snip-page-button-icon {
-  font-size: 22px;
-  margin-bottom: -2px;
-}
-
 .snip-page-button-text {
   font-size: 18px;
   margin-right: 8px;
+}
+
+.snip-response-header {
+  text-align: center;
+  font-size: 1.25rem; 
+  margin: 8px auto;
+}
+
+.response-user-icon {
+  border-radius: 50%;
+}
+
+.response-body {
+  font-size: 1rem;
+  margin: 0px auto 12px auto;
 }
