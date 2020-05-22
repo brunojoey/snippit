@@ -9,10 +9,10 @@ import '../../pages/loginPage/style.css';
 function Login() {
   const { status, updateStatus } = useContext(StatusContext);
   const [redirect, setRedirect] = useState(null);
+  const [message, setMessage] = useState('');
   const [state, setState] = useState({
     username: '',
-    password: '',
-    message: ''
+    password: ''
   });
 
   useEffect(() => {
@@ -28,11 +28,11 @@ function Login() {
     setState({ ...state, [name]: event.target.value })
   }
 
-  function handleClick() { setState({ ...state, message: '' }); }
+  function handleClick() { setMessage(''); }
   
   async function handleSubmit(event) {
     event.preventDefault();
-
+    
     statusAPI.signup(state)
       .then(async data => {
         const user = await statusAPI.login(state);
@@ -46,13 +46,11 @@ function Login() {
         if (username.length < 8 || username.length > 20 || !username.match(/^[A-Za-z0-9]+(?:[_-][A-Za-z0-9]+)*$/)) {
           message = 'Username must include the following:';
         } else {
-            if (password.length < 8 || password.length > 20 || !password.match(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,15}$/)) {
+            if (password.length < 8 || password.length > 20 || !password.match(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,20}$/)) {
               message = 'Password must include the following:';
             }
         }
-        console.log('MESSAGE: ', message);
-
-        setState({ ...state, message: message })
+        setMessage(message);
       });
   }
 
@@ -63,10 +61,10 @@ function Login() {
         <Row className='username-row'>
           <Col s={10} offset='s1'>
             <TextInput className='login-input' id='username' name='username' label='Username' noLayout onChange={handleChange} onClick={handleClick}/>
-            {(state.message.includes('Username')) 
+            {(message.includes('Username')) 
               ? 
                 <div>
-                  <p className='login-error-message'>{state.message}</p>
+                  <p className='login-error-message'>{message}</p>
                   <ul className='login-error-ul'>
                     <li className='login-error-li'>8-20 characters in length</li>
                     <li className='login-error-li'>Does not include most special characters</li>
@@ -82,10 +80,10 @@ function Login() {
         <Row>
           <Col s={10} offset='s1'>
             <TextInput password className='login-input' id='password' name='password' label='Password' noLayout onChange={handleChange} onClick={handleClick}/>
-            {(state.message.includes('Password')) 
+            {(message.includes('Password')) 
               ? 
                 <div>
-                  <p className='login-error-message'>{state.message}</p>
+                  <p className='login-error-message'>{message}</p>
                   <ul className='login-error-ul'>
                     <li className='login-error-li'>8-20 characters in length</li>
                     <li className='login-error-li'>At least 1 uppercase letter</li>

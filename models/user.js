@@ -8,14 +8,14 @@ const UserSchema = new Schema({
     require: true,
     minLength: 8,
     maxLength: 20,
-    match: /^[A-Za-z0-9]+(?:[_-][A-Za-z0-9]+)*$/
+    match: /^[A-Za-z0-9]+(?:[_-][A-Za-z0-9]+)*$/,
+    unique: true
   },
   password: { 
     type: String, 
     require: true,
     minLength: 8,
-    maxLength: 20,
-    match: /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,20}$/
+    maxLength: 20
   },
   biography: { type: String, require: false },
   imageUrl: { type: String, default: 'https://picsum.photos/100' },
