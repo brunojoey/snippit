@@ -12,7 +12,7 @@ passport.use(new LocalStrategy(
       .then((dbUser) => {
         // There was no user with the given username
         if (!dbUser) {
-          return done(null, false, { message: 'Userame was incorrect.' });
+          return done(null, false, { message: 'Username was incorrect.' });
         }
         // There was a user with the given username, but the password was incorrect
         if (!dbUser.validPassword(password)) {

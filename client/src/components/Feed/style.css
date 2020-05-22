@@ -1,6 +1,14 @@
 .feed-item {
   border-bottom: 1px solid #dbdbdb;
-  margin-bottom: 36px;
+  margin-top: 24px;
+  margin-bottom: 24px;
+}
+
+.feed-heading {
+  font-size: 1.35rem;
+  text-align: center;
+  margin-top: 12px;
+  margin-bottom: 8px;
 }
 
 .feed-item-link {
@@ -14,6 +22,7 @@
 
 .feed-user-icon {
   border-radius: 50%;
+  margin-right: 6px;
 }
 
 .rel-wrapper {

@@ -3,8 +3,20 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const UserSchema = new Schema({
-  username: { type: String, require: true },
-  password: { type: String, require: true },
+  username: { 
+    type: String, 
+    require: true,
+    minLength: 8,
+    maxLength: 20,
+    match: /^[A-Za-z0-9]+(?:[_-][A-Za-z0-9]+)*$/
+  },
+  password: { 
+    type: String, 
+    require: true,
+    minLength: 8,
+    maxLength: 20,
+    match: /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,20}$/
+  },
   biography: { type: String, require: false },
   imageUrl: { type: String, default: 'https://picsum.photos/100' },
   points: { type: Number, default: 0 },

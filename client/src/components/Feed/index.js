@@ -10,8 +10,6 @@ function Feed() {
   const [userState, setUserState] = useState(null);
   const [snipState, setSnipState] = useState(null);
 
-  console.log('LANGUAGES: ', languages);
-
   async function asyncForEach(array, callback) {
     for (let index = 0; index < array.length; index++) {
       await callback(array[index], index, array);
@@ -40,7 +38,8 @@ function Feed() {
   function renderSnips() {
     return (
       <>
-        <h2 className='center'>Recent Snips</h2>
+        <h2 className='feed-heading'>Recent Snips</h2>
+        <hr></hr>
         {snipState.map((snip, index) => {
           let user;
           let language = languages.find(language => language.name === snip.language);

@@ -10,7 +10,8 @@ function Login() {
   const [redirect, setRedirect] = useState(null);
   const [state, setState] = useState({
     username: '',
-    password: ''
+    password: '',
+    message: ''
   });
 
   useEffect(() => {
@@ -25,25 +26,30 @@ function Login() {
     const name = event.target.name;
     setState({ ...state, [name]: event.target.value })
   }
+
+  function handleClick() { setState({ ...state, message: '' }); }
   
   async function handleSubmit(event) {
     event.preventDefault();
     const { data } = await statusAPI.login(state);
-    // Update status. This will change StatusContext from falsy object to user object.
-    updateStatus(data);
+
+    if (data.message) { setState({ ...state, message: data.message })}
+    else { updateStatus(data); }
   }
 
   return (
     <form className='login-form'>
       {(redirect !== null ? <Redirect push to={redirect} /> : <></>)}
-      <Row>
+      <Row className='username-row'>
         <Col s={10} offset='s1'>
-          <TextInput className='login-input' id='username' name='username' label='Username' noLayout onChange={handleChange}/>
+          <TextInput className='login-input' id='username' name='username' label='Username' noLayout onChange={handleChange} onClick={handleClick}/>
+          {(state.message.includes('Username')) ? <div className='login-error'>{state.message}</div> : <></>}
         </Col>
       </Row>
       <Row>
         <Col s={10} offset='s1'>
-          <TextInput password className='login-input' id='password' name='password' label='Password' noLayout onChange={handleChange}/>
+          <TextInput password className='login-input' id='password' name='password' label='Password' noLayout onChange={handleChange} onClick={handleClick}/>
+          {(state.message.includes('Password')) ? <div className='login-error'>{state.message}</div> : <></>}
         </Col>
       </Row>
       <Button className='login-submit' node='button' type='submit' waves='light' onClick={handleSubmit}>Submit</Button>
