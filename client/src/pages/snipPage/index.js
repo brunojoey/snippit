@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react';
-import { Redirect } from 'react-router-dom';
-import { Container, Row, Col, Button, Collection, CollectionItem } from 'react-materialize';
+import { Link, Redirect } from 'react-router-dom';
+import { Container, Row, Col } from 'react-materialize';
 import StatusContext from '../../utils/StatusContext';
 import usersAPI from '../../utils/usersAPI';
 import snipsAPI from '../../utils/snipsAPI';
@@ -69,9 +69,10 @@ function Snip(props) {
 
     return (
       <>
-        <h2>{state.tagLine}</h2>
-        <div>
-          <div>{state.body}</div>
+        <h2 className='snip-header'>{state.tagLine}</h2>
+        <hr></hr>
+        <div className='snip-content'>
+          <div className='snip-body'>{state.body}</div>
           <Editor language={state.language} code={code} readOnly={true} />
         </div>
       </>
@@ -96,15 +97,13 @@ function Snip(props) {
   function renderResponseBtn() {
     return (
       <Row>
-        <Col s={12} m={8} offset='m2'>
-          <Button 
-            type='button' 
-            node='button' 
-            name='response-btn' 
-            onClick={() => setForm(!form)}
-          >
-            {(form) ? 'Nevermind' : 'Add Response' }
-          </Button>
+        <Col s={12} m={8} offset='m2' style={{ paddingTop: '16px' }}>
+          <div className='center'>
+            <button type='button' name='response-btn' className='snip-page-button' onClick={() => setForm(!form)}>
+              <span className='snip-page-button-text'>{(form) ? 'Clear' : 'Answer' }</span>
+            </button>
+          </div>
+          <hr></hr>
         </Col>
         {(form) ? renderForm() : <></>}
       </Row>
@@ -113,28 +112,41 @@ function Snip(props) {
 
   function renderResponses() {
     return(
-      <Row>
-        <h2 className='center'>Responses</h2>
-        <Collection>
+      <>
+        <h2 className='snip-response-header'>Responses</h2>
+        <hr></hr>
+        <div className='snip-content'>
           {responses.map((response, index) => {
             const user = users.find(user => user._id === response.userId);
 
             return(
-              <CollectionItem className='avatar' key={index}>
-                <Row>
-                  <Col s={1}>
-                    <img alt='Avatar' className='circle' src={(user) ? user.imageUrl : 'https://picsum.photos/200'} />
-                  </Col>
-                  <Col s={11}>
-                    <div>{response.body}</div>
+              <Row className='response-item' key={index}>
+                <Col s={12} m={2} l={1} className='center'>
+                  {(user) 
+                    ? 
+                    <Link to={`/users/${user._id}`}>
+                      <img 
+                        src={user.imageUrl}
+                        alt='Avatar' 
+                        className='response-user-icon' 
+                        style={{ width: '32px', height: '32px'  }}
+                      />
+                    </Link>
+                    :
+                    <p>Icon</p>
+                  }
+                </Col>
+                <Col s={12} m={10} l={11}>
+                  <div className='response-body'>{response.body}</div>
+                  <div>
                     {(response.code.length > 0) ? <Editor language={response.language} code={response.code} readOnly={true} /> : <></>}
-                  </Col>
-                </Row>
-              </CollectionItem>
+                  </div>
+                </Col>
+              </Row>
             );
           })}
-        </Collection>
-      </Row>
+        </div>
+      </>
     );
   }
 
@@ -142,17 +154,19 @@ function Snip(props) {
     <>
       {(redirect !== null) ? <Redirect push to={redirect} /> : <></>}
       <Container>
-        <Row>
-          <Col s={12} m={8} offset='m2'>
-            {(state) ? renderSnip() : <></>}
-          </Col>
-        </Row>
-        {(loggedIn) ? renderResponseBtn() : <></>}
-        <Row>
-          <Col s={12} m={8} offset='m2'>
-            {(responses && users) ? renderResponses() : <></>}
-          </Col>
-        </Row>
+        <div className='snip-page-container'>
+          <Row>
+            <Col s={12} xl={10} offset='xl1'>
+              {(state) ? renderSnip() : <></>}
+            </Col>
+          </Row>
+          {(loggedIn) ? renderResponseBtn() : <></>}
+          <Row>
+            <Col s={12} xl={10} offset='xl1'>
+              {(responses && users) ? renderResponses() : <></>}
+            </Col>
+          </Row>
+        </div>
       </Container>
     </>
   );

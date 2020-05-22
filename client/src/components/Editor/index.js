@@ -1,31 +1,28 @@
 import React, { useState, useEffect } from "react";
 import AceEditor from "react-ace";
-
 import "ace-builds/src-noconflict/mode-javascript";
 import 'ace-builds/src-noconflict/mode-html';
 import 'ace-builds/src-noconflict/theme-cobalt';
 import 'ace-builds/src-noconflict/theme-clouds';
+import './style.css';
 
 function Editor(props) {
   const [options, setOptions] = useState({
-    height: '',
     value: '',
-    theme: ''
+    theme: '',
   })
 
   useEffect(() => {
     if (props.readOnly) {
       setOptions({
         ...options,
-        height: '400px',
         value: props.code,
-        theme: 'cobalt'
+        theme: 'cobalt',
       })
     } else {
       setOptions({
         ...options,
-        height: '200px',
-        theme: 'clouds'
+        theme: 'clouds',
       })
     }
   }, []);
@@ -41,17 +38,21 @@ function Editor(props) {
       readOnly={props.readOnly}
       mode={props.language}
       value={options.value}
-      height={options.height}
       theme={options.theme}
+      minLines={5}
+      maxLines={30}
       onChange={props.handleChange}
       name='editor'
       width='auto'
+      placeholder='Enter code.'
       highlightActiveLine={true}
       editorProps={{ $blockScrolling: true }}
       enableBasicAutocompletion={true}
       enableLiveAutocompletion={true}
       enableSnippets={true}
       showLineNumbers={true}
+      showGutter={true}
+      showPrintMargin={false}
       tabSize={4}
     />
   );

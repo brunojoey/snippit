@@ -1,27 +1,12 @@
-/* textarea {
+.form-textarea {
   margin-top: 4px;
   padding: 8px 8px;
-  resize: none;
-  height: 200px;
-  background: white;
-}
-
-.no-bottom {
-  border-bottom: 0px;
-  padding-bottom: 0px;
-}
-
-.fa {
-  padding-right: 0px !important;
-}
-
-.btn {
-  margin-top: 5px;
-  margin-bottom: 5px;
-} */
-
-.form-textarea {
   border: none;
+  resize: none;
+  min-height: 72px;
+  background: white;
+  color: #41ead4;
+  outline-color: #41ead4;
 }
 
 .form-button {

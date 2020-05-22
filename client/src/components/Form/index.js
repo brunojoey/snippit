@@ -50,6 +50,32 @@ function Form(props) {
 
   }, [state]);
   
+  function handleChange(event) {
+    // Ace editor onChange event overrides event and returns the string.
+    if (typeof event === 'string') { 
+      aceCode = event;
+      return;
+    }
+
+    const name = event.target.name;
+    setState({ ...state, [name]: event.target.value })
+  }
+
+  async function handleSubmit(event) {
+    event.preventDefault();
+    const body = bodyRef.current.value;
+
+    if (aceCode.length < 1 && body.length < 1) { console.log('No data was entered.'); return; }
+    setState({ ...state, code: aceCode, body: body });
+  }
+
+  function handleKeyDown(event) {
+    console.log('HANDLE KEYDOWN');
+    console.log('EVENT: ', event);
+    event.target.style.height = 'inherit';
+    event.target.style.height = `${event.target.scrollHeight}px`; 
+  }
+
   function displayBlock() {
     return (
       <Editor handleChange={handleChange} language={state.language} code='' readOnly={false} />
@@ -73,32 +99,13 @@ function Form(props) {
       </button >
     );
   }
-  
-  function handleChange(event) {
-    // Ace editor onChange event overrides event and returns the string.
-    if (typeof event === 'string') { 
-      aceCode = event;
-      return;
-    }
-
-    const name = event.target.name;
-    setState({ ...state, [name]: event.target.value })
-  }
-
-  async function handleSubmit(event) {
-    event.preventDefault();
-    const body = bodyRef.current.value;
-
-    if (aceCode.length < 1 && body.length < 1) { console.log('No data was entered.'); return; }
-    setState({ ...state, code: aceCode, body: body });
-  }
 
   // Additional information required when user is create a snip vs just responding to one.
   function showAdditional() {
     return (
       <Row className='no-bottom'>
           <Col m={8}>
-            <TextInput className='tagLine' name='tagLine' placeholder="What's your question?" noLayout onChange={handleChange} />
+            <TextInput className='tagLine' name='tagLine' placeholder="What's your question?" noLayout onChange={handleChange}/>
           </Col>
           <Col m={4}>
             <Select
@@ -145,7 +152,7 @@ function Form(props) {
             <FontAwesomeIcon size='2x' icon={faStickyNote} className='form-button-icon'></FontAwesomeIcon>
           </button>
           {(block) ? removeBlockBtn() : displayBlockBtn() }
-          <textarea name='body' ref={bodyRef} className='form-textarea'></textarea>
+          <textarea name='body' ref={bodyRef} className='form-textarea' onKeyDown={handleKeyDown}></textarea>
           {(block) ? displayBlock() : <></> }
         </form>
       </>

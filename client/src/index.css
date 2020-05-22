@@ -75,3 +75,11 @@ code {
   text-align: center;
   margin: 16px auto 0px auto;
 }
+
+.center {
+  text-align: center;
+}
+
+.right {
+  text-align: right;
+}
