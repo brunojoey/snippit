@@ -15,10 +15,11 @@ function SearchForm(props) {
 
   useEffect(() => {
     async function fetchData() {
-			const { data } = await snipsAPI.getSnips();
+			let { data } = await snipsAPI.getSnips();
 			let options = { data: { }};
 			let taglines = [];
 
+			data = data.filter(snip => snip.tagLine);
 			data.forEach(snip => {
 				options.data[snip.tagLine] = null;
 				taglines.push({ id: snip._id, tagline: snip.tagLine });

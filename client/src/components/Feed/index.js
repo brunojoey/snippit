@@ -20,7 +20,8 @@ function Feed() {
     async function fetchData() {
       let { data } = await snipsAPI.getSnips();
       let users = [];
-      
+      data = data.filter(snip => snip.tagLine);
+
       // Get users for each snip.
       data = data.splice(0, 10);
       await asyncForEach(data, async (snips) => {
