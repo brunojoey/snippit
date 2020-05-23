@@ -83,7 +83,7 @@ function SearchForm(props) {
 								</button>
 							</Col>
 						</Row>
-						{(!match && search) ? <div className='search-error'>No matches</div> : <></>}
+						{(!match && search) ? <div className='search-error'>No matches were found.</div> : <></>}
 					</form>
 				</Col>
 			</Row>

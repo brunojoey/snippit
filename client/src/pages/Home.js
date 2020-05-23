@@ -2,7 +2,6 @@ import React, { useState, useContext } from 'react';
 import { Redirect } from 'react-router-dom';
 import { Row, Col } from 'react-materialize';
 import Feed from '../components/Feed';
-import SnipForm from '../components/SnipForm';
 import Form from '../components/Form';
 import StatusContext from '../utils/StatusContext';
 import SearchForm from '../components/SearchForm';
@@ -15,9 +14,7 @@ function Home() {
     function renderForm() {
         return (
             <Row>
-                <h4>
-                    Post a Snip!
-                </h4>
+                <h2>console.log('Add a snip here.');</h2>
                 <Col s={12} m={8} offset='m2'>
                     <Form setRedirect={setRedirect} isResponse={false} />
                 </Col>
