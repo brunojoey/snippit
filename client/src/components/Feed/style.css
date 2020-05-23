@@ -2,6 +2,7 @@
   border-bottom: 1px solid #dbdbdb;
   margin-top: 24px;
   margin-bottom: 24px;
+  min-height: 48PX;
 }
 
 .feed-heading {
@@ -12,12 +13,10 @@
 }
 
 .feed-item-link {
-  height: 42px;
-  border-left: 2px solid #dadada;
+  min-height: 42px;
 }
 
 .feed-item-language-icon {
-  transform: translateY(8px);
 }
 
 .feed-user-icon {

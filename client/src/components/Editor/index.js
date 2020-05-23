@@ -47,9 +47,6 @@ function Editor(props) {
       placeholder='Enter code.'
       highlightActiveLine={true}
       editorProps={{ $blockScrolling: true }}
-      enableBasicAutocompletion={true}
-      enableLiveAutocompletion={true}
-      enableSnippets={true}
       showLineNumbers={true}
       showGutter={true}
       showPrintMargin={false}
