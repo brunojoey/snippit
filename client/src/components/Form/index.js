@@ -66,8 +66,8 @@ function Form(props) {
   async function handleSubmit(event) {
     event.preventDefault();
 
-    if (!state.tagLine || state.tagLine.length < 20) { setMessage('Tagline must be more than 20 characters.'); return; }
-    else if (state.body.length < 40) { setMessage('Body contents must be great than 40 characters.'); return; }
+    if (!state.isResponse && (!state.tagLine || state.tagLine.length < 20)) { setMessage('Tagline must be more than 20 characters.'); return; }
+    else if (state.body.length < 20) { setMessage('Body contents must be greater than 20 characters.'); return; }
     else if (aceCode.length > 0 && aceCode.length < 20) { setMessage('Code content must be greater than 20 characters.'); return; }
     else { setMessage('valid') }
 
