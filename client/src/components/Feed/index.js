@@ -41,7 +41,7 @@ function Feed() {
   function renderSnips() {
     return (
       <>
-        <h2 className='feed-heading'>Recent Snips</h2>
+        <h2 className='feed-heading'><span>console.log(</span>Recent Snips<span>);</span></h2>
         <hr></hr>
         {snipState.map((snip, index) => {
           let user;

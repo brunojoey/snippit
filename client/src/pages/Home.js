@@ -14,7 +14,7 @@ function Home() {
     function renderForm() {
         return (
             <Row>
-                <h2>console.log('Add a snip here.');</h2>
+                <h2 className='form-heading'><span>let&nbsp;</span>createSnip<span>&nbsp;= () =></span></h2>
                 <Col s={12} m={8} offset='m2'>
                     <Form setRedirect={setRedirect} isResponse={false} />
                 </Col>

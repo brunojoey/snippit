@@ -8,7 +8,7 @@ function Nav(props) {
   return (
     <Navbar
       alignLinks="right"
-      brand={<a className="brand-logo" href="/home">Snippit</a>}
+      brand={<a className="brand-logo" href="/home"><span>{`</`}</span>Snippit<span>></span></a>}
       centerLogo
       id="mobile-nav"
       menuIcon={<Icon>menu</Icon>}

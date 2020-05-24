@@ -83,3 +83,10 @@ code {
 .right {
   text-align: right;
 }
+
+.form-heading {
+  font-size: 1.35rem;
+  text-align: center;
+  margin-top: 12px;
+  margin-bottom: 8px;
+}
