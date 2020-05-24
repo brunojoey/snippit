@@ -1,12 +1,11 @@
 import React, { useContext } from "react";
 import { Link } from 'react-router-dom';
-import { Navbar, Icon, Dropdown, Divider, Chip } from "react-materialize";
+import { Navbar, Icon, Dropdown, Divider } from "react-materialize";
 import statusAPI from '../../utils/statusAPI';
 import StatusContext from '../../utils/StatusContext';
 
 function NavDrop(props) {
     const { status, updateStatus } = useContext(StatusContext);
-    const path = props.path;
 
     async function handleLogout() {
         const { data } = await statusAPI.logout();

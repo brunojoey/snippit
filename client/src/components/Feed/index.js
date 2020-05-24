@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Row, Col } from 'react-materialize';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faUserCircle } from '@fortawesome/free-solid-svg-icons';
 import snipsAPI from '../../utils/snipsAPI';
 import usersAPI from '../../utils/usersAPI';
 import { languages } from '../../utils/languages';
@@ -52,22 +54,26 @@ function Feed() {
                 {(user) 
                   ? 
                   <Link to={`/users/${user._id}`}>
-                    <img 
-                      src={user.imageUrl}
-                      alt='Avatar' 
-                      className='feed-user-icon' 
-                      style={{ width: '32px', height: '32px'  }}
-                    />
+                    {(user.imageUrl)
+                      ?
+                        <img 
+                          src={user.imageUrl}
+                          alt='Avatar' 
+                          className='feed-user-icon' 
+                        />
+                      :
+                        <FontAwesomeIcon size='3x' className='feed-user-icon' icon={faUserCircle}></FontAwesomeIcon>
+                    }
                   </Link>
                   :
-                  <p>Icon</p>
+                  <p>Loader</p>     
                 }
               </Col>
               <Col s={8} l={10} className='feed-item-link'>
                 <Link to={`/snips/${snip._id}`}>{snip.tagLine}</Link>
               </Col>
-              <Col s={2} l={1} className='feed-item-language-icon'>
-                <div>{language.icon}</div>
+              <Col s={2} l={1}>
+                <div className='feed-item-language-icon'>{language.icon}</div>
               </Col>
             </Row>
           );

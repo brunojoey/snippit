@@ -1,5 +1,6 @@
 const bcrypt = require('bcrypt');
 const mongoose = require('mongoose');
+const path = require('path');
 const Schema = mongoose.Schema;
 
 const UserSchema = new Schema({
@@ -18,8 +19,8 @@ const UserSchema = new Schema({
     maxLength: 20
   },
   biography: { type: String, require: false },
-  imageUrl: { type: String, default: 'https://picsum.photos/100' },
-  points: { type: Number, default: 0 },
+  imageUrl: { type: String, require: false },
+  points: { type: Number, require: false, default: 0 },
   snips: [{
     type: Schema.Types.ObjectId,
     ref: 'Snip'

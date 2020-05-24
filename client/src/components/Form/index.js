@@ -1,5 +1,5 @@
-import React, { useState, useContext, useRef, useEffect } from 'react';
-import { Row, Col, TextInput, Select, Button } from 'react-materialize';
+import React, { useState, useContext, useEffect } from 'react';
+import { Row, Col, TextInput, Select } from 'react-materialize';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStickyNote, faCode, faMinus } from '@fortawesome/free-solid-svg-icons';
 import StatusContext from '../../utils/StatusContext';
@@ -7,7 +7,7 @@ import snipsAPI from '../../utils/snipsAPI';
 import Editor from '../../components/Editor';
 import './style.css';
 
-function Form(props) {
+function Form({ isResponse, language, snipId, responses, setForm, setResponses, setRedirect }) {
   // Couldn't use state for code because state rerenders emptied the ace object.
   let aceCode = '';
 
@@ -20,8 +20,8 @@ function Form(props) {
 
   // Form information that will be used to create snip.
   const [state, setState] = useState({
-    isResponse: props.isResponse,
-    language: ((props.language) ? props.language : 'javascript'),
+    isResponse: isResponse,
+    language: ((language) ? language : 'javascript'),
     tagLine: null,
     body: '',
     code: '',
@@ -36,14 +36,14 @@ function Form(props) {
   
           // Create new response snip and add it to the main snip's responses array.
           const { data } = await snipsAPI.createSnip(state);
-          const response = await snipsAPI.updateSnip(props.snipId, { $push: { responses: data._id } });
+          await snipsAPI.updateSnip(snipId, { $push: { responses: data._id } });
   
           // Reset values.
-          props.setForm(false);
-          props.setResponses([ ...props.responses, data]);
+          setForm(false);
+          setResponses([ ...responses, data]);
         } else {
           const { data } = await snipsAPI.createSnip(state);
-          props.setRedirect('/snips/' + data._id);
+          setRedirect('/snips/' + data._id);
         }
       }
     }

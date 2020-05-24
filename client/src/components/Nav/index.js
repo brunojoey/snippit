@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
-import { Navbar, Icon, NavItem, Button } from 'react-materialize';
+import { Navbar, Icon } from 'react-materialize';
 
 function Nav(props) {
   const path = props.path;

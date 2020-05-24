@@ -1,5 +1,5 @@
 
-import React, { useContext, useEffect } from 'react';
+import React, { useContext } from 'react';
 import { Redirect } from 'react-router-dom';
 import { Row, Col, Tabs, Tab, Container } from 'react-materialize';
 import Signup from '../../components/Signup';
