@@ -6,6 +6,8 @@ const UserSchema = new Schema({
   username: { type: String, require: true },
   password: { type: String, require: true },
   biography: { type: String, require: false },
+  github: { type: String, require: false },
+  linkedin: { type: String, require: false },
   imageUrl: { type: String, default: 'https://picsum.photos/100' },
   points: { type: Number, default: 0 },
   snips: [{
