@@ -9,7 +9,7 @@ const UserSchema = new Schema({
     require: true,
     minLength: 8,
     maxLength: 20,
-    match: /^[A-Za-z0-9]+(?:[_-][A-Za-z0-9]+)*$/,
+    match: /^[A-Za-z0-9]+(?:[_-][A-Za-z0-9]+)*.{8,20}/,
     unique: true
   },
   password: { 

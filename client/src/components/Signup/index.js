@@ -32,26 +32,28 @@ function Login() {
   
   async function handleSubmit(event) {
     event.preventDefault();
-    
-    statusAPI.signup(state)
-      .then(async data => {
-        const user = await statusAPI.login(state);
-        updateStatus(user.data);
-      })
-      .catch(err => {
-        const username = state.username;
-        const password = state.password;
-        let message = '';
+    const username = state.username;
+    const password = state.password;
+    let message = '';
 
-        if (username.length < 8 || username.length > 20 || !username.match(/^[A-Za-z0-9]+(?:[_-][A-Za-z0-9]+)*$/)) {
-          message = 'Username must include the following:';
-        } else {
-            if (password.length < 8 || password.length > 20 || !password.match(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,20}$/)) {
-              message = 'Password must include the following:';
-            }
-        }
-        setMessage(message);
-      });
+    if (username.length < 8 || username.length > 20 || !username.match(/^[A-Za-z0-9]+(?:[_-][A-Za-z0-9]+)*.{8,20}/)) {
+      message = 'Username must include the following:';
+    } else {
+      if (password.length < 8 || password.length > 20 || !password.match(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,20}$/)) {
+        message = 'Password must include the following:';
+      } else {
+        statusAPI.signup(state)
+          .then(async data => {
+            const user = await statusAPI.login(state);
+            updateStatus(user.data);
+          })
+          .catch(err => {
+            console.log('SIGNUP ERROR');
+          });
+      }
+    }
+
+    setMessage(message);
   }
 
   return (
@@ -63,7 +65,7 @@ function Login() {
             <TextInput className='login-input' id='username' name='username' label='Username' noLayout onChange={handleChange} onClick={handleClick}/>
             {(message.includes('Username')) 
               ? 
-                <div>
+                <div className='login-error'>
                   <p className='login-error-message'>{message}</p>
                   <ul className='login-error-ul'>
                     <li className='login-error-li'>8-20 characters in length</li>
@@ -82,7 +84,7 @@ function Login() {
             <TextInput password className='login-input' id='password' name='password' label='Password' noLayout onChange={handleChange} onClick={handleClick}/>
             {(message.includes('Password')) 
               ? 
-                <div>
+                <div className='login-error'>
                   <p className='login-error-message'>{message}</p>
                   <ul className='login-error-ul'>
                     <li className='login-error-li'>8-20 characters in length</li>
