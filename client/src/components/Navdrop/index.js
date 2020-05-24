@@ -1,6 +1,8 @@
 import React, { useContext } from "react";
 import { Link } from 'react-router-dom';
 import { Navbar, Icon, Dropdown, Divider } from "react-materialize";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faUserCircle } from '@fortawesome/free-solid-svg-icons';
 import statusAPI from '../../utils/statusAPI';
 import StatusContext from '../../utils/StatusContext';
 import './style.css';
@@ -52,12 +54,14 @@ function NavDrop(props) {
                     outDuration: 250
                 }}
                 trigger={
-                    <div className='valign-btn-wrapper'>
-                        <button className='button-rounded'>
-                            <img src={`${status.imageUrl}`} alt='User Icon' className='nav-icon' /><div className='nav-username'>{status.username}</div>
-                        </button>
-                    </div>
-                    // <span className="fa fa-caret-down"><img src={`${status.imageUrl}`} alt='User Icon' height='50' className='circle'></img></span>
+                    <button className='btn-rounded nav-btn'>
+                        {(status.imageUrl)
+                            ?
+                            <><img src={`${status.imageUrl}`} alt='User Icon' className='nav-user-icon' /><div className='nav-username'>{status.username}</div></>
+                            :
+                            <><FontAwesomeIcon size='3x' className='nav-user-fa-icon' icon={faUserCircle}></FontAwesomeIcon><div className='nav-username-fa'>{status.username}</div></>
+                        }                       
+                    </button>
                 }
             >
                 <Link to={`/users/${status._id}`}>Profile</Link>
