@@ -1,0 +1,27 @@
+.button-rounded {
+  height: 36px;
+  width: auto;
+  border-radius: 36px;
+  display: table-cell;
+  vertical-align: middle;
+  color: white;
+  background-color: firebrick;
+  border: 2px solid firebrick;
+  margin-right: 12px;
+}
+
+.valign-btn-wrapper {
+  display: table;
+}
+
+.nav-icon {
+  border-radius: 50%;
+  width: 26px;
+  height: 26px;
+}
+
+.nav-username {
+  display: inline-block;
+  margin-left: 8px;
+  transform: translateY(-7px);
+}

@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { Navbar, Icon, Dropdown, Divider } from "react-materialize";
 import statusAPI from '../../utils/statusAPI';
 import StatusContext from '../../utils/StatusContext';
+import './style.css';
 
 function NavDrop(props) {
     const { status, updateStatus } = useContext(StatusContext);
@@ -50,7 +51,14 @@ function NavDrop(props) {
                     onOpenStart: null,
                     outDuration: 250
                 }}
-                trigger={<span className="fa fa-caret-down"><img src={`${status.imageUrl}`} alt='User Icon' height='50' className='circle'></img></span>}
+                trigger={
+                    <div className='valign-btn-wrapper'>
+                        <button className='button-rounded'>
+                            <img src={`${status.imageUrl}`} alt='User Icon' className='nav-icon' /><div className='nav-username'>{status.username}</div>
+                        </button>
+                    </div>
+                    // <span className="fa fa-caret-down"><img src={`${status.imageUrl}`} alt='User Icon' height='50' className='circle'></img></span>
+                }
             >
                 <Link to={`/users/${status._id}`}>Profile</Link>
                 <Link to='/home'>Feed</Link>
