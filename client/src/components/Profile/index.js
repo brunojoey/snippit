@@ -11,6 +11,8 @@ function ProfilePanel() {
 
     const [user, setUser] = useState();
     const [biography, setBiography] = useState();
+    const [github, setGithub] = useState();
+    const [linkedIn, setLinkedIn] = useState();
     
     const getUser = (event) => {
         if (user) {
@@ -29,8 +31,20 @@ function ProfilePanel() {
         };
     };
 
-    const handleEdit = (event) => {
+    const getGithub = (event) => {
+        let githubLink = event.target.github;
+        if (!githubLink) {
+            githubLink = user.github;
+        }
+        setGithub(githubLink);
+    };
 
+    const getLinkedIn = (event) => {
+        let linkedInLink = event.target.linkedIn;
+        if (!linkedInLink) {
+            linkedInLink = user.linkedIn;
+        }
+        setLinkedIn(linkedInLink);
     };
 
     return (
@@ -38,7 +52,7 @@ function ProfilePanel() {
             <Row>
                 <Col s={6} lg={10}>
                     <UserEdit />
-                    <h3 updateStatus={getUser}>{status.username}</h3>
+                    <h3 onChange={getUser}>{status.username}</h3>
                 </Col>
             </Row>
             <Row>
@@ -46,9 +60,9 @@ function ProfilePanel() {
                     <ProfileImage />
                 </Col>
                 <Col s={4} lg={6}>
-                    <p updateStatus={getBio}>{status.biography}</p>
-                    <a href='GITHUB'>My Github</a>
-                    <a href='LINKEDIN'>My LinkedIn</a>
+                    <p onChange={getBio}>My Biography {status.biography}</p>
+                    <a href={getGithub}>My Github</a>
+                    <a href={getLinkedIn}>My LinkedIn</a>
                 </Col>
             </Row>
             <Row>
