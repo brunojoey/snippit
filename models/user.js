@@ -1,13 +1,26 @@
 const bcrypt = require('bcrypt');
 const mongoose = require('mongoose');
+const path = require('path');
 const Schema = mongoose.Schema;
 
 const UserSchema = new Schema({
-  username: { type: String, require: true },
-  password: { type: String, require: true },
+  username: { 
+    type: String, 
+    require: true,
+    minLength: 8,
+    maxLength: 20,
+    match: /^[A-Za-z0-9]+(?:[_-][A-Za-z0-9]+)*.{8,20}/,
+    unique: true
+  },
+  password: { 
+    type: String, 
+    require: true,
+    minLength: 8,
+    maxLength: 20
+  },
   biography: { type: String, require: false },
-  imageUrl: { type: String, default: 'https://picsum.photos/100' },
-  points: { type: Number, default: 0 },
+  imageUrl: { type: String, require: false },
+  points: { type: Number, require: false, default: 0 },
   snips: [{
     type: Schema.Types.ObjectId,
     ref: 'Snip'

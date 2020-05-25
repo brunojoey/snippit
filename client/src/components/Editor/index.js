@@ -6,17 +6,17 @@ import 'ace-builds/src-noconflict/theme-cobalt';
 import 'ace-builds/src-noconflict/theme-clouds';
 import './style.css';
 
-function Editor(props) {
+function Editor({ readOnly, code, language, handleChange }) {
   const [options, setOptions] = useState({
     value: '',
     theme: '',
   })
 
   useEffect(() => {
-    if (props.readOnly) {
+    if (readOnly) {
       setOptions({
         ...options,
-        value: props.code,
+        value: code,
         theme: 'cobalt',
       })
     } else {
@@ -27,29 +27,21 @@ function Editor(props) {
     }
   }, []);
 
-  function onChange(newValue, event) {
-    console.log("change", newValue);
-    console.log('event: ', event)
-  }
-
   // Render editor
   return (
     <AceEditor
-      readOnly={props.readOnly}
-      mode={props.language}
+      readOnly={readOnly}
+      mode={language}
       value={options.value}
       theme={options.theme}
       minLines={5}
       maxLines={30}
-      onChange={props.handleChange}
+      onChange={handleChange}
       name='editor'
       width='auto'
       placeholder='Enter code.'
       highlightActiveLine={true}
       editorProps={{ $blockScrolling: true }}
-      enableBasicAutocompletion={true}
-      enableLiveAutocompletion={true}
-      enableSnippets={true}
       showLineNumbers={true}
       showGutter={true}
       showPrintMargin={false}

@@ -35,7 +35,7 @@ function Snip(props) {
     }
     fetchData();
 
-  }, []);
+  });
 
   useEffect(() => {
     if (state) {

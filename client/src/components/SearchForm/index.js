@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Redirect } from 'react-router-dom';
 import { Row, Col, Autocomplete } from 'react-materialize';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -7,63 +7,62 @@ import snipsAPI from '../../utils/snipsAPI';
 import './style.css';
 
 function SearchForm(props) {
-    const [options, setOptions] = useState({ data: {} });
-    const [taglines, setTaglines] = useState([ { id: null, tagline: null } ]);
+  const [options, setOptions] = useState({ data: {} });
+  const [taglines, setTaglines] = useState([ { id: null, tagline: null } ]);
 	const [redirect, setRedirect] = useState(null);
 	const [search, setSearch] = useState('');
+	const [match, setMatch] = useState(true);
 
-    useEffect(() => {
-        async function fetchData() {
-            const { data } = await snipsAPI.getSnips();
-            let options = { data: { }};
-            let taglines = [];
+  useEffect(() => {
+    async function fetchData() {
+			let { data } = await snipsAPI.getSnips();
+			let options = { data: { }};
+			let taglines = [];
 
-            data.forEach(snip => {
-                options.data[snip.tagLine] = null;
-                taglines.push({ id: snip._id, tagline: snip.tagLine });
+			data = data.filter(snip => snip.tagLine);
+			data.forEach(snip => {
+				options.data[snip.tagLine] = null;
+				taglines.push({ id: snip._id, tagline: snip.tagLine });
 			});
 			
 			// Must update search with autocomplete option because onChange event
 			// isn't triggered when an autocompleted option is clicked.
-			options.onAutocomplete = (event) => setSearch(event);
+			options.onAutocomplete = (event) => { setSearch(event); setMatch(true) };
+			options.limit = 5;
 
-            setOptions(options);
-            setTaglines(taglines);
-        }
-        fetchData();
+			setOptions(options);
+			setTaglines(taglines);
+		}
+		fetchData();
 
-	}, []);
+}, []);
 	
 	function handleChange(event) {
 		event.preventDefault();
 		setSearch(event.target.value);
 	}
 
-	function handleAutoClick(event) {
-		event.preventDefault();
-		if (search === '') { event.target.value = '' }
+	function handleKeyDown(event) {
+		const entered = event.target.value.toLowerCase();
+		const tagline = taglines.find(obj => obj.tagline.toLowerCase() === entered);
+		const partial = taglines.filter(obj => obj.tagline.toLowerCase().includes(entered));
+		
+		if (event.key === 'Enter' && tagline) { setRedirect('/snips/' + tagline.id); return; }
+		if ((event.keyCode >= 65 && event.keyCode <= 90)) {
+			(partial.length > 0) ? setMatch(true) : setMatch(false);
+		}
 	}
 
-    function handleKeyDown(event) {
-        if (event.key === 'Enter') {
-            const entered = event.target.value.toLowerCase();
-            const tagline = taglines.find(obj => obj.tagline.toLowerCase() === entered);
-
-            if (tagline) { setRedirect('/snips/' + tagline.id); }
-            return;
-		}
-    }
-
-    function handleClick(event) {
+  function handleClick(event) {
 		event.preventDefault();
 		const entered = search.toLowerCase();
 		const tagline = taglines.find(obj => obj.tagline.toLowerCase() === entered);
 
 		if (tagline) { setRedirect('/snips/' + tagline.id); return; }
-		if (options.data[tagline] === undefined) { setSearch('') }
-    }
+		if (options.data[tagline] === undefined) { setSearch(''); setMatch(false) }
+  }
 
-    return (
+  return (
 		<>
 			{(redirect !== null) ? <Redirect push to={redirect} /> : <></>}
 			<Row>
@@ -77,7 +76,6 @@ function SearchForm(props) {
 									style={{ width: '100%' }}
 									onKeyDown={handleKeyDown}
 									onChange={handleChange}
-									onClick={handleAutoClick}
 								/>
 							</Col>
 							<Col s={1} className='no-padding-left'>
@@ -86,11 +84,12 @@ function SearchForm(props) {
 								</button>
 							</Col>
 						</Row>
+						{(!match && search) ? <div className='search-error'>No matches were found.</div> : <></>}
 					</form>
 				</Col>
 			</Row>
 		</>
-    );
+  );
 };
 
 export default SearchForm;

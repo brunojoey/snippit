@@ -1,3 +1,7 @@
+.username-row {
+  margin-bottom: 8px;
+}
+
 .login-card {
   margin-top: 32px;
   border: 1px solid #41ead4;
@@ -17,6 +21,7 @@
 
 .input-field input.login-input {
   padding-left: 8px;
+  margin-bottom: 0px;
   border: 1px solid #41ead4;  
   border-radius: 3px;
   color: #21807e;
@@ -27,10 +32,11 @@
   padding-left: 8px;
 }
 
- /* label focus color */
- .input-field input.login-input:focus + label {
+/* label focus color */
+.input-field input.login-input:focus + label {
   color: #21807e !important;
 }
+
 /* label underline focus color */
 .input-field input.login-input:focus {
   border-bottom: 1px solid #21807e !important;
@@ -63,13 +69,34 @@
   /*Custom Color Of Indicator*/
 }
 
-
-
 .login-submit {
   position: absolute;
   left: 0;
   right: 0;
-  bottom: 12px;
+  bottom: 24px;
   margin-left: auto;
   margin-right: auto;
+}
+
+.login-error {
+  font-size: 10px;
+  margin-left: 8px;
+  color: #eb4511;
+  transform: translateY(-12px);
+}
+
+.login-error-message {
+  font-size: 10px;
+  margin: 0px 0px 8px 8px;
+  color: #eb4511;
+}
+
+.login-error-ul {
+  transform: translateY(-12px);
+}
+
+.login-error-li {
+  font-size: 10px;
+  margin-left: 16px;
+  color: #eb4511;
 }

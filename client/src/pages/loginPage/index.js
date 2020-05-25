@@ -1,5 +1,5 @@
 
-import React, { useContext, useEffect } from 'react';
+import React, { useContext } from 'react';
 import { Redirect } from 'react-router-dom';
 import { Row, Col, Tabs, Tab, Container } from 'react-materialize';
 import Signup from '../../components/Signup';
@@ -27,7 +27,7 @@ function Login(props) {
                   responsiveThreshold: Infinity,
                   swipeable: false
                 }}
-                title='Login'
+                title='&#123;&#123;&nbsp;Login&nbsp;&#125;&#125;'
               >
                 <LoginComp />
               </Tab>
@@ -39,7 +39,7 @@ function Login(props) {
                   responsiveThreshold: Infinity,
                   swipeable: false
                 }}
-                title='Signup'
+                title='&#123;&#123;&nbsp;Signup&nbsp;&#125;&#125;'
               >
                 <Signup />
               </Tab>

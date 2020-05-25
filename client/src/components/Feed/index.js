@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Row, Col } from 'react-materialize';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faUserCircle } from '@fortawesome/free-solid-svg-icons';
 import snipsAPI from '../../utils/snipsAPI';
 import usersAPI from '../../utils/usersAPI';
 import { languages } from '../../utils/languages';
@@ -9,8 +11,6 @@ import './style.css';
 function Feed() {
   const [userState, setUserState] = useState(null);
   const [snipState, setSnipState] = useState(null);
-
-  console.log('LANGUAGES: ', languages);
 
   async function asyncForEach(array, callback) {
     for (let index = 0; index < array.length; index++) {
@@ -22,7 +22,8 @@ function Feed() {
     async function fetchData() {
       let { data } = await snipsAPI.getSnips();
       let users = [];
-      
+      data = data.filter(snip => snip.tagLine);
+
       // Get users for each snip.
       data = data.splice(0, 10);
       await asyncForEach(data, async (snips) => {
@@ -40,7 +41,8 @@ function Feed() {
   function renderSnips() {
     return (
       <>
-        <h2 className='center'>Recent Snips</h2>
+        <h2 className='feed-heading'><span>console.log(</span>Recent Snips<span>);</span></h2>
+        <hr></hr>
         {snipState.map((snip, index) => {
           let user;
           let language = languages.find(language => language.name === snip.language);
@@ -52,22 +54,26 @@ function Feed() {
                 {(user) 
                   ? 
                   <Link to={`/users/${user._id}`}>
-                    <img 
-                      src={user.imageUrl}
-                      alt='Avatar' 
-                      className='feed-user-icon' 
-                      style={{ width: '32px', height: '32px'  }}
-                    />
+                    {(user.imageUrl)
+                      ?
+                        <img 
+                          src={user.imageUrl}
+                          alt='Avatar' 
+                          className='feed-user-icon' 
+                        />
+                      :
+                        <FontAwesomeIcon size='3x' className='feed-user-icon' icon={faUserCircle}></FontAwesomeIcon>
+                    }
                   </Link>
                   :
-                  <p>Icon</p>
+                  <p>Loader</p>     
                 }
               </Col>
               <Col s={8} l={10} className='feed-item-link'>
                 <Link to={`/snips/${snip._id}`}>{snip.tagLine}</Link>
               </Col>
-              <Col s={2} l={1} className='feed-item-language-icon'>
-                <div>{language.icon}</div>
+              <Col s={2} l={1}>
+                <div className='feed-item-language-icon'>{language.icon}</div>
               </Col>
             </Row>
           );
