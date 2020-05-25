@@ -1,0 +1,44 @@
+#searchInput ul.autocomlete-content, #searchInput ul.dropdown-content {
+  display: inline-block;
+  left: 2% !important;
+  top: 50px !important;
+  width: 96% !important;
+}
+
+.row .col .input-field {
+  float: none;
+  clear: both;
+}
+
+.no-padding-right {
+  padding-right: 0 !important;
+}
+
+.no-padding-left {
+  padding-left: 0 !important;
+}
+
+.search-button {
+  margin-top: 24px;
+  margin-left: -8px;
+  padding: 4px 8px;
+  color: #21807e;
+  background-color: none;
+  font-size: 12px;
+  border: none;
+}
+
+.search-button {
+  transition-duration: 0.4s;
+}
+
+.search-button:hover, .search-button:active:focus {
+  color: #41ead4;
+  background: none !important;
+}
+
+.search-error {
+  font-size: 12px;
+  color: #eb4511;
+  transform: translate(16px, -40px);
+}

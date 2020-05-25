@@ -1,0 +1,26 @@
+.nav-user-icon {
+  border-radius: 50%;
+  width: 26px;
+  height: 26px;
+  transform: translateY(1px);
+}
+
+.nav-username {
+  display: inline-block;
+  margin-left: 8px;
+  transform: translateY(-7px);
+}
+
+.svg-inline--fa.fa-w-16.nav-user-fa-icon {
+  border-radius: 50%;
+  width: 26px;
+  height: 26px;
+  transform: none;
+}
+
+.nav-username-fa {
+  display: inline-block;
+  margin-left: 8px;
+  margin-right: 8px;
+  transform: translateX(2px);
+}

@@ -1,21 +1,26 @@
 import React, { useContext } from "react";
 import { Link } from 'react-router-dom';
-import { Navbar, Icon, Dropdown, Divider, Chip } from "react-materialize";
+import { Navbar, Icon, Dropdown, Divider } from "react-materialize";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faUserCircle } from '@fortawesome/free-solid-svg-icons';
 import statusAPI from '../../utils/statusAPI';
 import StatusContext from '../../utils/StatusContext';
+import './style.css';
 
-function NavDrop() {
+function NavDrop(props) {
     const { status, updateStatus } = useContext(StatusContext);
 
     async function handleLogout() {
         const { data } = await statusAPI.logout();
+
         updateStatus(data);
+        props.setPath('/home');
     }
 
     return (
         <Navbar
             alignLinks="right"
-            brand={<a className="brand-logo" href="/home"> Snippit</a>}
+            brand={<a className="brand-logo" href="/home"><span>{`</`}</span>Snippit<span>></span></a>}
             centerLogo
             id="mobile-nav"
             menuIcon={<Icon>menu</Icon>}
@@ -48,7 +53,16 @@ function NavDrop() {
                     onOpenStart: null,
                     outDuration: 250
                 }}
-                trigger={<span className="fa fa-caret-down"><img src={`${status.imageUrl}`} alt='User Icon' height='50' className='circle'></img></span>}
+                trigger={
+                    <button className='btn-rounded red-btn'>
+                        {(status.imageUrl)
+                            ?
+                            <><img src={`${status.imageUrl}`} alt='User Icon' className='nav-user-icon' /><div className='nav-username'>{status.username}</div></>
+                            :
+                            <><FontAwesomeIcon size='3x' className='nav-user-fa-icon' icon={faUserCircle}></FontAwesomeIcon><div className='nav-username-fa'>{status.username}</div></>
+                        }                       
+                    </button>
+                }
             >
                 <Link to={`/users/${status._id}`}>Profile</Link>
                 <Link to='/home'>Feed</Link>

@@ -1,57 +1,50 @@
 import React, { useState, useEffect } from "react";
 import AceEditor from "react-ace";
-
 import "ace-builds/src-noconflict/mode-javascript";
 import 'ace-builds/src-noconflict/mode-html';
 import 'ace-builds/src-noconflict/theme-cobalt';
 import 'ace-builds/src-noconflict/theme-clouds';
+import './style.css';
 
-function Editor(props) {
+function Editor({ readOnly, code, language, handleChange }) {
   const [options, setOptions] = useState({
-    height: '',
     value: '',
-    theme: ''
+    theme: '',
   })
 
   useEffect(() => {
-    if (props.readOnly) {
+    if (readOnly) {
       setOptions({
         ...options,
-        height: '400px',
-        value: props.code,
-        theme: 'cobalt'
+        value: code,
+        theme: 'cobalt',
       })
     } else {
       setOptions({
         ...options,
-        height: '200px',
-        theme: 'clouds'
+        theme: 'clouds',
       })
     }
   }, []);
 
-  function onChange(newValue, event) {
-    console.log("change", newValue);
-    console.log('event: ', event)
-  }
-
   // Render editor
   return (
     <AceEditor
-      readOnly={props.readOnly}
-      mode={props.language}
+      readOnly={readOnly}
+      mode={language}
       value={options.value}
-      height={options.height}
       theme={options.theme}
-      onChange={props.handleChange}
+      minLines={5}
+      maxLines={30}
+      onChange={handleChange}
       name='editor'
       width='auto'
+      placeholder='Enter code.'
       highlightActiveLine={true}
       editorProps={{ $blockScrolling: true }}
-      enableBasicAutocompletion={true}
-      enableLiveAutocompletion={true}
-      enableSnippets={true}
       showLineNumbers={true}
+      showGutter={true}
+      showPrintMargin={false}
       tabSize={4}
     />
   );

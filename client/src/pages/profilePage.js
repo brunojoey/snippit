@@ -6,7 +6,7 @@ import { Row } from 'react-materialize';
 function Profile() {
   return (
     <>
-      <div className="containter" id="home-container">
+      <div className="containter home-container">
         <Row>
           <ProfilePanel />
         </Row>

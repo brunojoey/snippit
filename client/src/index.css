@@ -20,10 +20,6 @@ code {
   background-color: #7BDFF2;
 }
 
-#home-container {
-  text-align: center;
-}
-
 .tabs .tab a{
   color:#000;
 } /*Black color to the text*/
@@ -78,4 +74,69 @@ code {
 #submit-search {
   text-align: center;
   margin: 16px auto 0px auto;
+}
+
+.center {
+  text-align: center;
+}
+
+.v-align {
+  /* only works with partent element display: table */
+  vertical-align: middle;
+}
+
+.right {
+  text-align: right;
+}
+
+.form-heading {
+  font-size: 1.35rem;
+  text-align: center;
+  margin-top: 12px;
+  margin-bottom: 8px;
+}
+
+.btn-rounded {
+  height: 36px;
+  width: auto;
+  margin: 8px;
+  border-radius: 36px;
+  display: table-cell;
+  vertical-align: middle;
+}
+
+.red-btn {
+  color: white;
+  background-color: firebrick;
+  border: 2px solid firebrick;
+}
+
+.nav-btn {
+  height: 32px;
+  width: 108px;
+  margin: auto 4px;
+  border-radius: 32px;
+  display: table-cell;
+  vertical-align: middle;
+  text-align: center;
+}
+
+.nav-btn-text {
+  display: block;
+  margin-top: -18px;
+}
+
+@media only screen and (max-width: 992px) {
+  .nav-btn {
+    margin: 2px;
+    width: auto;
+    border-radius: 0;
+    display: block;
+    text-align: center;
+  }
+
+  .nav-btn-text {
+    margin: 0;
+    color: white;
+  }
 }

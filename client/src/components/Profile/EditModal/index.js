@@ -2,18 +2,18 @@ import React from 'react';
 import { Modal, TextInput, Button, object } from 'react-materialize';
 
 function UserEdit() {
-    // const [editing, setEditing] = useState('false');
+    const [editing, setEditing] = useState(false);
 
-    // const handleEdit = (event) => {
-    //     let edit = event.target.Button
-    //     let editInfo = [oldUserName, oldBio, oldGithub, oldLinkedIn];
-    //     if (editing) {
-    //         let newUserName = '';
-    //         let newBio = '';
-    //         let newGithub = '';
-    //         let newLinkedIn = '';
-    //     }
-    // };
+    const handleEdit = (event) => {
+        let edit = event.target.Button
+        let editInfo = [oldUserName, oldBio, oldGithub, oldLinkedIn];
+        if (editing) {
+            let newUserName = '';
+            let newBio = '';
+            let newGithub = '';
+            let newLinkedIn = '';
+        }
+    };
 
     return (
         <Modal

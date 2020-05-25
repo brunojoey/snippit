@@ -1,15 +1,102 @@
-.container {
-  padding-top: 2rem;
-  padding-bottom: 2rem;
-  vertical-align: middle;
-  text-align: center;
-  margin-right: auto;
-  margin-left: auto;
+.username-row {
+  margin-bottom: 8px;
+}
+
+.login-card {
+  margin-top: 32px;
+  border: 1px solid #41ead4;
+  border-radius: 2px;
+  background-color: #e6f7ff;
+  position: relative;
+  height: 416px;
 }
 
 .login-form {
-  margin-top: 48px;
-  border: 1px solid gray;
+  margin: 48px auto;
+}
+
+.login-form label {
+  margin-top: -.15rem;
+}
+
+.input-field input.login-input {
+  padding-left: 8px;
+  margin-bottom: 0px;
+  border: 1px solid #41ead4;  
+  border-radius: 3px;
+  color: #21807e;
+  background-color: #f3fffc;
+}
+
+.input-field label {
+  padding-left: 8px;
+}
+
+/* label focus color */
+.input-field input.login-input:focus + label {
+  color: #21807e !important;
+}
+
+/* label underline focus color */
+.input-field input.login-input:focus {
+  border-bottom: 1px solid #21807e !important;
+  box-shadow: 2px 2px 2px #21807e !important;
+}
+
+.login-tabs .tab a {
+  color: #41ead4 !important;
+  /*Custom Text Color*/
+}
+
+.login-tabs .tab a:hover {
+  background-color:#d4f8ef !important;
+  /*Custom Color On Hover*/
+}
+
+.login-tabs .tab a.active {
+  background-color: #d4f8ef !important;
+}
+
+.login-tabs .tab a:focus.active  {
+  color:#41ead4 !important;
+  /*Custom Text Color While Active*/
+  background-color: #d4f8ef;
+  /*Custom Background Color While Active*/
+}
+
+.login-tabs .indicator {
+  background-color:#21807e !important;
+  /*Custom Color Of Indicator*/
+}
+
+.login-submit {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 24px;
   margin-left: auto;
   margin-right: auto;
+}
+
+.login-error {
+  font-size: 10px;
+  margin-left: 8px;
+  color: #eb4511;
+  transform: translateY(-12px);
+}
+
+.login-error-message {
+  font-size: 10px;
+  margin: 0px 0px 8px 8px;
+  color: #eb4511;
+}
+
+.login-error-ul {
+  transform: translateY(-12px);
+}
+
+.login-error-li {
+  font-size: 10px;
+  margin-left: 16px;
+  color: #eb4511;
 }

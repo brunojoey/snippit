@@ -1,12 +1,51 @@
-textarea {
-  margin-top: 4px;
-  padding: 8px 8px;
-  resize: none;
-  height: 200px;
-  background: white;
+.no-bottom {
+  padding-bottom: 0px;
+  margin-bottom: 0px;
+  border-bottom: 0px;
 }
 
-.no-bottom {
-  border-bottom: 0px;
-  padding-bottom: 0px;
+.snip-page-container {
+  border-left: 1px solid #b3b3b3;
+  border-right: 1px solid #b3b3b3;
+}
+
+.snip-header {
+  font-size: 1.25rem;
+  margin: 24px auto 12px auto;
+}
+
+.snip-content {
+  background-color: white;
+  padding-right: 8px;
+  border-right: 2px solid #b3b3b3;
+}
+
+.snip-body {
+  font-size: 1rem;
+  margin: 0px auto 12px auto;
+}
+
+.snip-page-button {
+  margin: 4px 8px 8px 4px;
+  width: 108px;
+}
+
+.snip-page-button-text {
+  font-size: 18px;
+  margin-right: 8px;
+}
+
+.snip-response-header {
+  text-align: center;
+  font-size: 1.25rem; 
+  margin: 8px auto;
+}
+
+.response-user-icon {
+  border-radius: 50%;
+}
+
+.response-body {
+  font-size: 1rem;
+  margin: 0px auto 12px auto;
 }
