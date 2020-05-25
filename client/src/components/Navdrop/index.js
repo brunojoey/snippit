@@ -54,7 +54,7 @@ function NavDrop(props) {
                     outDuration: 250
                 }}
                 trigger={
-                    <button className='btn-rounded nav-btn'>
+                    <button className='btn-rounded red-btn'>
                         {(status.imageUrl)
                             ?
                             <><img src={`${status.imageUrl}`} alt='User Icon' className='nav-user-icon' /><div className='nav-username'>{status.username}</div></>

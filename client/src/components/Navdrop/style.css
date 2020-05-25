@@ -1,18 +1,3 @@
-.btn-rounded {
-  height: 36px;
-  width: auto;
-  border-radius: 36px;
-  display: table-cell;
-  vertical-align: middle;
-}
-
-.nav-btn {
-  color: white;
-  background-color: firebrick;
-  border: 2px solid firebrick;
-  margin-right: 12px;
-}
-
 .nav-user-icon {
   border-radius: 50%;
   width: 26px;

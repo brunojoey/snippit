@@ -27,7 +27,7 @@ function Login(props) {
                   responsiveThreshold: Infinity,
                   swipeable: false
                 }}
-                title='Login'
+                title='&#123;&#123;&nbsp;Login&nbsp;&#125;&#125;'
               >
                 <LoginComp />
               </Tab>
@@ -39,7 +39,7 @@ function Login(props) {
                   responsiveThreshold: Infinity,
                   swipeable: false
                 }}
-                title='Signup'
+                title='&#123;&#123;&nbsp;Signup&nbsp;&#125;&#125;'
               >
                 <Signup />
               </Tab>

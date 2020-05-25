@@ -90,3 +90,18 @@ code {
   margin-top: 12px;
   margin-bottom: 8px;
 }
+
+.btn-rounded {
+  height: 36px;
+  width: auto;
+  border-radius: 36px;
+  display: table-cell;
+  vertical-align: middle;
+}
+
+.red-btn {
+  color: white;
+  background-color: firebrick;
+  border: 2px solid firebrick;
+  margin-right: 12px;
+}

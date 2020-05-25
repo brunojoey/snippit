@@ -52,7 +52,7 @@ function Login() {
           {(state.message.includes('Password')) ? <div className='login-error'>{state.message}</div> : <></>}
         </Col>
       </Row>
-      <Button className='login-submit' node='button' type='submit' waves='light' onClick={handleSubmit}>Submit</Button>
+      <button className='login-submit btn-rounded red-btn' style={{ width: '96px' }} type='submit' onClick={handleSubmit}>[ ...Submit ]</button>
     </form>
   );
 }

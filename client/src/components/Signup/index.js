@@ -98,10 +98,7 @@ function Login() {
             }
           </Col>
         </Row>
-        <Row>
-          {(state.message === '') ? <ProfileImage /> : <></>}
-        </Row>
-        <Button className='login-submit' node='button' type='submit' waves='light' onClick={handleSubmit}>Submit</Button>
+        <button className='login-submit btn-rounded red-btn' style={{ width: '96px' }} type='submit' onClick={handleSubmit}>[ ...Submit ]</button>
       </form>
     </>
   );

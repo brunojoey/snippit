@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Navbar, Icon } from 'react-materialize';
+import { Navbar, Icon, NavItem, Button } from 'react-materialize';
 
 function Nav(props) {
   const path = props.path;
@@ -25,14 +25,18 @@ function Nav(props) {
       }}
     >
       {(path !== '/login' && path !== '/signup') 
-        ? 
-          <Link to='/login' style={{ width: '72px' }} onClick={() => props.setPath('/login')}>Login</Link> 
+        ?
+          <Link to='/login' type='button' className='btn-rounded red-btn' onClick={() => props.setPath('/login')} style={{ width: '108px' }}>
+            <div style={{ textAlign: 'center', height: '36px', marginTop: '-16px' }}>$&#123;&#32;Login&#32;&#125;</div>
+          </Link> 
         : 
           <></>
         }
       {(path !== '/login' && path !== '/signup')
         ? 
-          <Link to='/signup' style={{ marginRight: '12px', width: '72px'}} onClick={() => props.setPath('/signup')}>Signup</Link> 
+          <Link to='/signup' type='button' onClick={() => props.setPath('/signup')} className='btn-rounded red-btn' style={{ width: '108px' }}>
+            <div style={{ textAlign: 'center', height: '36px', marginTop: '-16px' }}>$&#123;&#32;Signup&#32;&#125;</div>
+          </Link> 
         : 
           <></>
         }
