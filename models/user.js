@@ -19,6 +19,8 @@ const UserSchema = new Schema({
     maxLength: 20
   },
   biography: { type: String, require: false },
+  github: { type: String, require: false },
+  linkedin: { type: String, require: false },
   imageUrl: { type: String, require: false },
   points: { type: Number, require: false, default: 0 },
   snips: [{
