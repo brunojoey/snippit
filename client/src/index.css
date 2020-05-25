@@ -80,6 +80,11 @@ code {
   text-align: center;
 }
 
+.v-align {
+  /* only works with partent element display: table */
+  vertical-align: middle;
+}
+
 .right {
   text-align: right;
 }
@@ -94,6 +99,7 @@ code {
 .btn-rounded {
   height: 36px;
   width: auto;
+  margin: 8px;
   border-radius: 36px;
   display: table-cell;
   vertical-align: middle;
@@ -103,5 +109,34 @@ code {
   color: white;
   background-color: firebrick;
   border: 2px solid firebrick;
-  margin-right: 12px;
+}
+
+.nav-btn {
+  height: 32px;
+  width: 108px;
+  margin: auto 4px;
+  border-radius: 32px;
+  display: table-cell;
+  vertical-align: middle;
+  text-align: center;
+}
+
+.nav-btn-text {
+  display: block;
+  margin-top: -18px;
+}
+
+@media only screen and (max-width: 992px) {
+  .nav-btn {
+    margin: 2px;
+    width: auto;
+    border-radius: 0;
+    display: block;
+    text-align: center;
+  }
+
+  .nav-btn-text {
+    margin: 0;
+    color: white;
+  }
 }
