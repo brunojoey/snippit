@@ -2,6 +2,7 @@ import React, { useState, useContext } from "react";
 import { Row, Col, Button } from 'react-materialize';
 import StatusContext from '../../utils/StatusContext';
 import ProfileImage from '../Cloudinary/index';
+import UserEdit from './EditModal';
 import Feed from "../Feed";
 import './style.css';
 
@@ -35,19 +36,19 @@ function ProfilePanel() {
     return (
         <div>
             <Row>
-                <Col s={10}>
+                <Col s={6} lg={10}>
+                    <UserEdit />
                     <h3 updateStatus={getUser}>{status.username}</h3>
                 </Col>
             </Row>
             <Row>
-                <Col s={4}>
+                <Col s={2} lg={4}>
                     <ProfileImage />
                 </Col>
-                <Col s={8}>
-                    <Button node='button' type='submit' waves='light' onClick={handleEdit}>Edit</Button>
+                <Col s={4} lg={6}>
                     <p updateStatus={getBio}>{status.biography}</p>
-                    <a href="GITHUB">GITHUB</a>
-                    <a href="LINKEDIN">LinkedIn</a>
+                    <a href='GITHUB'>My Github</a>
+                    <a href='LINKEDIN'>My LinkedIn</a>
                 </Col>
             </Row>
             <Row>
