@@ -71,6 +71,7 @@ function SearchForm(props) {
 						<Row>
 							<Col s={11} className='no-padding-right'>
 								<Autocomplete
+									className='search-input'
 									options={options}
 									placeholder="What's your question?"
 									style={{ width: '100%' }}
