@@ -90,7 +90,7 @@ function Form({ isResponse, language, snipId, responses, setForm, setResponses, 
   
   function displayBlockBtn() {
     return (
-      <button type='button' name='code-btn' className='form-button button-with-icon' onClick={() => setBlock(true)}>
+      <button type='button' name='code-btn' className='btn-rounded red-btn button-with-icon' style={{ width: '108px' }} onClick={() => setBlock(true)}>
         <span className='form-button-text'>Code</span>
         <FontAwesomeIcon size='2x' icon={faCode} className='form-button-icon'></FontAwesomeIcon>
       </button>
@@ -99,7 +99,7 @@ function Form({ isResponse, language, snipId, responses, setForm, setResponses, 
 
   function removeBlockBtn() {
     return (
-      <button type='button' name='minus-btn' className='form-button button-with-icon' onClick={() => setBlock(false)}>
+      <button type='button' name='minus-btn' className='btn-rounded red-btn button-with-icon' style={{ width: '108px' }} onClick={() => setBlock(false)}>
         <span className='form-button-text'>Code</span>
         <FontAwesomeIcon size='2x' icon={faMinus} className='form-button-icon'></FontAwesomeIcon>
       </button >
@@ -156,14 +156,16 @@ function Form({ isResponse, language, snipId, responses, setForm, setResponses, 
       <>
         <form method='post'>
           {(!state.isResponse) ? showAdditional() : <></> }
-          <button type='submit' name='submit' className='form-button button-with-icon' onClick={handleSubmit}>
-            <span className='form-button-text'>Snip It</span>
-            <FontAwesomeIcon size='2x' icon={faStickyNote} className='form-button-icon'></FontAwesomeIcon>
-          </button>
-          {(block) ? removeBlockBtn() : displayBlockBtn() }
           <textarea name='body' className='form-textarea' onChange={handleChange} onKeyDown={handleKeyDown}></textarea>
           {(block) ? displayBlock() : <></> }
           {(message.includes('Body')) ? <div className='snip-body-error'>{message}</div> : <></>}
+          <div className='center'>
+            <button type='submit' name='submit' className='btn-rounded red-btn button-with-icon' style={{ width: '108px' }} onClick={handleSubmit}>
+              <span className='form-button-text'>Snip It</span>
+              <FontAwesomeIcon size='2x' icon={faStickyNote} className='form-button-icon'></FontAwesomeIcon>
+            </button>
+            {(block) ? removeBlockBtn() : displayBlockBtn() }
+          </div>
         </form>
       </>
     );
