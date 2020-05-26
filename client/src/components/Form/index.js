@@ -90,7 +90,7 @@ function Form({ isResponse, language, snipId, responses, setForm, setResponses, 
   
   function displayBlockBtn() {
     return (
-      <button type='button' name='code-btn' className='btn-rounded red-btn button-with-icon' style={{ width: '108px' }} onClick={() => setBlock(true)}>
+      <button type='button' name='code-btn' className='btn-rounded-light snip-form-btn' style={{ width: '108px' }} onClick={() => setBlock(true)}>
         <span className='form-button-text'>Code</span>
         <FontAwesomeIcon size='2x' icon={faCode} className='form-button-icon'></FontAwesomeIcon>
       </button>
@@ -99,7 +99,7 @@ function Form({ isResponse, language, snipId, responses, setForm, setResponses, 
 
   function removeBlockBtn() {
     return (
-      <button type='button' name='minus-btn' className='btn-rounded red-btn button-with-icon' style={{ width: '108px' }} onClick={() => setBlock(false)}>
+      <button type='button' name='minus-btn' className='btn-rounded-light snip-form-btn' style={{ width: '108px' }} onClick={() => setBlock(false)}>
         <span className='form-button-text'>Code</span>
         <FontAwesomeIcon size='2x' icon={faMinus} className='form-button-icon'></FontAwesomeIcon>
       </button >
@@ -112,9 +112,9 @@ function Form({ isResponse, language, snipId, responses, setForm, setResponses, 
       <>
         <Row className='no-bottom'>
             <Col m={8}>
-              <TextInput className='tagLine' name='tagLine' placeholder="Tagline goes here." noLayout onChange={handleChange}/>
+              <TextInput className='snip-form-tagline' name='tagLine' placeholder="Tagline goes here." noLayout onChange={handleChange}/>
             </Col>
-            <Col m={4}>
+            <Col m={4} className='snip-form-language'>
               <Select
                 name='language'
                 id='select-language'
@@ -122,7 +122,7 @@ function Form({ isResponse, language, snipId, responses, setForm, setResponses, 
                 onChange={handleChange}
                 value='javascript'
                 options={{
-                  classes: '',
+                  classes: 'form-dropdown-txt',
                   dropdownOptions: {
                     alignment: 'left',
                     autoTrigger: true,
@@ -154,13 +154,13 @@ function Form({ isResponse, language, snipId, responses, setForm, setResponses, 
   function renderForm() {
     return (
       <>
-        <form method='post'>
+        <form method='post' className='snip-form'>
           {(!state.isResponse) ? showAdditional() : <></> }
           <textarea name='body' className='form-textarea' onChange={handleChange} onKeyDown={handleKeyDown}></textarea>
           {(block) ? displayBlock() : <></> }
           {(message.includes('Body')) ? <div className='snip-body-error'>{message}</div> : <></>}
           <div className='center'>
-            <button type='submit' name='submit' className='btn-rounded red-btn button-with-icon' style={{ width: '108px' }} onClick={handleSubmit}>
+            <button type='submit' name='submit' className='btn-rounded-light snip-form-btn' style={{ width: '108px' }} onClick={handleSubmit}>
               <span className='form-button-text'>Snip It</span>
               <FontAwesomeIcon size='2x' icon={faStickyNote} className='form-button-icon'></FontAwesomeIcon>
             </button>

@@ -98,7 +98,7 @@ function Login() {
             }
           </Col>
         </Row>
-        <button className='login-submit btn-rounded red-btn' style={{ width: '96px' }} type='submit' onClick={handleSubmit}>[ ...Submit ]</button>
+        <button className='login-submit btn-rounded-light login-btn' style={{ width: '96px' }} type='submit' onClick={handleSubmit}>[ ...Submit ]</button>
       </form>
     </>
   );
