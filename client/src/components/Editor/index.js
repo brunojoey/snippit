@@ -27,6 +27,11 @@ function Editor({ readOnly, code, language, handleChange }) {
     }
   }, []);
 
+  function onChange(newValue) {
+    setOptions({ ...options, value: newValue });
+    handleChange(newValue);
+  }
+
   // Render editor
   return (
     <AceEditor
@@ -36,7 +41,7 @@ function Editor({ readOnly, code, language, handleChange }) {
       theme={options.theme}
       minLines={5}
       maxLines={30}
-      onChange={handleChange}
+      onChange={onChange}
       name='editor'
       width='auto'
       placeholder='Enter code.'
