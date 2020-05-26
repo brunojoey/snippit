@@ -5,10 +5,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background: #ECE9E6;  /* fallback for old browsers */
-  background: -webkit-linear-gradient(to right, #FFFFFF, #ECE9E6);  /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(to right, #FFFFFF, #ECE9E6); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-
+  background: #fefdff;  /* fallback for old browsers */
 }
 
 code {
@@ -16,9 +13,9 @@ code {
     monospace;
 }
 
-.nav-wrapper {
+/* .nav-wrapper {
   background-color: #7BDFF2;
-}
+} */
 
 .tabs .tab a{
   color:#000;
@@ -54,23 +51,6 @@ code {
   font-size: 25px;
 }
 
-.footer {
-  background-color: #86CDCF;
-  color: white;
-  bottom: 0;
-}
-
-.btn {
-  text-align: center;
-  margin-right: 15px;
-  margin-left: 15px;
-  background-color: #7bdff2;
-}
-
-.btn:hover {
-  background-color: #86CDCF;
-}
-
 #submit-search {
   text-align: center;
   margin: 16px auto 0px auto;
@@ -96,29 +76,103 @@ code {
   margin-bottom: 8px;
 }
 
-.btn-rounded {
-  height: 36px;
-  width: auto;
+.btn-light {
+  text-align: center;
+  margin-right: 15px;
+  margin-left: 15px;
+  background-color: #084c61;
+  color: #ffc857;
+}
+
+.btn-dark {
+  text-align: center;
+  margin-right: 15px;
+  margin-left: 15px;
+  background-color: #3d9aae;
+  color: #ffc857;
+}
+
+.btn-light:hover {
+  background-color: #8d99ae;
+}
+
+.btn-dark:hover {
+  background-color: #8d99ae;
+}
+
+.btn-rounded-light {
+  height: 32px;
+  width: 108px;
   margin: 8px;
-  border-radius: 36px;
+  border: 1px solid #ffc857;
+  border-radius: 32px;
   display: table-cell;
   vertical-align: middle;
+  background-color: #084c61;
+  color: #ffc857;
 }
 
-.red-btn {
-  color: white;
-  background-color: firebrick;
-  border: 2px solid firebrick;
+.btn-rounded-dark {
+  height: 32px;
+  width: 108px;
+  margin: 8px;
+  border-radius: 32px;
+  display: table-cell;
+  vertical-align: middle;
+  background-color: #3d9aae;
+  color: #ffc857;
 }
 
-.nav-btn {
+.btn-rounded-light:hover {
+  background-color: #3d9aae;
+}
+
+.btn-rounded-dark:hover {
+  background-color: #084c61;
+}
+
+.nav-btn-light {
   height: 32px;
   width: 108px;
   margin: auto 4px;
+  border: 1px solid #ffc857;
   border-radius: 32px;
   display: table-cell;
   vertical-align: middle;
   text-align: center;
+  background-color: #084c61;
+  color: #ffc857;
+}
+
+.nav-btn-dark {
+  height: 32px;
+  width: 108px;
+  margin: auto 4px;
+  border: 1px solid #ffc857;
+  border-radius: 32px;
+  display: table-cell;
+  vertical-align: middle;
+  text-align: center;
+  background-color: #3d9aae;
+  color: #ffc857;
+}
+
+.nav-btn-light:hover {
+  background-color: #3d9aae;
+}
+
+.nav-btn-dark:hover {
+  background-color: #084c61;
+}
+
+.nav-btn-light:active, .nav-btn-light:focus {
+  color: #fefdff;
+  border-color: #fefdff;
+}
+
+.nav-btn-dark:active, .nav-btn-dark:focus {
+  color: #fefdff;
+  border-color: #fefdff;
 }
 
 .nav-btn-text {

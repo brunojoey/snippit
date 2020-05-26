@@ -1,5 +1,14 @@
 .footer {
-    background-color: #86CDCF;
-    color: white;
+    background-color: #3d99ae;
+    color: #fefdff;
     bottom: 0;
+  }
+  
+.footer-copyright, .footer-copyright a {
+    background-color: #084c61 !important;
+    color: #ffc857 !important;
+}
+
+.author-links a {
+    color: #fefdff;
 }

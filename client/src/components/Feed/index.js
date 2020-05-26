@@ -41,7 +41,7 @@ function Feed() {
   function renderSnips() {
     return (
       <>
-        <h2 className='feed-heading'><span>console.log(</span>Recent Snips<span>);</span></h2>
+        <h2 className='feed-heading'><span style={{ color: '#8d99ae'}}>console.log(</span><span style={{ color: '#084c61', fontWeight: 'bold' }}>Recent Snips</span><span style={{ color: '#8d99ae'}}>);</span></h2>
         <hr></hr>
         {snipState.map((snip, index) => {
           let user;

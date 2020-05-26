@@ -1,5 +1,5 @@
 .feed-item {
-  border-bottom: 1px solid #dbdbdb;
+  border-bottom: 1px solid #8d99ae;
   margin-top: 24px;
   margin-bottom: 24px;
   min-height: 48PX;
@@ -20,6 +20,7 @@
   border-radius: 50%;
   width: 32px;
   height: 32px;
+  border: 1px solid #3d99ae;
 }
 
 .rel-wrapper {
@@ -31,7 +32,7 @@
 }
 
 .feed-item-language-icon .fa-2x {
-  color: firebrick;
+  color: #3d99ae;
   width: 24px;
   height: 24px;
 }

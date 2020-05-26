@@ -1,4 +1,5 @@
 .nav-user-icon {
+  border: 1px solid #ffc857;
   border-radius: 50%;
   width: 26px;
   height: 26px;
@@ -12,6 +13,7 @@
 }
 
 .svg-inline--fa.fa-w-16.nav-user-fa-icon {
+  border: 1px solid #ffc857;
   border-radius: 50%;
   width: 26px;
   height: 26px;

@@ -7,8 +7,8 @@ function Foot() {
         <Footer
             className="footer"
             copyrights="Snippit &copy; 2020 The Snips."
-            links={<ul><li><a className="grey-text text-lighten-3" href="https://github.com/brunojoey">Joey Bruno</a></li><li><a className="grey-text text-lighten-3" href="https://github.com/tkennedy118">Tyler Kennedy</a></li><li><a className="grey-text text-lighten-3" href="https://github.com/brandoncansler">Brandon Cansler</a></li></ul>}
-            moreLinks={<a className="grey-text text-lighten-4 right" href="https://github.com/brunojoey/snippit">Project Repo</a>}
+            links={<ul className='author-links'><li><a href="https://github.com/brunojoey">Joey Bruno</a></li><li><a href="https://github.com/tkennedy118">Tyler Kennedy</a></li><li><a href="https://github.com/brandoncansler">Brandon Cansler</a></li></ul>}
+            moreLinks={<a className="right" href="https://github.com/brunojoey/snippit">Project Repo</a>}
         >
             <h5 className="white-text">
                 Snippit
