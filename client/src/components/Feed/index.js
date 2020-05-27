@@ -69,7 +69,7 @@ function Feed() {
                 }
               </Col>
               <Col s={8} l={10} className='feed-item-link'>
-                <Link to={`/snips/${snip._id}`}>{snip.tagLine}</Link>
+                <Link to={`/snips/${snip._id}`} style={{ color: '#8d99ae' }}>{snip.tagLine}</Link>
               </Col>
               <Col s={2} l={1}>
                 <div className='feed-item-language-icon'>{language.icon}</div>

@@ -177,9 +177,13 @@ function Snip(props) {
               ? 
                 renderResponses()
               : 
-                <div style={{ textAlign: 'center', marginTop: '48px' }}>
-                  <Loader type='Grid' color='#3d99ae' height={128} width={128} timeout={3000} />
-                </div>
+                (responses.length > 0) 
+                  ?
+                    <></>
+                  :
+                    <div style={{ textAlign: 'center', marginTop: '48px' }}>
+                      <Loader type='Grid' color='#3d99ae' height={64} width={64} timeout={3000} />
+                    </div>
             }
           </Col>
         </Row>
