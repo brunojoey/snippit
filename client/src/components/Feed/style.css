@@ -9,7 +9,9 @@
   font-size: 1.35rem;
   text-align: center;
   margin-top: 12px;
+  padding-bottom: 12px;
   margin-bottom: 8px;
+  border-bottom: 1px solid #8d99ae;
 }
 
 .feed-item-link {

@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { Link, Redirect } from 'react-router-dom';
 import { Container, Row, Col } from 'react-materialize';
+import Loader from 'react-loader-spinner';
 import StatusContext from '../../utils/StatusContext';
 import usersAPI from '../../utils/usersAPI';
 import snipsAPI from '../../utils/snipsAPI';
@@ -69,8 +70,11 @@ function Snip(props) {
 
     return (
       <>
-        <h2 className='snip-header'>{state.tagLine}</h2>
-        <hr></hr>
+        <h2 className='snip-header'>
+          <span style={{ color: '#8d99ae', fontSize: '1.25rem' }}>const q = "</span>
+            <span className='snip-header-txt' >{state.tagLine}</span>
+          <span style={{ color: '#8d99ae', fontSize: '1.25rem' }}>";</span>
+        </h2>
         <div className='snip-content'>
           <div className='snip-body'>{state.body}</div>
           <Editor language={state.language} code={code} readOnly={true} />
@@ -99,11 +103,10 @@ function Snip(props) {
       <Row>
         <Col s={12} m={8} offset='m2' style={{ paddingTop: '16px' }}>
           <div className='center'>
-            <button type='button' name='response-btn' className='snip-page-button' onClick={() => setForm(!form)}>
-              <span className='snip-page-button-text'>{(form) ? 'Clear' : 'Answer' }</span>
+            <button type='button' name='response-btn' className=' btn-rounded-light snip-form-btn response-btn' onClick={() => setForm(!form)}>
+              <span className='form-button-text'>{(form) ? 'Nevermind' : 'Add Answer' }</span>
             </button>
           </div>
-          <hr></hr>
         </Col>
         {(form) ? renderForm() : <></>}
       </Row>
@@ -113,38 +116,41 @@ function Snip(props) {
   function renderResponses() {
     return(
       <>
-        <h2 className='snip-response-header'>Responses</h2>
-        <hr></hr>
         <div className='snip-content'>
-          {responses.map((response, index) => {
-            const user = users.find(user => user._id === response.userId);
-
-            return(
-              <Row className='response-item' key={index}>
-                <Col s={12} m={2} l={1} className='center'>
-                  {(user) 
-                    ? 
-                    <Link to={`/users/${user._id}`}>
-                      <img 
-                        src={user.imageUrl}
-                        alt='Avatar' 
-                        className='response-user-icon' 
-                        style={{ width: '32px', height: '32px'  }}
-                      />
-                    </Link>
-                    :
-                    <p>Icon</p>
-                  }
-                </Col>
-                <Col s={12} m={10} l={11}>
-                  <div className='response-body'>{response.body}</div>
-                  <div>
-                    {(response.code.length > 0) ? <Editor language={response.language} code={response.code} readOnly={true} /> : <></>}
-                  </div>
-                </Col>
-              </Row>
-            );
-          })}
+          {(responses.length > 0)
+            ?
+              responses.map((response, index) => {
+                const user = users.find(user => user._id === response.userId);
+    
+                return(
+                  <Row className='response-item' key={index}>
+                    <Col s={12} m={2} l={1} className='center'>
+                      {(user) 
+                        ? 
+                          <Link to={`/users/${user._id}`}>
+                            <img 
+                              src={user.imageUrl}
+                              alt='Avatar' 
+                              className='response-user-icon' 
+                              style={{ width: '32px', height: '32px'  }}
+                            />
+                          </Link>
+                        :
+                          <></>
+                      }
+                    </Col>
+                    <Col s={12} m={10} l={11}>
+                      <div className='response-body'>{response.body}</div>
+                      <div>
+                        {(response.code.length > 0) ? <Editor language={response.language} code={response.code} readOnly={true} /> : <></>}
+                      </div>
+                    </Col>
+                  </Row>
+                );
+              })
+            :
+              <p className='center' style={{ color: '#3d99ae'}}>No tips for this snip yet.</p>
+          }
         </div>
       </>
     );
@@ -154,19 +160,29 @@ function Snip(props) {
     <>
       {(redirect !== null) ? <Redirect push to={redirect} /> : <></>}
       <Container>
-        <div className='snip-page-container'>
-          <Row>
-            <Col s={12} xl={10} offset='xl1'>
-              {(state) ? renderSnip() : <></>}
-            </Col>
-          </Row>
-          {(loggedIn) ? renderResponseBtn() : <></>}
-          <Row>
-            <Col s={12} xl={10} offset='xl1'>
-              {(responses && users) ? renderResponses() : <></>}
-            </Col>
-          </Row>
-        </div>
+        <Row style={{ marginBottom: '0px' }}>
+          <Col s={12} xl={10} offset='xl1'>
+            {(state) ? renderSnip() : <></>}
+          </Col>
+        </Row>
+        {(loggedIn) ? renderResponseBtn() : <></>}
+        <Row>
+          <Col s={12} xl={10} offset='xl1'>
+          <h2 className='snip-response-header'>
+            <span style={{ color: '#8d99ae' }}>render(</span>
+              <span className='snip-header-txt'>Responses</span>
+            <span style={{ color: '#8d99ae' }}>);</span>
+          </h2>
+            {(responses && users) 
+              ? 
+                renderResponses()
+              : 
+                <div style={{ textAlign: 'center', marginTop: '48px' }}>
+                  <Loader type='Grid' color='#3d99ae' height={128} width={128} timeout={3000} />
+                </div>
+            }
+          </Col>
+        </Row>
       </Container>
     </>
   );

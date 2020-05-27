@@ -9,7 +9,7 @@ function Nav(props) {
 
   return (
     <Navbar
-      style={{ backgroundColor: '#084c61' }}
+      style={{ backgroundColor: '#084c61', paddingRight: '8px' }}
       alignLinks="right"
       brand={<a className="brand-logo" href="/home" style={{ color: '#ffc857' }}><span style={{ color: '#3d99ae' }}>{`</`}</span>Snippit<span style={{ color: '#3d99ae' }}>></span></a>}
       centerLogo

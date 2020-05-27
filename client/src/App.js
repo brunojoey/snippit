@@ -1,15 +1,17 @@
 import React, { useEffect, useState } from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import 'react-loader-spinner/dist/loader/css/react-spinner-loader.css';
+import Nav from './components/Nav';
+import Navdrop from './components/Navdrop';
 import statusAPI from './utils/statusAPI';
 import StatusContext from './utils/StatusContext';
 import TaglineContext from './utils/TaglineContext';
-import Nav from './components/Nav';
-import Navdrop from './components/Navdrop';
 import loginPage from './pages/loginPage/index';
 import profilePage from './pages/profilePage';
 import snipPage from './pages/snipPage/index';
 import editorPage from './pages/editorPage';
 import Home from './pages/Home';
+import Foot from './components/Footer';
 import './App.css';
 
 function App() {
@@ -48,19 +50,22 @@ function App() {
 
   return (
     <Router>
-      <StatusContext.Provider value={{ status, updateStatus }}>
-        {(status.status === false) ? <Nav path={path} setPath={setPath}/> : <Navdrop path={path} setPath={setPath}/>}
-        <TaglineContext.Provider value={{ taglines, updateTaglines }}>
-          <Switch>
-            <Route exact path='/users/:id' component={profilePage} />
-            <Route exact path='/snips/:id' component={snipPage} />
-            <Route exact path={['/login', '/signup']} component={loginPage} />
-            <Route exact path={['/', '/home', '/feed']} component={Home} />
-            <Route exact path='/editor' component={editorPage} />
-            <Route component={Home} />
-          </Switch>
-        </TaglineContext.Provider>
-      </StatusContext.Provider>
+      <div className='not-footer-wrap'>
+        <StatusContext.Provider value={{ status, updateStatus }}>
+          {(status.status === false) ? <Nav path={path} setPath={setPath}/> : <Navdrop path={path} setPath={setPath}/>}
+          <TaglineContext.Provider value={{ taglines, updateTaglines }}>
+            <Switch>
+              <Route exact path='/users/:id' component={profilePage} />
+              <Route exact path='/snips/:id' component={snipPage} />
+              <Route exact path={['/login', '/signup']} component={loginPage} />
+              <Route exact path={['/', '/home', '/feed']} component={Home} />
+              <Route exact path='/editor' component={editorPage} />
+              <Route component={Home} />
+            </Switch>
+          </TaglineContext.Provider>
+        </StatusContext.Provider>
+      </div>
+      <Foot />
     </Router>
   );
 }

@@ -5,7 +5,6 @@ import Feed from '../components/Feed';
 import Form from '../components/Form';
 import StatusContext from '../utils/StatusContext';
 import SearchForm from '../components/SearchForm';
-import Foot from '../components/Footer';
 
 function Home() {
     const { status } = useContext(StatusContext);
@@ -38,9 +37,6 @@ function Home() {
                     </Col>
                 </Row>
             </div>
-            <>
-            <Foot />
-            </>
         </>
     );
 };
