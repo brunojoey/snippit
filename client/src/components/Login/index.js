@@ -1,6 +1,6 @@
 import React, { useState, useContext, useEffect } from "react";
 import { Redirect } from 'react-router-dom';
-import { TextInput, Row, Col, Button } from "react-materialize";
+import { TextInput, Row, Col } from "react-materialize";
 import statusAPI from '../../utils/statusAPI';
 import StatusContext from '../../utils/StatusContext';
 import '../../pages/loginPage/style.css';
@@ -31,7 +31,7 @@ function Login() {
   
   async function handleSubmit(event) {
     event.preventDefault();
-    const { data } = await statusAPI.login(state);
+    const { data } = await statusAPI.login({ username: state.username, password: state.password });
 
     if (data.message) { setState({ ...state, message: data.message })}
     else { updateStatus(data); }
@@ -42,13 +42,13 @@ function Login() {
       {(redirect !== null ? <Redirect push to={redirect} /> : <></>)}
       <Row className='username-row'>
         <Col s={10} offset='s1'>
-          <TextInput className='login-input' id='username' name='username' label='Username' noLayout onChange={handleChange} onClick={handleClick}/>
+          <TextInput className='login-input' id='login-username' name='username' label='Username' noLayout onChange={handleChange} onClick={handleClick}/>
           {(state.message.includes('Username')) ? <div className='login-error'>{state.message}</div> : <></>}
         </Col>
       </Row>
       <Row style={{ transform: 'translateY(-20px)' }}>
         <Col s={10} offset='s1'>
-          <TextInput password className='login-input' id='password' name='password' label='Password' noLayout onChange={handleChange} onClick={handleClick}/>
+          <TextInput password className='login-input' id='login-password' name='password' label='Password' noLayout onChange={handleChange} onClick={handleClick}/>
           {(state.message.includes('Password')) ? <div className='login-error'>{state.message}</div> : <></>}
         </Col>
       </Row>

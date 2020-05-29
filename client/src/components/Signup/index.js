@@ -1,9 +1,8 @@
 import React, { useState, useContext, useEffect } from "react";
 import { Redirect } from 'react-router-dom';
-import { TextInput, Row, Col, Button } from "react-materialize";
+import { TextInput, Row, Col } from "react-materialize";
 import statusAPI from '../../utils/statusAPI';
 import StatusContext from '../../utils/StatusContext';
-import ProfileImage from "../Cloudinary";
 import '../../pages/loginPage/style.css';
 
 function Login() {
@@ -62,7 +61,7 @@ function Login() {
         {(redirect !== null) ? <Redirect push to={redirect} /> : <></>}
         <Row className='username-row'>
           <Col s={10} offset='s1'>
-            <TextInput className='login-input' id='username' name='username' label='Username' noLayout onChange={handleChange} onClick={handleClick}/>
+            <TextInput className='login-input' id='signup-username' name='username' label='Username' noLayout onChange={handleChange} onClick={handleClick}/>
             {(message.includes('Username')) 
               ? 
                 <div className='login-error'>
@@ -81,7 +80,7 @@ function Login() {
         </Row>
         <Row style={{ transform: 'translateY(-20px)' }}>
           <Col s={10} offset='s1'>
-            <TextInput password className='login-input' id='password' name='password' label='Password' noLayout onChange={handleChange} onClick={handleClick}/>
+            <TextInput password className='login-input' id='signup-password' name='password' label='Password' noLayout onChange={handleChange} onClick={handleClick}/>
             {(message.includes('Password')) 
               ? 
                 <div className='login-error'>

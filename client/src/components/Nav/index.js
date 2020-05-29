@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Navbar, Icon, NavItem, Button } from 'react-materialize';
+import { Navbar } from 'react-materialize';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars } from '@fortawesome/free-solid-svg-icons'
 
@@ -30,7 +30,7 @@ function Nav(props) {
       {(path !== '/login' && path !== '/signup') 
         ?
           <Link to='/login' type='button' onClick={() => props.setPath('/login')} className='nav-btn-light'>
-            <div className='nav-btn-text'>$&#123;&#32;Login&#32;&#125;</div>
+            <div className='nav-btn-text'>&#36;&#123;&#32;Login&#32;&#125;</div>
           </Link> 
         : 
           <></>
@@ -38,7 +38,7 @@ function Nav(props) {
       {(path !== '/login' && path !== '/signup')
         ? 
           <Link to='/signup' type='button' onClick={() => props.setPath('/signup')} className='nav-btn-light'>
-            <div className='nav-btn-text'>$&#123;&#32;Signup&#32;&#125;</div>
+            <div className='nav-btn-text'>&#36;&#123;&#32;Signup&#32;&#125;</div>
           </Link> 
         : 
           <></>

@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from "react";
-import AceEditor from "react-ace";
-import "ace-builds/src-noconflict/mode-javascript";
+import React, { useState, useEffect } from 'react';
+import AceEditor from 'react-ace';
+import 'ace-builds/webpack-resolver';
+import 'ace-builds/src-noconflict/mode-javascript';
 import 'ace-builds/src-noconflict/mode-html';
 import 'ace-builds/src-noconflict/theme-cobalt';
 import 'ace-builds/src-noconflict/theme-clouds';
