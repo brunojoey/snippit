@@ -46,13 +46,13 @@ function Login() {
           {(state.message.includes('Username')) ? <div className='login-error'>{state.message}</div> : <></>}
         </Col>
       </Row>
-      <Row>
+      <Row style={{ transform: 'translateY(-20px)' }}>
         <Col s={10} offset='s1'>
           <TextInput password className='login-input' id='password' name='password' label='Password' noLayout onChange={handleChange} onClick={handleClick}/>
           {(state.message.includes('Password')) ? <div className='login-error'>{state.message}</div> : <></>}
         </Col>
       </Row>
-      <button className='login-submit btn-rounded-light login-btn' style={{ width: '96px' }} type='submit' onClick={handleSubmit}>[ ...Submit ]</button>
+      <button className='login-submit btn-rounded-light login-btn' type='submit' onClick={handleSubmit}>[ ...Submit ]</button>
     </form>
   );
 }

@@ -79,7 +79,7 @@ function Login() {
             }
           </Col>
         </Row>
-        <Row>
+        <Row style={{ transform: 'translateY(-20px)' }}>
           <Col s={10} offset='s1'>
             <TextInput password className='login-input' id='password' name='password' label='Password' noLayout onChange={handleChange} onClick={handleClick}/>
             {(message.includes('Password')) 
@@ -98,7 +98,7 @@ function Login() {
             }
           </Col>
         </Row>
-        <button className='login-submit btn-rounded-light login-btn' style={{ width: '96px' }} type='submit' onClick={handleSubmit}>[ ...Submit ]</button>
+        <button className='login-submit btn-rounded-light login-btn' type='submit' onClick={handleSubmit}>[ ...Submit ]</button>
       </form>
     </>
   );

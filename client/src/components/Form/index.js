@@ -36,15 +36,18 @@ function Form({ isResponse, language, snipId, responses, setForm, setResponses, 
   
           // Create new response snip and add it to the main snip's responses array.
           const { data } = await snipsAPI.createSnip(state);
-          await snipsAPI.updateSnip(snipId, { $push: { responses: data._id } });
+          snipsAPI.updateSnip(snipId, { $push: { responses: data._id } })
+            .then(result => {
+              // Reset values.
+              setForm(false);
+              setResponses([ ...responses, data]);
+            });
   
-          // Reset values.
-          setForm(false);
-          setResponses([ ...responses, data]);
         } else {
           const { data } = await snipsAPI.createSnip(state);
           setRedirect('/snips/' + data._id);
         }
+        
       }
     }
     fetchData();
@@ -69,7 +72,7 @@ function Form({ isResponse, language, snipId, responses, setForm, setResponses, 
     if (!state.isResponse && (!state.tagLine || state.tagLine.length < 20)) { setMessage('Tagline must be more than 20 characters.'); return; }
     else if (state.body.length < 20) { setMessage('Body contents must be greater than 20 characters.'); return; }
     else if (aceCode.length > 0 && aceCode.length < 20) { setMessage('Code content must be greater than 20 characters.'); return; }
-    else { setMessage('valid') }
+    else { setMessage('valid'); }
 
     setState({ ...state, code: aceCode });
   }
@@ -156,7 +159,7 @@ function Form({ isResponse, language, snipId, responses, setForm, setResponses, 
       <>
         <form method='post' className='snip-form'>
           {(!state.isResponse) ? showAdditional() : <></> }
-          <textarea name='body' className='form-textarea' onChange={handleChange} onKeyDown={handleKeyDown}></textarea>
+          <textarea name='body' className='form-textarea' placeholder="Can't find your answer? Make a new snip." onChange={handleChange} onKeyDown={handleKeyDown}></textarea>
           {(block) ? displayBlock() : <></> }
           {(message.includes('Body')) ? <div className='snip-body-error'>{message}</div> : <></>}
           <div className='center'>

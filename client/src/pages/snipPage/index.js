@@ -36,7 +36,7 @@ function Snip(props) {
     }
     fetchData();
 
-  });
+  }, []);
 
   useEffect(() => {
     if (state) {
@@ -58,11 +58,7 @@ function Snip(props) {
         setUsers(users);
       }
       fetchData();
-
-    } else {
-      console.log('No responses yet.')
     }
-
   }, [state]);
 
   function renderSnip() {
@@ -77,7 +73,7 @@ function Snip(props) {
         </h2>
         <div className='snip-content'>
           <div className='snip-body'>{state.body}</div>
-          <Editor language={state.language} code={code} readOnly={true} />
+          {(code.length > 0) ? <Editor language={state.language} code={code} readOnly={true} /> : <></>}
         </div>
       </>
     );

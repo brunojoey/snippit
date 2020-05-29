@@ -103,4 +103,6 @@
 
 .login-btn {
   width: 108px !important;
+  height: 36px;
+  border-radius: 36px;
 }
