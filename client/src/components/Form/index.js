@@ -39,12 +39,12 @@ function Form({ isResponse, language, snipId, users, responses, setForm, setResp
           const { data } = await snipsAPI.createSnip(state);
           snipsAPI.updateSnip(snipId, { $push: { responses: data._id } })
             .then(async result => {
-              const user = await usersAPI.getUser(result.data.userId);
+              const response = await usersAPI.getUser(result.data.userId);
 
               // Reset values.
               setForm(false);
               setResponses([ ...responses, data]);
-              setUsers([ ...users, user]);
+              setUsers([ ...users, response.data]);
             });
   
         } else {

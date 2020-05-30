@@ -121,7 +121,6 @@ function Snip(props) {
             ?
               responses.map((response, index) => {
                 const user = users.find(user => user._id === response.userId);
-                console.log('USER: ', user);
     
                 return(
                   <Row className='response-item' key={index}>
