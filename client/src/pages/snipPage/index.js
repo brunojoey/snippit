@@ -2,6 +2,8 @@ import React, { useState, useEffect, useContext } from 'react';
 import { Link, Redirect } from 'react-router-dom';
 import { Container, Row, Col } from 'react-materialize';
 import Loader from 'react-loader-spinner';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faUserCircle } from '@fortawesome/free-solid-svg-icons';
 import StatusContext from '../../utils/StatusContext';
 import usersAPI from '../../utils/usersAPI';
 import snipsAPI from '../../utils/snipsAPI';
@@ -85,6 +87,8 @@ function Snip(props) {
         <Form 
           responses={responses}
           setResponses={setResponses}
+          users={users}
+          setUsers={setUsers}
           setForm={setForm}
           setRedirect={setRedirect}
           snipId={props.match.params.id} 
@@ -117,20 +121,25 @@ function Snip(props) {
             ?
               responses.map((response, index) => {
                 const user = users.find(user => user._id === response.userId);
+                console.log('USER: ', user);
     
                 return(
                   <Row className='response-item' key={index}>
                     <Col s={12} m={2} l={1} className='center'>
                       {(user) 
                         ? 
-                          <Link to={`/users/${user._id}`}>
-                            <img 
-                              src={user.imageUrl}
-                              alt='Avatar' 
-                              className='response-user-icon' 
-                              style={{ width: '32px', height: '32px'  }}
-                            />
-                          </Link>
+                          (user.imageUrl)
+                            ?
+                              <Link to={`/users/${user._id}`}>
+                                <img 
+                                  src={user.imageUrl}
+                                  alt='Avatar' 
+                                  className='response-user-icon' 
+                                  style={{ width: '32px', height: '32px'  }}
+                                />
+                              </Link>
+                            :
+                              <FontAwesomeIcon size='3x' className='feed-user-icon' icon={faUserCircle}></FontAwesomeIcon>
                         :
                           <></>
                       }

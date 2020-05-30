@@ -4,10 +4,11 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStickyNote, faCode, faMinus } from '@fortawesome/free-solid-svg-icons';
 import StatusContext from '../../utils/StatusContext';
 import snipsAPI from '../../utils/snipsAPI';
+import usersAPI from '../../utils/usersAPI';
 import Editor from '../../components/Editor';
 import './style.css';
 
-function Form({ isResponse, language, snipId, responses, setForm, setResponses, setRedirect }) {
+function Form({ isResponse, language, snipId, users, responses, setForm, setResponses, setRedirect, setUsers }) {
   // Couldn't use state for code because state rerenders emptied the ace object.
   let aceCode = '';
 
@@ -25,7 +26,7 @@ function Form({ isResponse, language, snipId, responses, setForm, setResponses, 
     tagLine: null,
     body: '',
     code: '',
-    userId: status._id,
+    userId: status._id
   });
 
   useEffect(() => {
@@ -37,10 +38,13 @@ function Form({ isResponse, language, snipId, responses, setForm, setResponses, 
           // Create new response snip and add it to the main snip's responses array.
           const { data } = await snipsAPI.createSnip(state);
           snipsAPI.updateSnip(snipId, { $push: { responses: data._id } })
-            .then(result => {
+            .then(async result => {
+              const user = await usersAPI.getUser(result.data.userId);
+
               // Reset values.
               setForm(false);
               setResponses([ ...responses, data]);
+              setUsers([ ...users, user]);
             });
   
         } else {
@@ -52,7 +56,7 @@ function Form({ isResponse, language, snipId, responses, setForm, setResponses, 
     }
     fetchData();
 
-  }, [state]);
+  }, [state, message, responses, users, setForm, setRedirect, setResponses, snipId, setUsers]);
   
   function handleChange(event) {
     setMessage('');
