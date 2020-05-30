@@ -4,10 +4,11 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStickyNote, faCode, faMinus } from '@fortawesome/free-solid-svg-icons';
 import StatusContext from '../../utils/StatusContext';
 import snipsAPI from '../../utils/snipsAPI';
+import usersAPI from '../../utils/usersAPI';
 import Editor from '../../components/Editor';
 import './style.css';
 
-function Form({ isResponse, language, snipId, responses, setForm, setResponses, setRedirect }) {
+function Form({ isResponse, language, snipId, users, responses, setForm, setResponses, setRedirect, setUsers }) {
   // Couldn't use state for code because state rerenders emptied the ace object.
   let aceCode = '';
 
@@ -25,7 +26,7 @@ function Form({ isResponse, language, snipId, responses, setForm, setResponses, 
     tagLine: null,
     body: '',
     code: '',
-    userId: status._id,
+    userId: status._id
   });
 
   useEffect(() => {
@@ -36,20 +37,26 @@ function Form({ isResponse, language, snipId, responses, setForm, setResponses, 
   
           // Create new response snip and add it to the main snip's responses array.
           const { data } = await snipsAPI.createSnip(state);
-          await snipsAPI.updateSnip(snipId, { $push: { responses: data._id } });
+          snipsAPI.updateSnip(snipId, { $push: { responses: data._id } })
+            .then(async result => {
+              const response = await usersAPI.getUser(result.data.userId);
+
+              // Reset values.
+              setForm(false);
+              setResponses([ ...responses, data]);
+              setUsers([ ...users, response.data]);
+            });
   
-          // Reset values.
-          setForm(false);
-          setResponses([ ...responses, data]);
         } else {
           const { data } = await snipsAPI.createSnip(state);
           setRedirect('/snips/' + data._id);
         }
+        
       }
     }
     fetchData();
 
-  }, [state]);
+  }, [state, message, responses, users, setForm, setRedirect, setResponses, snipId, setUsers]);
   
   function handleChange(event) {
     setMessage('');
@@ -69,7 +76,7 @@ function Form({ isResponse, language, snipId, responses, setForm, setResponses, 
     if (!state.isResponse && (!state.tagLine || state.tagLine.length < 20)) { setMessage('Tagline must be more than 20 characters.'); return; }
     else if (state.body.length < 20) { setMessage('Body contents must be greater than 20 characters.'); return; }
     else if (aceCode.length > 0 && aceCode.length < 20) { setMessage('Code content must be greater than 20 characters.'); return; }
-    else { setMessage('valid') }
+    else { setMessage('valid'); }
 
     setState({ ...state, code: aceCode });
   }
@@ -90,7 +97,7 @@ function Form({ isResponse, language, snipId, responses, setForm, setResponses, 
   
   function displayBlockBtn() {
     return (
-      <button type='button' name='code-btn' className='form-button button-with-icon' onClick={() => setBlock(true)}>
+      <button type='button' name='code-btn' className='btn-rounded-light snip-form-btn' style={{ width: '108px' }} onClick={() => setBlock(true)}>
         <span className='form-button-text'>Code</span>
         <FontAwesomeIcon size='2x' icon={faCode} className='form-button-icon'></FontAwesomeIcon>
       </button>
@@ -99,7 +106,7 @@ function Form({ isResponse, language, snipId, responses, setForm, setResponses, 
 
   function removeBlockBtn() {
     return (
-      <button type='button' name='minus-btn' className='form-button button-with-icon' onClick={() => setBlock(false)}>
+      <button type='button' name='minus-btn' className='btn-rounded-light snip-form-btn' style={{ width: '108px' }} onClick={() => setBlock(false)}>
         <span className='form-button-text'>Code</span>
         <FontAwesomeIcon size='2x' icon={faMinus} className='form-button-icon'></FontAwesomeIcon>
       </button >
@@ -112,9 +119,9 @@ function Form({ isResponse, language, snipId, responses, setForm, setResponses, 
       <>
         <Row className='no-bottom'>
             <Col m={8}>
-              <TextInput className='tagLine' name='tagLine' placeholder="Tagline goes here." noLayout onChange={handleChange}/>
+              <TextInput className='snip-form-tagline' name='tagLine' placeholder="Tagline goes here." noLayout onChange={handleChange}/>
             </Col>
-            <Col m={4}>
+            <Col m={4} className='snip-form-language'>
               <Select
                 name='language'
                 id='select-language'
@@ -122,7 +129,7 @@ function Form({ isResponse, language, snipId, responses, setForm, setResponses, 
                 onChange={handleChange}
                 value='javascript'
                 options={{
-                  classes: '',
+                  classes: 'form-dropdown-txt',
                   dropdownOptions: {
                     alignment: 'left',
                     autoTrigger: true,
@@ -154,16 +161,18 @@ function Form({ isResponse, language, snipId, responses, setForm, setResponses, 
   function renderForm() {
     return (
       <>
-        <form method='post'>
+        <form method='post' className='snip-form'>
           {(!state.isResponse) ? showAdditional() : <></> }
-          <button type='submit' name='submit' className='form-button button-with-icon' onClick={handleSubmit}>
-            <span className='form-button-text'>Snip It</span>
-            <FontAwesomeIcon size='2x' icon={faStickyNote} className='form-button-icon'></FontAwesomeIcon>
-          </button>
-          {(block) ? removeBlockBtn() : displayBlockBtn() }
-          <textarea name='body' className='form-textarea' onChange={handleChange} onKeyDown={handleKeyDown}></textarea>
+          <textarea name='body' className='form-textarea' placeholder="Can't find your answer? Make a new snip." onChange={handleChange} onKeyDown={handleKeyDown}></textarea>
           {(block) ? displayBlock() : <></> }
           {(message.includes('Body')) ? <div className='snip-body-error'>{message}</div> : <></>}
+          <div className='center'>
+            <button type='submit' name='submit' className='btn-rounded-light snip-form-btn' style={{ width: '108px' }} onClick={handleSubmit}>
+              <span className='form-button-text'>Snip It</span>
+              <FontAwesomeIcon size='2x' icon={faStickyNote} className='form-button-icon'></FontAwesomeIcon>
+            </button>
+            {(block) ? removeBlockBtn() : displayBlockBtn() }
+          </div>
         </form>
       </>
     );

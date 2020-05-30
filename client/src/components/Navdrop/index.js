@@ -19,8 +19,9 @@ function NavDrop(props) {
 
     return (
         <Navbar
+            style={{ backgroundColor: '#084c61' }}
             alignLinks="right"
-            brand={<a className="brand-logo" href="/home"><span>{`</`}</span>Snippit<span>></span></a>}
+            brand={<a className="brand-logo" href="/home" style={{ color: '#ffc857' }}><span style={{ color: '#3d99ae' }}>{`</`}</span>Snippit<span style={{ color: '#3d99ae' }}>></span></a>}
             centerLogo
             id="mobile-nav"
             menuIcon={<Icon>menu</Icon>}
@@ -54,7 +55,7 @@ function NavDrop(props) {
                     outDuration: 250
                 }}
                 trigger={
-                    <button className='btn-rounded red-btn'>
+                    <button className='btn-rounded-light' style={{ width: 'auto', height: '36px', borderRadius: '36px' }}>
                         {(status.imageUrl)
                             ?
                             <><img src={`${status.imageUrl}`} alt='User Icon' className='nav-user-icon' /><div className='nav-username'>{status.username}</div></>

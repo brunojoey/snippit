@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Modal, TextInput, Button, object } from 'react-materialize';
 
 function UserEdit() {
@@ -6,7 +6,7 @@ function UserEdit() {
 
     const handleEdit = (event) => {
         let edit = event.target.Button
-        let editInfo = [oldUserName, oldBio, oldGithub, oldLinkedIn];
+        // let editInfo = [oldUserName, oldBio, oldGithub, oldLinkedIn];
         if (editing) {
             let newUserName = '';
             let newBio = '';
