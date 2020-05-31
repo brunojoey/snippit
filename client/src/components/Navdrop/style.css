@@ -26,3 +26,19 @@
   margin-right: 8px;
   transform: translateX(2px);
 }
+
+#nav-dropdown.dropdown-content {
+  top: -13px;
+  width: 100% !important;
+  background: #084c61;
+  border: none;
+}
+
+#nav-dropdown.dropdown-content li>a {
+  text-align: center;
+  color: #3d99ae;
+}
+
+#nav-dropdown.dropdown-content li.divider {
+  background: #ffc857;
+}

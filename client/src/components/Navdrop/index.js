@@ -38,14 +38,14 @@ function NavDrop(props) {
             }}
         >
             <Dropdown
-                id="dropdown"
+                id="nav-dropdown"
                 options={{
-                    alignment: 'left',
+                    alignment: null,
                     autoTrigger: true,
                     closeOnClick: true,
-                    constrainWidth: true,
+                    constrainWidth: false,
                     container: null,
-                    coverTrigger: true,
+                    coverTrigger: false,
                     hover: false,
                     inDuration: 150,
                     onCloseEnd: null,
