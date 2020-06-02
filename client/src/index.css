@@ -38,10 +38,10 @@ code {
   background-color:#000;
 } /*Color of underline*/
 
-.dropdown-content {
+/* .dropdown-content {
   width: 150px !important;
   top: 70px !important;
-}
+} */
 
 .circle {
   margin-right: 10px;
@@ -183,14 +183,26 @@ code {
   margin-top: -18px;
 }
 
+.nav-btn-dropdown {
+  height: 36px;
+  width: auto;
+  border-radius: 36px;
+  margin-right: 8px;
+}
+
 @media only screen and (max-width: 992px) {
-  .nav-btn-light, .nav-btn-dark {
-    margin: 2px;
-    width: auto;
+  .nav-btn-light, .nav-btn-dark, .nav-btn-dropdown {
+    margin: 2px auto;
+    width: 100%;
     border: none;
     border-radius: 0;
     display: block;
     text-align: center;
+  }
+
+  .nav-btn-dropdown {
+    height: 48px;
+    padding-top: 6px;
   }
 
   .nav-btn-light:hover, .nav-btn-dark:hover {
