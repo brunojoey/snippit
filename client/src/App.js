@@ -18,7 +18,9 @@ function App() {
   const [status, setStatus] = useState({ status: false });
   const [taglines, setTaglines] = useState('');
   const [path, setPath] = useState(window.location.pathname);
+  const size = useWindowSize();
 
+  // Check status
   useEffect(() => {
     let mounted = true;
     
@@ -38,7 +40,7 @@ function App() {
     // API call to see if user is loggin in.
     let { data } = await statusAPI.getStatus();
     setStatus(data);
-  }
+  };
 
   const updateTaglines = (words) => {
     if (words.length > 0) { 
@@ -48,11 +50,42 @@ function App() {
     }
   };
 
+  // The following to handle window resize was obtained from https://usehooks.com/useWindowSize/
+  // Hook
+  function useWindowSize() {
+    const isClient = typeof window === 'object';
+
+    function getSize() {
+      return {
+        width: isClient ? window.innerWidth : undefined,
+        height: isClient ? window.innerHeight : undefined
+      };
+    }
+
+    const [windowSize, setWindowSize] = useState(getSize);
+
+    useEffect(() => {
+      if (!isClient) {
+        return false;
+      }
+      
+      function handleResize() {
+        setWindowSize(getSize());
+      }
+
+      window.addEventListener('resize', handleResize);
+      return () => window.removeEventListener('resize', handleResize);
+    }, []); // Empty array ensures that effect is only run on mount and unmount
+
+    return windowSize;
+  }
+  // ************************************************************************************
+
   return (
     <Router>
       <div className='not-footer-wrap'>
         <StatusContext.Provider value={{ status, updateStatus }}>
-          {(status.status === false) ? <Nav path={path} setPath={setPath}/> : <Navdrop path={path} setPath={setPath}/>}
+          {(status.status === false) ? <Nav size={size} path={path} setPath={setPath}/> : <Navdrop size={size} path={path} setPath={setPath}/>}
           <TaglineContext.Provider value={{ taglines, updateTaglines }}>
             <Switch>
               <Route exact path='/users/:id' component={profilePage} />

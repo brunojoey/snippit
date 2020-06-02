@@ -27,18 +27,25 @@
   transform: translateX(2px);
 }
 
-#nav-dropdown.dropdown-content {
+#nav-dropdown.dropdown-content, .sidenav .sidenav-btn {
   top: -13px;
   width: 100% !important;
   background: #084c61;
   border: none;
 }
 
-#nav-dropdown.dropdown-content li>a {
+#nav-dropdown.dropdown-content li>a, .sidenav .sidenav-btn {
   text-align: center;
   color: #3d99ae;
 }
 
-#nav-dropdown.dropdown-content li.divider {
+#nav-dropdown.dropdown-content li.divider, .sidenav .divider {
+  height: 1px;
+  margin: 0;
+  padding: 0;
   background: #ffc857;
+}
+
+#sidenav-nav-dropdown.dropdown-content {
+  top: -2px;
 }
