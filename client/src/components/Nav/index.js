@@ -14,7 +14,7 @@ function Nav(props) {
       brand={<a className="brand-logo" href="/home" style={{ color: '#ffc857' }}><span style={{ color: '#3d99ae' }}>{`</`}</span>Snippit<span style={{ color: '#3d99ae' }}>></span></a>}
       centerLogo
       // id="mobile-nav"
-      menuIcon={<FontAwesomeIcon className='v-align' size='2x' icon={faBars}></FontAwesomeIcon>}
+      menuIcon={(path !== '/login' && path !== '/signup') ? <FontAwesomeIcon className='v-align' size='2x' icon={faBars}></FontAwesomeIcon> : <></>}
       options={{
         draggable: true,
         edge: 'left',

@@ -85,7 +85,7 @@ function App() {
     <Router>
       <div className='not-footer-wrap'>
         <StatusContext.Provider value={{ status, updateStatus }}>
-          {(status.status === false) ? <Nav size={size} path={path} setPath={setPath}/> : <Navdrop size={size} path={path} setPath={setPath}/>}
+          {(status.status === false) ? <Nav path={path} setPath={setPath}/> : <Navdrop size={size} path={path} setPath={setPath}/>}
           <TaglineContext.Provider value={{ taglines, updateTaglines }}>
             <Switch>
               <Route exact path='/users/:id' component={profilePage} />

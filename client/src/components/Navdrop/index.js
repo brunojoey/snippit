@@ -8,7 +8,6 @@ import StatusContext from '../../utils/StatusContext';
 import './style.css';
 
 function NavDrop(props) {
-    console.log('SIZE: ', props.size);
     const { status, updateStatus } = useContext(StatusContext);
 
     async function handleLogout() {
