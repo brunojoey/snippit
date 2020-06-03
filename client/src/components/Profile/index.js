@@ -1,78 +1,87 @@
-import React, { useState, useContext } from "react";
-import { Row, Col, Button } from 'react-materialize';
+import React, { useState, useContext, useEffect } from "react";
+import { Row, Col } from 'react-materialize';
 import StatusContext from '../../utils/StatusContext';
 import ProfileImage from '../Cloudinary/index';
-import UserEdit from './EditModal';
-import Feed from "../Feed";
+import UserEdit from './EditModal/index.js';
+import usersAPI from '../../utils/usersAPI';
+import snipsAPI from '../../utils/snipsAPI';
 import './style.css';
 
-function ProfilePanel() {
-    const { status, updateStatus } = useContext(StatusContext);
+// ONE LINE AT A TIME
 
-    const [user, setUser] = useState();
-    const [biography, setBiography] = useState();
-    const [github, setGithub] = useState();
-    const [linkedIn, setLinkedIn] = useState();
-    
-    const getUser = (event) => {
-        if (user) {
-            let userInfo = event.target.user;
-            setUser({ ...user, [userInfo]: event.target.value });
-            updateStatus(userInfo);
-        };
-    };
+function ProfilePanel({ setBiography, setLinkedin, setGithub, status, biography, linkedin, github }) {
+    // const getUser = (event) => {
+    //     statusAPIgetStatus();
+    //     console.log("STATUS", statusAPI.getStatus());
+    //     let userID = usersAPI.getUser(user = event.target.username);
+    //     console.log("USER", userID);
+    // };
 
-    const getBio = (event) => {
-        event.preventDefault();
-        if (biography) {
-            let bio = event.target.biography;
-            setBiography({ ...biography, [bio]: event.target.value });
-            updateStatus(bio);
-        };
-    };
+    // const getUserSnips = (event) => {
+    //     let userID = usersAPI.getUser(user = event.target.username);
+    //     console.log("USER", userID);
+    //     let snipsID = snipsAPI.getSnip(snips = event.target.snips);
+    //     console.log("SNIPS", snipsID);
+    // };
 
-    const getGithub = (event) => {
-        let githubLink = event.target.github;
-        if (!githubLink) {
-            githubLink = user.github;
-        }
-        setGithub(githubLink);
-    };
 
-    const getLinkedIn = (event) => {
-        let linkedInLink = event.target.linkedIn;
-        if (!linkedInLink) {
-            linkedInLink = user.linkedIn;
-        }
-        setLinkedIn(linkedInLink);
-    };
+    // get profile id along with github link and linkedin link
+        
+    // const getBio = (event) => {
+    //     event.preventDefault();
+    //     if (biography) {
+    //         let bio = event.target.biography;
+    //         setBiography({ ...biography, [bio]: event.target.value });
+    //         updateStatus(bio);
+    //     };
+    // };
+
+    // const getGithub = (event) => {
+    //     let githubLink = event.target.github;
+    //     if (!githubLink) {
+    //         githubLink = user.github;
+    //     }
+    //     setGithub(githubLink);
+    //     updateStatus(github = githubLink);
+    // };
+
+    // const getLinkedIn = (event) => {
+    //     let linkedInLink = event.target.linkedIn;
+    //     if (!linkedInLink) {
+    //         linkedInLink = user.linkedIn;
+    //     }
+    //     setLinkedIn(linkedInLink);
+    //     updateStatus(linkedIn = linkedInLink);
+    // };
 
     return (
         <div>
             <Row>
                 <Col s={6} lg={10}>
                     <UserEdit />
-                    <h3 onChange={getUser}>{status.username}</h3>
+                    <h3>{status.username}</h3>
                 </Col>
             </Row>
             <Row>
                 <Col s={2} lg={4}>
-                    <ProfileImage />
+                    <img src={<ProfileImage/>} />
                 </Col>
                 <Col s={4} lg={6}>
-                    <p onChange={getBio}>My Biography {status.biography}</p>
-                    <a href={getGithub}>My Github</a>
-                    <a href={getLinkedIn}>My LinkedIn</a>
+                    <h3>My Biography</h3>
+                    {(biography) ? <p>{biography}</p> : <p>No biography information has been added. Please add a biography.</p> }
+                    {(github) ? <a href={`https://www.github.com/${github}`}>My Github</a> : <p>No Github information added. Please add Github. </p> }
+                    {(linkedin) ?<a href={`https://www.linkedin.com/${linkedin}`}>My LinkedIn</a> : <p>No LinkedIn information added. Please add a LinkedIn.</p> }
                 </Col>
             </Row>
             <Row>
                 <Col>
-                    <Feed />
+                    {/* <ul>{getUserSnips}</ul> */}
                 </Col>
             </Row>
         </div>
 
     );
-}
+};
+
 
 export default ProfilePanel;

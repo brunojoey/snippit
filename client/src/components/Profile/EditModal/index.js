@@ -1,24 +1,29 @@
-import React from 'react';
-import { Modal, TextInput, Button, object } from 'react-materialize';
+import React, { useRef } from 'react';
+import { Modal, TextInput, Button } from 'react-materialize';
+import usersAPI from '../../../utils/usersAPI';
+import ProfileImage from '../../Cloudinary';
 
-function UserEdit() {
-    const [editing, setEditing] = useState(false);
+function UserEdit({ setBiography, setLinkedin, setGithub }) {
+    // const bioRef = useRef('');
+    // const githubRef = useRef('');
+    // const linkedinRef = useRef('');
 
-    const handleEdit = (event) => {
-        let edit = event.target.Button
-        let editInfo = [oldUserName, oldBio, oldGithub, oldLinkedIn];
-        if (editing) {
-            let newUserName = '';
-            let newBio = '';
-            let newGithub = '';
-            let newLinkedIn = '';
-        }
-    };
+    // const handleSubmit = async (event) => {
+    //     event.preventDefault();
+    //     const biography = bioRef.current.value;
+    //     const github = githubRef.current.value;
+    //     const linkedin = linkedinRef.current.value;
+    //     await usersAPI.updateUser(status._id, { biography });
+    //     await usersAPI.updateUser(status._id,{ linkedin });
+    //     const { data } = await usersAPI.updateUser(status._id, { github });
+    //     console.log("DATA", data);
+    // };
 
     return (
         <Modal
             actions={[
-                <Button flat modal="close" node="button" waves="green" onClick={handleEdit}>Submit Changes</Button>
+                <> <Button flat modal="close" node="button" waves="green">Close</Button>
+                <Button flat >Submit Changes</Button> </>
             ]}
             bottomSheet={false}
             fixedFooter
@@ -38,25 +43,24 @@ function UserEdit() {
                 preventScrolling: true,
                 startingTop: '4%'
             }}
-            root={[object, HTMLBodyElement]}
             trigger={<Button node="button">Edit</Button>}
         >
-            <TextInput
-                id="TextInput-4"
-                label="Username"
-            />
-            <TextInput
-                id="TextInput-4"
-                label="Biography"
-            />
-            <TextInput
-                id="TextInput-4"
-                label="Github"
-            />
-            <TextInput
-                id="TextInput-4"
-                label="LinkedIn"
-            />
+                <TextInput
+                    id="newBio"
+                    label="Biography"
+                    // ref={bioRef}
+                />
+                <TextInput
+                    id="newGithub"
+                    label="Github"
+                    // ref={githubRef}
+                />
+                <TextInput
+                    id="newLinkedin"
+                    label="LinkedIn"
+                    // ref={linkedinRef}
+                />
+                {/* <ProfileImage /> */}
         </Modal>
     )
 };
