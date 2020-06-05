@@ -5,7 +5,6 @@ import Feed from '../components/Feed';
 import Form from '../components/Form';
 import StatusContext from '../utils/StatusContext';
 import SearchForm from '../components/SearchForm';
-import Foot from '../components/Footer';
 
 function Home() {
     const { status } = useContext(StatusContext);
@@ -14,7 +13,7 @@ function Home() {
     function renderForm() {
         return (
             <Row>
-                <h2 className='form-heading'><span>let&nbsp;</span>createSnip<span>&nbsp;= () =></span></h2>
+                <h2 className='form-heading'><span style={{ color: '#8d99ae'}}>let&nbsp;</span><span style={{ color: '#ffc857', fontWeight: 'bold' }}>createSnip</span><span style={{ color: '#8d99ae'}}>&nbsp;= () =></span></h2>
                 <Col s={12} m={8} offset='m2'>
                     <Form setRedirect={setRedirect} isResponse={false} />
                 </Col>
@@ -38,9 +37,6 @@ function Home() {
                     </Col>
                 </Row>
             </div>
-            <>
-            <Foot />
-            </>
         </>
     );
 };

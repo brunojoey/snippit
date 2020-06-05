@@ -4,48 +4,50 @@
   border-bottom: 0px;
 }
 
-.snip-page-container {
-  border-left: 1px solid #b3b3b3;
-  border-right: 1px solid #b3b3b3;
+.snip-header {
+  padding-bottom: 24px;
+  border-bottom: 1px solid #8d99ae;
+  line-height: 1.25rem;
 }
 
-.snip-header {
+.snip-header-txt {
   font-size: 1.25rem;
-  margin: 24px auto 12px auto;
+  margin: 48px auto 12px auto;
+  color: #ffc857;
+  font-weight: bold;
 }
 
 .snip-content {
-  background-color: white;
-  padding-right: 8px;
-  border-right: 2px solid #b3b3b3;
+  padding: 4px 16px;
+  border-right: 2px solid #8d99ae;
 }
 
 .snip-body {
   font-size: 1rem;
   margin: 0px auto 12px auto;
+  color: #3d9aae;
 }
 
-.snip-page-button {
-  margin: 4px 8px 8px 4px;
-  width: 108px;
-}
-
-.snip-page-button-text {
-  font-size: 18px;
-  margin-right: 8px;
+.response-btn {
+  margin: 0px auto 8px auto;
+  width: auto !important;
 }
 
 .snip-response-header {
   text-align: center;
   font-size: 1.25rem; 
-  margin: 8px auto;
+  padding-bottom: 12px;
+  margin: 36px auto 12px auto;
+  border-bottom: 1px solid #8d99ae;
 }
 
 .response-user-icon {
   border-radius: 50%;
+  border: 2px solid #3d9aae;
 }
 
 .response-body {
   font-size: 1rem;
   margin: 0px auto 12px auto;
+  color: #3d9aae;
 }

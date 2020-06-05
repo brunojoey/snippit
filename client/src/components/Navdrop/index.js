@@ -1,8 +1,8 @@
 import React, { useContext } from "react";
 import { Link } from 'react-router-dom';
-import { Navbar, Icon, Dropdown, Divider } from "react-materialize";
+import { Navbar, Dropdown, Divider } from "react-materialize";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faUserCircle } from '@fortawesome/free-solid-svg-icons';
+import { faUserCircle, faBars } from '@fortawesome/free-solid-svg-icons';
 import statusAPI from '../../utils/statusAPI';
 import StatusContext from '../../utils/StatusContext';
 import './style.css';
@@ -19,11 +19,12 @@ function NavDrop(props) {
 
     return (
         <Navbar
+            style={{ backgroundColor: '#084c61' }}
             alignLinks="right"
-            brand={<a className="brand-logo" href="/home"><span>{`</`}</span>Snippit<span>></span></a>}
+            brand={<a className="brand-logo" href="/home" style={{ color: '#ffc857' }}><span style={{ color: '#3d99ae' }}>{`</`}</span>Snippit<span style={{ color: '#3d99ae' }}>></span></a>}
             centerLogo
             id="mobile-nav"
-            menuIcon={<Icon>menu</Icon>}
+            menuIcon={<FontAwesomeIcon className='v-align' size='2x' icon={faBars}></FontAwesomeIcon>}
             options={{
                 draggable: true,
                 edge: 'left',
@@ -36,41 +37,59 @@ function NavDrop(props) {
                 preventScrolling: true
             }}
         >
-            <Dropdown
-                id="dropdown"
-                options={{
-                    alignment: 'left',
-                    autoTrigger: true,
-                    closeOnClick: true,
-                    constrainWidth: true,
-                    container: null,
-                    coverTrigger: true,
-                    hover: false,
-                    inDuration: 150,
-                    onCloseEnd: null,
-                    onCloseStart: null,
-                    onOpenEnd: null,
-                    onOpenStart: null,
-                    outDuration: 250
-                }}
-                trigger={
-                    <button className='btn-rounded red-btn'>
-                        {(status.imageUrl)
-                            ?
-                            <><img src={`${status.imageUrl}`} alt='User Icon' className='nav-user-icon' /><div className='nav-username'>{status.username}</div></>
-                            :
-                            <><FontAwesomeIcon size='3x' className='nav-user-fa-icon' icon={faUserCircle}></FontAwesomeIcon><div className='nav-username-fa'>{status.username}</div></>
-                        }                       
-                    </button>
-                }
-            >
-                <Link to={`/users/${status._id}`}>Profile</Link>
-                <Link to='/home'>Feed</Link>
-                <Link to='/editor'>Editor</Link>
-
-                <Divider />
-                <Link to='/home' onClick={handleLogout}>Logout</Link>
-            </Dropdown>
+            {(props.size.width > 992)
+                ?
+                    <Dropdown
+                        id="nav-dropdown"
+                        options={{
+                            alignment: null,
+                            autoTrigger: true,
+                            closeOnClick: true,
+                            constrainWidth: false,
+                            container: null,
+                            coverTrigger: false,
+                            hover: false,
+                            inDuration: 150,
+                            onCloseEnd: null,
+                            onCloseStart: null,
+                            onOpenEnd: null,
+                            onOpenStart: null,
+                            outDuration: 250
+                        }}
+                        trigger={
+                            <button className='nav-btn-light nav-btn-dropdown'>
+                                {(status.imageUrl)
+                                    ?
+                                    <><img src={`${status.imageUrl}`} alt='User Icon' className='nav-user-icon' /><div className='nav-username'>{status.username}</div></>
+                                    :
+                                    <><FontAwesomeIcon size='3x' className='nav-user-fa-icon' icon={faUserCircle}></FontAwesomeIcon><div className='nav-username-fa'>{status.username}</div></>
+                                }                       
+                            </button>
+                        }
+                    >
+                        <Link to={`/users/${status._id}`} type='button' onClick={() => props.setPath(`/users/${status._id}`)} className='sidenav-btn'>Profile</Link>
+                        <Link to='/home' type='button' onClick={() => props.setPath('/home')} className='sidenav-btn'>Home</Link>
+                        <Link to='/editor' type='button' onClick={() => props.setPath('/editor')} className='sidenav-btn'>Editor</Link>
+                        <Divider />
+                        <Link to='/home' type='button' onClick={handleLogout} className='sidenav-btn'>Logout</Link>
+                    </Dropdown>
+                :
+                    <>
+                        <div className='nav-btn-light nav-btn-dropdown'>
+                                {(status.imageUrl)
+                                    ?
+                                    <><img src={`${status.imageUrl}`} alt='User Icon' className='nav-user-icon' /><div className='nav-username'>{status.username}</div></>
+                                    :
+                                    <><FontAwesomeIcon size='3x' className='nav-user-fa-icon' icon={faUserCircle}></FontAwesomeIcon><div className='nav-username-fa'>{status.username}</div></>
+                                }                       
+                        </div>
+                        <Link to={`/users/${status._id}`} type='button' onClick={() => props.setPath(`/users/${status._id}`)} className='sidenav-btn'>Profile</Link>
+                        <Link to='/home' type='button' onClick={() => props.setPath('/home')} className='sidenav-btn'>Home</Link>
+                        <Link to='/editor' type='button' onClick={() => props.setPath('/editor')} className='sidenav-btn'>Editor</Link>
+                        <Divider />
+                        <Link to='/home' type='button' onClick={handleLogout} className='sidenav-btn'>Logout</Link>
+                    </>
+            }
         </Navbar>
     );
 }

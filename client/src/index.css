@@ -1,23 +1,23 @@
-body {
+body, html {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background: #ECE9E6;  /* fallback for old browsers */
-  background: -webkit-linear-gradient(to right, #FFFFFF, #ECE9E6);  /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(to right, #FFFFFF, #ECE9E6); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  background: #fefdff;  /* fallback for old browsers */
+  height: 100vh;
+}
 
+.not-footer-wrap {
+  min-height: 100vh;
+  margin-bottom: -187px;
+  padding-bottom: 187px;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
-}
-
-.nav-wrapper {
-  background-color: #7BDFF2;
 }
 
 .tabs .tab a{
@@ -38,10 +38,10 @@ code {
   background-color:#000;
 } /*Color of underline*/
 
-.dropdown-content {
+/* .dropdown-content {
   width: 150px !important;
   top: 70px !important;
-}
+} */
 
 .circle {
   margin-right: 10px;
@@ -52,23 +52,6 @@ code {
 .fa {
   padding-right: 10px;
   font-size: 25px;
-}
-
-.footer {
-  background-color: #86CDCF;
-  color: white;
-  bottom: 0;
-}
-
-.btn {
-  text-align: center;
-  margin-right: 15px;
-  margin-left: 15px;
-  background-color: #7bdff2;
-}
-
-.btn:hover {
-  background-color: #86CDCF;
 }
 
 #submit-search {
@@ -96,29 +79,103 @@ code {
   margin-bottom: 8px;
 }
 
-.btn-rounded {
-  height: 36px;
-  width: auto;
+.btn-light {
+  text-align: center;
+  margin-right: 15px;
+  margin-left: 15px;
+  background-color: #084c61;
+  color: #ffc857;
+}
+
+.btn-dark {
+  text-align: center;
+  margin-right: 15px;
+  margin-left: 15px;
+  background-color: #3d9aae;
+  color: #ffc857;
+}
+
+.btn-light:hover {
+  background-color: #8d99ae;
+}
+
+.btn-dark:hover {
+  background-color: #8d99ae;
+}
+
+.btn-rounded-light {
+  height: 32px;
+  width: 108px;
   margin: 8px;
-  border-radius: 36px;
+  border: 1px solid #ffc857;
+  border-radius: 32px;
   display: table-cell;
   vertical-align: middle;
+  background-color: #084c61;
+  color: #ffc857;
 }
 
-.red-btn {
-  color: white;
-  background-color: firebrick;
-  border: 2px solid firebrick;
+.btn-rounded-dark {
+  height: 32px;
+  width: 108px;
+  margin: 8px;
+  border-radius: 32px;
+  display: table-cell;
+  vertical-align: middle;
+  background-color: #3d9aae;
+  color: #ffc857;
 }
 
-.nav-btn {
+.btn-rounded-light:hover {
+  background-color: #3d9aae;
+}
+
+.btn-rounded-dark:hover {
+  background-color: #084c61;
+}
+
+.nav-btn-light {
   height: 32px;
   width: 108px;
   margin: auto 4px;
+  border: 1px solid #ffc857;
   border-radius: 32px;
   display: table-cell;
   vertical-align: middle;
   text-align: center;
+  background-color: #084c61;
+  color: #ffc857;
+}
+
+.nav-btn-dark {
+  height: 32px;
+  width: 108px;
+  margin: auto 4px;
+  border: 1px solid #ffc857;
+  border-radius: 32px;
+  display: table-cell;
+  vertical-align: middle;
+  text-align: center;
+  background-color: #3d9aae;
+  color: #ffc857;
+}
+
+.nav-btn-light:hover {
+  background-color: #3d9aae;
+}
+
+.nav-btn-dark:hover {
+  background-color: #084c61;
+}
+
+.nav-btn-light:active, .nav-btn-light:focus {
+  color: #fefdff;
+  border-color: #fefdff;
+}
+
+.nav-btn-dark:active, .nav-btn-dark:focus {
+  color: #fefdff;
+  border-color: #fefdff;
 }
 
 .nav-btn-text {
@@ -126,17 +183,34 @@ code {
   margin-top: -18px;
 }
 
+.nav-btn-dropdown {
+  height: 36px;
+  width: auto;
+  border-radius: 36px;
+  margin-right: 8px;
+}
+
 @media only screen and (max-width: 992px) {
-  .nav-btn {
-    margin: 2px;
-    width: auto;
+  .nav-btn-light, .nav-btn-dark, .nav-btn-dropdown {
+    margin: 2px auto;
+    width: 100%;
+    border: none;
     border-radius: 0;
     display: block;
     text-align: center;
   }
 
+  .nav-btn-dropdown {
+    height: 48px;
+    padding-top: 6px;
+  }
+
+  .nav-btn-light:hover, .nav-btn-dark:hover {
+    background-color: #3d9aae !important;
+  }
+
   .nav-btn-text {
     margin: 0;
-    color: white;
+    color: #ffc857;
   }
 }
