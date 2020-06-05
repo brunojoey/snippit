@@ -65,7 +65,7 @@ function ProfilePanel({ state, setState }) {
                             :
                                 <>
                                     {(state.github) 
-                                        ? <p><a href={`https://www.github.com/${state.github}`}>My Github</a></p> 
+                                        ? <p><a href={`https://www.github.com/${state.github}`} target='_blank' rel='noopener noreferrer'>My Github</a></p> 
                                         : <p>No Github information added. Please add Github. </p> 
                                     }
                                 </>
@@ -74,11 +74,12 @@ function ProfilePanel({ state, setState }) {
                     <div>
                         {(edit)
                             ?
-                                <input ref={linkedinRef} id='edit-profile-linkedin' name='edit-profile-linkedin' type='text' placeholder='LinkedIn Username'></input>
+                                <input 
+                                    ref={linkedinRef} id='edit-profile-linkedin' name='edit-profile-linkedin' type='text' placeholder='LinkedIn Username'></input>
                             :
                                 <>
                                     {(state.linkedin) 
-                                        ?<p><a href={`https://www.linkedin.com/${state.linkedin}`}>My LinkedIn</a></p>
+                                        ?<p><a href={`https://www.linkedin.com/${state.linkedin}`} target='_blank' rel='noopener noreferrer'>My LinkedIn</a></p>
                                         : <p>No LinkedIn information added. Please add a LinkedIn.</p> 
                                     }
                                 </>
