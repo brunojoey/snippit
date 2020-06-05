@@ -38,7 +38,7 @@ function ProfileImage() {
                         fetch-format="auto"
                         quality="auto"   
                     >
-                    <Transformation width="150" height="150" />
+                    <Transformation width="200" height="200" crop="scale" />
                     </Image>)}
                 </section>
             </div>

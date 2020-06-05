@@ -67,11 +67,11 @@ function NavDrop(props) {
                             </button>
                         }
                     >
-                        <Link to={`/users/${status._id}`}>Profile</Link>
-                        <Link to='/home'>Home</Link>
-                        <Link to='/editor'>Editor</Link>
+                        <Link to={`/users/${status._id}`} type='button' onClick={() => props.setPath(`/users/${status._id}`)} className='sidenav-btn'>Profile</Link>
+                        <Link to='/home' type='button' onClick={() => props.setPath('/home')} className='sidenav-btn'>Home</Link>
+                        <Link to='/editor' type='button' onClick={() => props.setPath('/editor')} className='sidenav-btn'>Editor</Link>
                         <Divider />
-                        <Link to='/home' onClick={handleLogout}>Logout</Link>
+                        <Link to='/home' type='button' onClick={handleLogout} className='sidenav-btn'>Logout</Link>
                     </Dropdown>
                 :
                     <>
@@ -83,11 +83,11 @@ function NavDrop(props) {
                                     <><FontAwesomeIcon size='3x' className='nav-user-fa-icon' icon={faUserCircle}></FontAwesomeIcon><div className='nav-username-fa'>{status.username}</div></>
                                 }                       
                         </div>
-                        <Link to={`/users/${status._id}`} className='sidenav-btn'>Profile</Link>
-                        <Link to='/home' className='sidenav-btn'>Home</Link>
-                        <Link to='/editor' className='sidenav-btn'>Editor</Link>
+                        <Link to={`/users/${status._id}`} type='button' onClick={() => props.setPath(`/users/${status._id}`)} className='sidenav-btn'>Profile</Link>
+                        <Link to='/home' type='button' onClick={() => props.setPath('/home')} className='sidenav-btn'>Home</Link>
+                        <Link to='/editor' type='button' onClick={() => props.setPath('/editor')} className='sidenav-btn'>Editor</Link>
                         <Divider />
-                        <Link to='/home' onClick={handleLogout} className='sidenav-btn'>Logout</Link>
+                        <Link to='/home' type='button' onClick={handleLogout} className='sidenav-btn'>Logout</Link>
                     </>
             }
         </Navbar>

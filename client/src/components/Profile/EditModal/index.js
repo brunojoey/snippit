@@ -1,24 +1,38 @@
-import React, { useState } from 'react';
+import React, { useRef, useContext } from 'react';
 import { Modal, TextInput, Button, object } from 'react-materialize';
+import ProfileImage from '../../Cloudinary';
+import usersAPI from '../../../utils/usersAPI';
+import StatusContext from '../../../utils/StatusContext';
 
-function UserEdit() {
-    const [editing, setEditing] = useState(false);
+function UserEdit({ state, setState }) {
+    const { status, updateStatus } = useContext(StatusContext);
+    const bioRef = useRef('');
+    const githubRef = useRef('');
+    const linkedinRef = useRef('');
 
-    const handleEdit = (event) => {
-        let edit = event.target.Button
-        // let editInfo = [oldUserName, oldBio, oldGithub, oldLinkedIn];
-        if (editing) {
-            let newUserName = '';
-            let newBio = '';
-            let newGithub = '';
-            let newLinkedIn = '';
-        }
+    const handleSubmit = async (event) => {
+        event.preventDefault();
+        await usersAPI.updateUser(state.id, { biography: bioRef.current.value });
+        await usersAPI.updateUser(state.id, { github: githubRef.current.value });
+        const { data } = await usersAPI.updateUser(state.id, { linkedin: linkedinRef.current.value });
+
+        setState({ ...state, biography: data.biography, github: data.github, linkedin: data.linkedin });
+
+        if (status && status._id === state.id) { updateStatus({ 
+            ...status,
+            biography: data.biography,
+            github: data.github,
+            linkedin: data.linkedin
+        }); }
     };
 
     return (
         <Modal
             actions={[
-                <Button flat modal="close" node="button" waves="green" onClick={handleEdit}>Submit Changes</Button>
+                <> 
+                    <Button modal='close' node='button'>Close</Button>
+                    <Button onClick={handleSubmit}>Subtmi</Button>
+                </>
             ]}
             bottomSheet={false}
             fixedFooter
@@ -38,25 +52,24 @@ function UserEdit() {
                 preventScrolling: true,
                 startingTop: '4%'
             }}
-            root={[object, HTMLBodyElement]}
-            trigger={<Button node="button">Edit</Button>}
+            trigger={<Button node="button">MODAL</Button>}
         >
-            <TextInput
-                id="TextInput-4"
-                label="Username"
-            />
-            <TextInput
-                id="TextInput-4"
-                label="Biography"
-            />
-            <TextInput
-                id="TextInput-4"
-                label="Github"
-            />
-            <TextInput
-                id="TextInput-4"
-                label="LinkedIn"
-            />
+                <TextInput
+                    id="newBio"
+                    label="Biography"
+                    ref={bioRef}
+                />
+                <TextInput
+                    id="newGithub"
+                    label="Github"
+                    ref={githubRef}
+                />
+                <TextInput
+                    id="newLinkedin"
+                    label="LinkedIn"
+                    ref={linkedinRef}
+                />
+                {/* <ProfileImage /> */}
         </Modal>
     )
 };
