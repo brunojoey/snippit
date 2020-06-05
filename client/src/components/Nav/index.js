@@ -29,20 +29,18 @@ function Nav(props) {
     >
       {(path !== '/login' && path !== '/signup') 
         ?
-          <Link to='/login' type='button' onClick={() => props.setPath('/login')} className='nav-btn-light'>
-            <div className='nav-btn-text'>&#36;&#123;&#32;Login&#32;&#125;</div>
-          </Link> 
+          <>
+            <Link to='/login' type='button' onClick={() => props.setPath('/login')} className='nav-btn-light'>
+              <div className='nav-btn-text'>&#36;&#123;&#32;Login&#32;&#125;</div>
+            </Link> 
+            <Link to='/signup' type='button' onClick={() => props.setPath('/signup')} className='nav-btn-light'>
+              <div className='nav-btn-text'>&#36;&#123;&#32;Signup&#32;&#125;</div>
+            </Link> 
+          </>
         : 
           <></>
         }
-      {(path !== '/login' && path !== '/signup')
-        ? 
-          <Link to='/signup' type='button' onClick={() => props.setPath('/signup')} className='nav-btn-light'>
-            <div className='nav-btn-text'>&#36;&#123;&#32;Signup&#32;&#125;</div>
-          </Link> 
-        : 
-          <></>
-        }
+
     </Navbar>
   );
 }
