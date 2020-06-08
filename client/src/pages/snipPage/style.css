@@ -10,6 +10,13 @@
   line-height: 1.25rem;
 }
 
+.snip-creator {
+  margin-right: 18px;
+  font-size: .95rem;
+  text-align: right;
+  color: #8d99ae;
+}
+
 .snip-header-txt {
   font-size: 1.25rem;
   margin: 48px auto 12px auto;
