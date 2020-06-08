@@ -58,6 +58,7 @@ function NavDrop(props) {
                         }}
                         trigger={
                             <button className='nav-btn-light nav-btn-dropdown'>
+                                {console.log("STATUS", status)}
                                 {(status.imageUrl)
                                     ?
                                     <><img src={`${status.imageUrl}`} alt='User Icon' className='nav-user-icon' /><div className='nav-username'>{status.username}</div></>
@@ -76,9 +77,10 @@ function NavDrop(props) {
                 :
                     <>
                         <div className='nav-btn-light nav-btn-dropdown'>
+                            {console.log("STATUS", status)}
                                 {(status.imageUrl)
                                     ?
-                                    <><img src={`${status.imageUrl}`} alt='User Icon' className='nav-user-icon' /><div className='nav-username'>{status.username}</div></>
+                                    <><img src={status.imageUrl} alt='User Icon' className='nav-user-icon' /><div className='nav-username'>{status.username}</div></>
                                     :
                                     <><FontAwesomeIcon size='3x' className='nav-user-fa-icon' icon={faUserCircle}></FontAwesomeIcon><div className='nav-username-fa'>{status.username}</div></>
                                 }                       

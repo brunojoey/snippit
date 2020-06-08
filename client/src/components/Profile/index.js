@@ -16,6 +16,7 @@ function ProfilePanel({ state, setState }) {
     const bioRef = useRef('');
     const githubRef = useRef('');
     const linkedinRef = useRef('');
+    const imageRef = useRef('');
     
     const uploadImage = async (event) => {
         event.preventDefault();
@@ -28,13 +29,16 @@ function ProfilePanel({ state, setState }) {
         const response = await fetch(
             'https://api.cloudinary.com/v1_1/dgirhzjvq/image/upload',
             {
-                method: 'Post',
+                method: 'POST',
                 body: data
             }
         );
             const file = await response.json();
-            setImage(file.secure_url);
+            console.log("FILE", file);
+            setState({...state, imageUrl: file.url });
+            console.log("FILE URL", file.url);
             setLoading(false);
+            // await usersAPI.updateUser(state.id, { imageUrl: file.url });
     };
 
 
@@ -44,8 +48,9 @@ function ProfilePanel({ state, setState }) {
         await usersAPI.updateUser(state.id, { github: githubRef.current.value });
         console.log("STATE ID", state.id);
         const { data } = await usersAPI.updateUser(state.id, { linkedin: linkedinRef.current.value });
+        console.log(data);
 
-        setState({ ...state, biography: data.biography, github: data.github, linkedin: data.linkedin });
+        setState({ ...state, biography: data.biography, github: data.github, linkedin: data.linkedin, imageUrl: data.image });
         setEdit(false);
 
         if (status && status._id === state.id) { updateStatus({ 
@@ -53,7 +58,6 @@ function ProfilePanel({ state, setState }) {
             biography: data.biography,
             github: data.github,
             linkedin: data.linkedin,
-            imageUrl: data.image
         }); }
     };
 
@@ -63,7 +67,7 @@ function ProfilePanel({ state, setState }) {
                 <Col s={12} l={6} style={{ border: '1px solid black', borderRadius: '2px', padding: '8px' }}>
                     {(status.status !== false && status._id === state.id)
                     ?
-                        <img src={image} alt='User Profile' style={{ borderRadius: '50%', width: '200px' }} />
+                        <img src={state.imageUrl} alt='User Profile' style={{ borderRadius: '50%', width: '200px' }} />
                     :
                         <FontAwesomeIcon size='3x' icon={faUserCircle}></FontAwesomeIcon>
                     }
@@ -119,7 +123,7 @@ function ProfilePanel({ state, setState }) {
                         : <></> }
                 </Col>
                 <Col s={12} l={6}>
-                    {(status.status !== false && status._id === state.id)
+                    {(edit && status.status !== false && status._id === state.id)
                     ? 
                     <>
                         <h6>Upload Image</h6>                        
