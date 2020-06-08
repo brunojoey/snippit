@@ -21,6 +21,7 @@ function Snip(props) {
   const [redirect, setRedirect] = useState(null);
 
   const [responses, setResponses] = useState([]);
+  const [user, setUser] = useState(null);
   const [users, setUsers] = useState(null);
 
   async function asyncForEach(array, callback) {
@@ -34,7 +35,10 @@ function Snip(props) {
     // Fetch snip data.
     async function fetchData() {
       const { data } = await snipsAPI.getSnip(props.match.params.id);
+      const response = await usersAPI.getUser(data.userId);
+
       setState({ ...data });
+      setUser(response.data);
     }
     fetchData();
 
@@ -76,6 +80,9 @@ function Snip(props) {
         <div className='snip-content'>
           <div className='snip-body'>{state.body}</div>
           {(code.length > 0) ? <Editor language={state.language} code={code} readOnly={true} /> : <></>}
+        </div>
+        <div className='snip-creator'>
+          <p style={{ marginTop: '4px' }}>posted by <span><Link to={`/users/${user._id}`}>{user.username}</Link></span></p>
         </div>
       </>
     );
@@ -138,7 +145,9 @@ function Snip(props) {
                                 />
                               </Link>
                             :
-                              <FontAwesomeIcon size='3x' className='feed-user-icon' icon={faUserCircle}></FontAwesomeIcon>
+                              <Link to={`/users/${user._id}`}>
+                                <FontAwesomeIcon size='3x' className='feed-user-icon' icon={faUserCircle}></FontAwesomeIcon>
+                              </Link>
                         :
                           <></>
                       }
@@ -166,7 +175,7 @@ function Snip(props) {
       <Container>
         <Row style={{ marginBottom: '0px' }}>
           <Col s={12} xl={10} offset='xl1'>
-            {(state) ? renderSnip() : <></>}
+            {(state && user) ? renderSnip() : <></>}
           </Col>
         </Row>
         {(loggedIn) ? renderResponseBtn() : <></>}
