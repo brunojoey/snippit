@@ -27,8 +27,8 @@ function Feed() {
 
       // Get users for each snip.
       data = data.splice(0, 10);
-      await asyncForEach(data, async (snips) => {
-        const { data } = await usersAPI.getUser(snips.userId)
+      await asyncForEach(data, async (snip) => {
+        const { data } = await usersAPI.getUser(snip.userId)
         users.push(data);
       });
       

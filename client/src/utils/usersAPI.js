@@ -21,28 +21,4 @@ export default {
   deleteUser: function (id) {
     return axios.delete('/api/users/' + id);
   },
-  // Get a Biography
-  getBio: function (id) {
-    return axios.get('/api/biographies/' + id);
-  },
-  // Update a Biography
-  updateBio: function (id, data) {
-    return axios.put('/api/biographies/' + id, data);
-  },
-  // Get the Github Link
-  getGithub: function (id) {
-    return axios.get('/api/github/' + id);
-  },
-  // Update the Github Link for Editing
-  updateGithub: function (id, data) {
-    return axios.put('/api/github/' + id, data);
-  },
-  // Get the LinkedIn Link
-  getLinkedIn: function (id) {
-    return axios.get('/api/linkedin/' + id);
-  },
-  // Update the LinkedIn Link for Editing
-  updateLinkedIn: function (id, data) {
-    return axios.put('/api/linkedin' + id, data);
-  }
 };
