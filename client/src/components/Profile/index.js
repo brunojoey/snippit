@@ -1,22 +1,26 @@
-import React, { useState, useContext, useRef } from "react";
+import React, { useState, useContext, useRef, useEffect } from "react";
+import { Link } from 'react-router-dom';
 import { Row, Col } from 'react-materialize';
+import Loader from 'react-loader-spinner';
+import Feed from '../Feed';
 // import ProfileImage from '../Cloudinary/index';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUserCircle } from '@fortawesome/free-solid-svg-icons';
+import { languages } from '../../utils/languages';
 import StatusContext from '../../utils/StatusContext';
 import usersAPI from '../../utils/usersAPI';
+import snipsAPI from '../../utils/snipsAPI'; 
 import './style.css';
 
 function ProfilePanel({ state, setState }) {
     const { status, updateStatus } = useContext(StatusContext);
     const [edit, setEdit] = useState(false);
-    const [image, setImage] = useState('');
     const [loading, setLoading] = useState(false);
+    const [filterData, setFitlerData] = useState(null);
 
     const bioRef = useRef('');
     const githubRef = useRef('');
     const linkedinRef = useRef('');
-    const imageRef = useRef('');
     
     const uploadImage = async (event) => {
         event.preventDefault();
@@ -34,11 +38,8 @@ function ProfilePanel({ state, setState }) {
             }
         );
             const file = await response.json();
-            console.log("FILE", file);
             setState({...state, imageUrl: file.url });
-            console.log("FILE URL", file.url);
             setLoading(false);
-            // await usersAPI.updateUser(state.id, { imageUrl: file.url });
     };
 
 
@@ -46,9 +47,7 @@ function ProfilePanel({ state, setState }) {
         event.preventDefault();
         await usersAPI.updateUser(state.id, { biography: bioRef.current.value });
         await usersAPI.updateUser(state.id, { github: githubRef.current.value });
-        console.log("STATE ID", state.id);
         const { data } = await usersAPI.updateUser(state.id, { linkedin: linkedinRef.current.value });
-        console.log(data);
 
         setState({ ...state, biography: data.biography, github: data.github, linkedin: data.linkedin, imageUrl: data.image });
         setEdit(false);
@@ -61,10 +60,41 @@ function ProfilePanel({ state, setState }) {
         }); }
     };
 
+    useEffect(() => {
+        async function fetchData() {
+            const { data } = await snipsAPI.getSnips();
+            console.log("DATA!!!", data);
+            const filterData = data.filter(snip => snip.userId === state.id);
+            setFitlerData(filterData);
+        };
+        fetchData();
+    });
+    
+    function renderSnips() {
+        return (
+            <div>
+          {filterData.map((snip, index) => {
+              let language = languages.find(language => language.name === snip.language);
+              return (
+              <Row className='feed-item' key={index}>
+                <Col s={10} l={11} className='feed-item-link'>
+                  <Link to={`/snips/${snip._id}`} style={{ color: '#8d99ae' }}>{snip.tagLine}</Link>
+                </Col>
+                <Col s={2} l={1}>
+                  <div className='feed-item-language-icon'>{language.icon}</div>
+                </Col>
+              </Row>
+            );
+          })}
+        </div>
+      );
+    }
+  
+
     return (
         <div style={{ marginTop: '24px' }}>
             <Row className='center'>
-                <Col s={12} l={6} style={{ border: '1px solid black', borderRadius: '2px', padding: '8px' }}>
+                <Col s={12} l={12} style={{ border: '1px solid black', borderRadius: '2px', padding: '8px' }}>
                     {(status.status !== false && status._id === state.id)
                     ?
                         <img src={state.imageUrl} alt='User Profile' style={{ borderRadius: '50%', width: '200px' }} />
@@ -132,6 +162,20 @@ function ProfilePanel({ state, setState }) {
                     :
                         <></>
                     }
+                </Col>
+            </Row>
+            <Row>
+                <Col s={10} l={10}>
+                {(state)
+                ?
+                    (filterData)
+                    ?
+                        renderSnips()
+                    :
+                    <p>User has no snips.</p>
+                :   
+                    <Loader />
+                }
                 </Col>
             </Row>
         </div>
