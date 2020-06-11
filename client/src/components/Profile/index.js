@@ -63,7 +63,6 @@ function ProfilePanel({ state, setState }) {
     useEffect(() => {
         async function fetchData() {
             const { data } = await snipsAPI.getSnips();
-            console.log("DATA!!!", data);
             const filterData = data.filter(snip => snip.userId === state.id);
             setFitlerData(filterData);
         };
@@ -73,20 +72,20 @@ function ProfilePanel({ state, setState }) {
     function renderSnips() {
         return (
             <div>
-          {filterData.map((snip, index) => {
-              let language = languages.find(language => language.name === snip.language);
-              return (
-              <Row className='feed-item' key={index}>
-                <Col s={10} l={11} className='feed-item-link'>
-                  <Link to={`/snips/${snip._id}`} style={{ color: '#8d99ae' }}>{snip.tagLine}</Link>
-                </Col>
-                <Col s={2} l={1}>
-                  <div className='feed-item-language-icon'>{language.icon}</div>
-                </Col>
-              </Row>
-            );
-          })}
-        </div>
+                {filterData.map((snip, index) => {
+                    let language = languages.find(language => language.name === snip.language);
+                    return (
+                    <Row className='feed-item' key={index}>
+                        <Col s={10} l={11} className='feed-item-link'>
+                        <Link to={`/snips/${snip._id}`} style={{ color: '#8d99ae' }}>{snip.tagLine}</Link>
+                        </Col>
+                        <Col s={2} l={1}>
+                        <div className='feed-item-language-icon'>{language.icon}</div>
+                        </Col>
+                    </Row>
+                    );
+                })}
+            </div>
       );
     }
   
@@ -94,10 +93,10 @@ function ProfilePanel({ state, setState }) {
     return (
         <div style={{ marginTop: '24px' }}>
             <Row className='center'>
-                <Col s={12} l={12} style={{ border: '1px solid black', borderRadius: '2px', padding: '8px' }}>
+                <Col s={6} l={12} style={{ border: '1px solid #ffc857', borderRadius: '2px', padding: '8px' }}>
                     {(status.status !== false && status._id === state.id)
                     ?
-                        <img src={state.imageUrl} alt='User Profile' style={{ borderRadius: '50%', width: '200px' }} />
+                        <img src={state.imageUrl} alt='User Profile' style={{ borderRadius: '50%', width: '200px', border: '3px solid #ffc857' }} />
                     :
                         <FontAwesomeIcon size='3x' icon={faUserCircle}></FontAwesomeIcon>
                     }
@@ -105,7 +104,7 @@ function ProfilePanel({ state, setState }) {
                     <div>
                         {(edit)
                             ?
-                                <textarea ref={bioRef} id='edit-profile-bio' name='edit-profile-bio' placeholder='Edit Biography'></textarea>
+                                <textarea style={{border: '1px solid #ffc857', paddingLeft: '5px'}} ref={bioRef} id='edit-profile-bio' name='edit-profile-bio' placeholder='Edit Biography'></textarea>
                             :
                                 <>
                                     {(state.biography) 
@@ -118,7 +117,8 @@ function ProfilePanel({ state, setState }) {
                     <div>
                         {(edit)
                             ?
-                                <input ref={githubRef} id='edit-profile-github' name='edit-profile-github' type='text' placeholder='Github Username'></input>
+                                <input 
+                                    style={{border: '1px solid #ffc857', paddingLeft: '5px'}} ref={githubRef} id='edit-profile-github' name='edit-profile-github' type='text' placeholder='Github Username'></input>
                             :
                                 <>
                                     {(state.github) 
@@ -132,7 +132,7 @@ function ProfilePanel({ state, setState }) {
                         {(edit)
                             ?
                                 <input 
-                                    ref={linkedinRef} id='edit-profile-linkedin' name='edit-profile-linkedin' type='text' placeholder='LinkedIn Username'></input>
+                                    ref={linkedinRef} style={{border: '1px solid #ffc857', paddingLeft: '5px'}} id='edit-profile-linkedin' name='edit-profile-linkedin' type='text' placeholder='LinkedIn Username'></input>
                             :
                                 <>
                                     {(state.linkedin) 
@@ -145,19 +145,20 @@ function ProfilePanel({ state, setState }) {
                     {(status && status._id === state.id) 
                         ? 
                             <Row>
-                                <button type='button' onClick={() => setEdit(!edit)}>
+                                <button className='btn-rounded-light' type='button' onClick={() => setEdit(!edit)}>
                                     {(edit) ? 'Cancel' : 'Edit'}
                                 </button> 
-                                {(edit) ? <button type='submit' onClick={handleSubmit}>Submit</button> : <></>}
+                                {(edit) ? <button className='btn-rounded-light' type='submit' onClick={handleSubmit}>Submit</button> : <></>}
                             </Row>
                         : <></> }
                 </Col>
-                <Col s={12} l={6}>
+                <Col s={12} l={12}>
                     {(edit && status.status !== false && status._id === state.id)
                     ? 
                     <>
-                        <h6>Upload Image</h6>                        
-                        <input type='file' name='file' placeholder='Upload Image' onChange={uploadImage} />
+                        <h6><span>render</span><span style={{ color: '#ffc857', fontWeight: 'bold' }}>(ProfileImage)</span></h6>  
+                        <label className='btn-rounded-light' style={{marginLeft: '115px', fontSize: '1.05em'}} for='file'>Choose File</label>                      
+                        <input className='input-file' type='file' name='file' id='file' placeholder='Upload Image' onChange={uploadImage} />
                     </>
                     :
                         <></>
@@ -165,7 +166,7 @@ function ProfilePanel({ state, setState }) {
                 </Col>
             </Row>
             <Row>
-                <Col s={10} l={10}>
+                <Col s={12} l={12}>
                 {(state)
                 ?
                     (filterData)
