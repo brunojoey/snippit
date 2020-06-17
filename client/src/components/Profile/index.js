@@ -63,7 +63,7 @@ function ProfilePanel({ state, setState }) {
     useEffect(() => {
         async function fetchData() {
             const { data } = await snipsAPI.getSnips();
-            const filterData = data.filter(snip => snip.userId === state.id);
+            const filterData = data.filter(snip => snip.userId === state.id && !snip.isResponse);
             setFitlerData(filterData);
         };
         fetchData();
