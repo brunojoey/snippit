@@ -45,8 +45,8 @@ input#TextInput-3.snip-form-tagline {
   padding-left: 8px;
   margin-bottom: 0px;
   border-bottom: 1px solid #3d99ae;  
-  color: #8d99ae;
-  background-color: #fefdff;
+  color: #fefdff;
+  background-color: #414141;
 }
 
 input#TextInput-3.snip-form-tagline:focus, input#TextInput-3.snip-form-tagline:active {
@@ -58,8 +58,8 @@ input#TextInput-3.snip-form-tagline:focus, input#TextInput-3.snip-form-tagline:a
   padding-left: 8px;
   margin-bottom: 0px;
   border-bottom: 1px solid #3d99ae;  
-  color: #8d99ae;
-  background-color: #fefdff;
+  color: #fefdff;
+  background-color: #414141;
 }
 
 .snip-form-language input.select-dropdown.dropdown-trigger:active, .snip-form-language input.select-dropdown.dropdown-trigger:focus {
