@@ -46,9 +46,10 @@ function ProfilePanel({ state, setState }) {
         event.preventDefault();
         await usersAPI.updateUser(state.id, { biography: bioRef.current.value });
         await usersAPI.updateUser(state.id, { github: githubRef.current.value });
+        await usersAPI.updateUser(state.id, { imageUrl: state.imageUrl });
         const { data } = await usersAPI.updateUser(state.id, { linkedin: linkedinRef.current.value });
 
-        setState({ ...state, biography: data.biography, github: data.github, linkedin: data.linkedin, imageUrl: data.image });
+        setState({ ...state, biography: data.biography, github: data.github, linkedin: data.linkedin, imageUrl: data.imageUrl });
         setEdit(false);
 
         if (status && status._id === state.id) { updateStatus({ 
@@ -56,6 +57,7 @@ function ProfilePanel({ state, setState }) {
             biography: data.biography,
             github: data.github,
             linkedin: data.linkedin,
+            imageUrl: data.imageUrl
         }); }
     };
 
