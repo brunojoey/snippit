@@ -156,7 +156,7 @@ function ProfilePanel({ state, setState }) {
                     {(edit && status.status !== false && status._id === state.id)
                     ? 
                     <>
-                        <h6><span>render</span><span style={{ color: '#ffc857', fontWeight: 'bold' }}>(ProfileImage)</span></h6>  
+                        <h6><span>render</span><span style={{ color: '#ffc857', fontWeight: 'bold' }}>(profileImage);</span></h6>  
                         <label className='btn-rounded-light' style={{marginLeft: '115px', fontSize: '1.05em'}} for='file'>Choose File</label>                      
                         <input className='input-file' type='file' name='file' id='file' placeholder='Upload Image' onChange={uploadImage} />
                     </>
