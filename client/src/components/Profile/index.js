@@ -156,9 +156,17 @@ function ProfilePanel({ state, setState }) {
                 <Col s={12} l={12}>
                     {(edit && status.status !== false && status._id === state.id)
                     ? 
-                            <h6><span>render</span><span style={{ color: '#ffc857', fontWeight: 'bold' }}>(profileImage);</span></h6>
-                            <label className='btn-rounded-light' style={{ fontSize: '1.05em'}} htmlFor='file'>Choose File</label>                      
-                            <input className='input-file' type='file' name='file' id='file' placeholder='Upload Image' onChange={uploadImage} />
+                    <>
+                        <h6><span>render</span><span style={{ color: '#ffc857', fontWeight: 'bold' }}>(profileImage);</span></h6> 
+                        <Row>
+                            <div style={{ position: 'relative' }}>
+                                <div>
+                                    <label className='btn-rounded-light login-submit' style={{ bottom: '-44px', paddingTop: '4px', marginBottom: '8px', fontSize: '1.05em' }} htmlFor='file'>Choose File</label>                      
+                                    <input className='input-file' type='file' name='file' id='file' placeholder='Upload Image' onChange={uploadImage} />
+                                </div>
+                            </div> 
+                        </Row>
+                    </>
                     :
                         <></>
                     }
