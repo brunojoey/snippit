@@ -46,8 +46,8 @@
   margin-bottom: 0px;
   border: 2px solid #ffc857;  
   border-radius: 2px;
-  color: #8d99ae;
-  background-color: #fefdff;
+  color: #fefdff;
+  background-color: #414141;
 }
 
 .search-input input#Autocomplete-0.autocomplete:focus, .search-input input#Autocomplete-0.autocomplete:active {
