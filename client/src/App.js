@@ -5,7 +5,6 @@ import Nav from './components/Nav';
 import Navdrop from './components/Navdrop';
 import statusAPI from './utils/statusAPI';
 import StatusContext from './utils/StatusContext';
-import TaglineContext from './utils/TaglineContext';
 import loginPage from './pages/loginPage/index';
 import profilePage from './pages/profilePage';
 import snipPage from './pages/snipPage/index';
@@ -86,7 +85,6 @@ function App() {
       <div className='not-footer-wrap'>
         <StatusContext.Provider value={{ status, updateStatus }}>
           {(status.status === false) ? <Nav path={path} setPath={setPath}/> : <Navdrop size={size} path={path} setPath={setPath}/>}
-          <TaglineContext.Provider value={{ taglines, updateTaglines }}>
             <Switch>
               <Route exact path='/users/:id' component={profilePage} />
               <Route exact path='/snips/:id' component={snipPage} />
@@ -95,7 +93,6 @@ function App() {
               <Route exact path='/editor' component={editorPage} />
               <Route component={Home} />
             </Switch>
-          </TaglineContext.Provider>
         </StatusContext.Provider>
       </div>
       <Foot />

@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import { Row, Col } from 'react-materialize';
 import Loader from 'react-loader-spinner';
 import Feed from '../Feed';
-// import ProfileImage from '../Cloudinary/index';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUserCircle } from '@fortawesome/free-solid-svg-icons';
 import { languages } from '../../utils/languages';
@@ -157,7 +156,7 @@ function ProfilePanel({ state, setState }) {
                     ? 
                     <>
                         <h6><span>render</span><span style={{ color: '#ffc857', fontWeight: 'bold' }}>(profileImage);</span></h6>  
-                        <label className='btn-rounded-light' style={{marginLeft: '115px', fontSize: '1.05em'}} for='file'>Choose File</label>                      
+                        <label className='btn-rounded-light' style={{marginLeft: '115px', fontSize: '1.05em'}} htmlFor='file'>Choose File</label>                      
                         <input className='input-file' type='file' name='file' id='file' placeholder='Upload Image' onChange={uploadImage} />
                     </>
                     :
