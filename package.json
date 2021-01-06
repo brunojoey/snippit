@@ -4,7 +4,7 @@
   "description": "## Table of Contents * [Author(s)](#author(s)) * [Description](#description) * [Technologies Used](#technologies-used) * [Installation](#installation) * [Usage](#usage) * [Contributing](#contributing) * [Deployment Application Link](#deployment-application-link) * [Application in Use](#application-in-use)",
   "main": "server.js",
   "dependencies": {
-    "axios": "^0.19.2",
+    "axios": "^0.21.1",
     "bcrypt": "^4.0.1",
     "express": "^4.17.1",
     "express-session": "^1.17.1",
